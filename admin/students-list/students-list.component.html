@@ -1,0 +1,77 @@
+<div class="container mt-5 px-2">
+    <button
+      type="button"
+      class="btn btn-danger"
+      href="#"
+      routerLink="/admin"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Turn back to the main page
+    </button>
+  </div>
+  <div class="scss">
+    <div class="container mt-5 px-2">
+      <div class="mb-2 d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <span class="position-absolute search"><i class="search"></i> </span>
+          <button>
+            <form>
+              <input
+                type="search"
+                required
+                class="form-control w-100"
+                placeholder="Search Student Id!"
+                formControlName="filter"
+                (input)="filter()"
+              />
+            </form>
+          </button>
+        </div>
+      </div>
+  
+      <div class="mat-elevation-z8">
+        <table class="table table-responsive table-borderless">
+          <thead>
+            <tr class="bg-light">
+              <th scope="col" width="21.1%">Student Id</th>
+              <th scope="col" width="21.1%">Name</th>
+              <th scope="col" width="21.1%">Last Name</th>
+              <th scope="col" width="21.1%">Status</th>
+              <th scope="col" width="21.1%"><span>Edit</span></th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of data">
+            <tr>
+              <td>{{ item.id }}</td>
+              <td>{{ item.name }}</td>
+              <td>
+                {{ item.lastname }}
+              </td>
+              <td class="text-end">
+                <span class="fw-bolder">{{ item.adress }} ALL</span>
+                <i class="fa fa-ellipsis-h ms-2"></i>
+              </td>
+              <td class=" ">
+                <button
+                  mat-raised-button
+                  type="button"
+                  class="btn btn-primary mr-1"
+                >
+                  EDIT
+                </button>
+                <button mat-raised-button type="button" class="btn btn-danger">
+                  Disable
+                </button>
+              </td>
+            </tr>
+            <hr />
+            <thead></thead>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  
+  <div class="container mt-5 px-2"></div>
+  
