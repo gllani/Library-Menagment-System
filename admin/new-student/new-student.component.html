@@ -1,17 +1,25 @@
-<div class="col-md-6 offset-md-3">
+<div class="background">
+  <div class="col-md-6 offset-md-3">
     <div class="container mt-5 px-2">
+      <h1
+        class="mb-5 d-flex justify-content-between align-items-center"
+        style="color: green"
+      >
+        Add A New Student!
+      </h1>
       <div class="mb-4 d-flex justify-content-between align-items-center">
         <div class="position-relative">
-          <form >
+          <form [formGroup]="form">
             <div class="mb-3">
               <h3>Student Id</h3>
               <input
                 type="text"
                 class="form-control"
-                id="Student Id"
+                id="Id"
                 formControlName="Id"
                 placeholder="Id"
-                minlength="2"
+                required
+                minlength="5"
               />
             </div>
             <div class="mb-3">
@@ -23,6 +31,7 @@
                 formControlName="Name"
                 placeholder="Name"
                 required
+                minlength="3"
               />
             </div>
             <div class="mb-3">
@@ -30,13 +39,38 @@
               <input
                 type="text"
                 class="form-control"
-                id="last name"
-                formControlName="last name"
-                placeholder="last name"
+                id="lastname"
+                formControlName="lastname"
+                placeholder="lastname"
+                required
+                minlength="3"
               />
             </div>
-  
-          
+            <div class="mb-3">
+              <h3>Email</h3>
+              <input
+                type="text"
+                class="form-control"
+                id="Email"
+                formControlName="Email"
+                placeholder="Email"
+                required
+                minlength="7"
+              />
+            </div>
+            <div class="mb-3">
+              <h3>Password</h3>
+              <input
+                type="text"
+                class="form-control"
+                id="Password"
+                formControlName="Password"
+                placeholder="Password"
+                required
+                minlength="2"
+              />
+            </div>
+
             <hr />
             <button
               type="button"
@@ -49,10 +83,12 @@
             </button>
             <hr />
             <button
+              class="btn btn-danger"
               type="button"
               href="#"
               routerLink="/admin"
               ariaCurrentWhenActive="page"
+              (click)="kthehu()"
             >
               Turn Back!
             </button>
@@ -61,6 +97,5 @@
       </div>
     </div>
   </div>
-  
-  <router-outlet></router-outlet>
-  
+</div>
+<router-outlet></router-outlet>

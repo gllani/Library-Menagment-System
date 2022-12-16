@@ -1,31 +1,41 @@
 <div class="section">
-    <div class="container">
-      <div class="form">
-        <div class="left-side">
-          <div>
-            <span class="brand"
-              ><img
-                src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
-              /><small>Login to your account!</small></span
-            >
-            <div class="form-inputs">
-              <input type="text" placeholder="User Name" required minlength="4" />
-              <div class="password">
-                <input id="password" type="password" placeholder="Password" />
-                <p class="random_password"></p>
-              </div>
-              <input id="submit_button" type="submit" />
-            </div>
-          </div>
-        </div>
-        <div class="right-side">
-          <span class="circle1"></span>
-          <img
+  <div class="container">
+    <div class="form">
+      <div class="left-side">
+        <span class="brand"
+          ><img
             src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
-          />
-        </div>
+          /><small>Login to your account!</small></span
+        >
+        <form (ngSubmit)="onSubmit()" [formGroup]="loginForm">
+          <div class="form-inputs">
+            <input type="text" placeholder="User Name" required minlength="3" />
+            <div class="password">
+              <input
+                id="password"
+                type="password"
+                placeholder="Password"
+                minlength="3"
+              />
+              <div *ngIf="!loginForm.valid" class="error">
+                <p>Please fill all the forms above</p>
+              </div>
+
+              <div *ngIf="dontexist" class="error">
+                <p>This User does not exist!</p>
+              </div>
+              <p class="random_password"></p>
+            </div>
+            <input id="submit_button" type="submit" />
+          </div>
+        </form>
+      </div>
+      <div class="right-side">
+        <span class="circle1"></span>
+        <img
+          src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
+        />
       </div>
     </div>
   </div>
-  
-  
+</div>

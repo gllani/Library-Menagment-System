@@ -1,4 +1,5 @@
-<div class="container mt-5 px-2">
+<div class="background"> 
+  <div class="container mt-5 px-2">
     <button
       type="button"
       class="btn btn-danger"
@@ -29,16 +30,18 @@
           </button>
         </div>
       </div>
-  
+
       <div class="mat-elevation-z8">
         <table class="table table-responsive table-borderless">
           <thead>
             <tr class="bg-light">
-              <th scope="col" width="21.1%">Student Id</th>
-              <th scope="col" width="21.1%">Name</th>
-              <th scope="col" width="21.1%">Last Name</th>
-              <th scope="col" width="21.1%">Status</th>
-              <th scope="col" width="21.1%"><span>Edit</span></th>
+              <th scope="col" width="15%">Student Id</th>
+              <th scope="col" width="15%">Name</th>
+              <th scope="col" width="15%">Last Name</th>
+              <th scope="col" width="15%"><span>Email</span></th>
+              <th scope="col" width="15%"><span>Password</span></th>
+              <th scope="col" width="15%">Status</th>
+              <th scope="col" width="15%"><span>Edit</span></th>
             </tr>
           </thead>
           <tbody *ngFor="let item of data">
@@ -48,10 +51,19 @@
               <td>
                 {{ item.lastname }}
               </td>
-              <td class="text-end">
-                <span class="fw-bolder">{{ item.adress }} ALL</span>
-                <i class="fa fa-ellipsis-h ms-2"></i>
+              <td>
+                {{ item.email }}
               </td>
+              <td>
+                {{ item.password }}
+              </td>
+              <td>
+                {{ item.status }}
+              </td>
+              <td>
+                {{ item.edit }}
+              </td>
+
               <td class=" ">
                 <button
                   mat-raised-button
@@ -72,6 +84,4 @@
       </div>
     </div>
   </div>
-  
-  <div class="container mt-5 px-2"></div>
-  
+</div>

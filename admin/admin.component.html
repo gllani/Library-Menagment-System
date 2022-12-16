@@ -14,7 +14,7 @@
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 />
 
-<html>
+<html class="position">
   <body class="w3-theme-l5">
     <!-- Navbar -->
     <div class="w3-top">
@@ -27,25 +27,6 @@
         <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
           ><i class="fa fa-home w3-margin-right"></i>Admin Page</a
         >
-        <a
-          class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white"
-          title="Account Settings"
-          ><i class="fa fa-user"></i
-        ></a>
-        <div class="w3-dropdown-hover w3-hide-small">
-          <button class="w3-button w3-padding-large" title="Notifications">
-            <i class="fa fa-bell"></i
-            ><span class="w3-badge w3-right w3-small w3-green">3</span>
-          </button>
-          <div
-            class="w3-dropdown-content w3-card-4 w3-bar-block"
-            style="width: 300px"
-          >
-            <a class="w3-bar-item w3-button">Request</a>
-            <a class="w3-bar-item w3-button">Request</a>
-            <a class="w3-bar-item w3-button">Request</a>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -64,7 +45,7 @@
               <h4 class="w3-center">My Profile</h4>
               <p class="w3-center">
                 <img
-                  src="https://images.assetsdelivery.com/compings_v2/sofiiashunkina/sofiiashunkina2003/sofiiashunkina200300813.jpg"
+                  src="https://api.time.com/wp-content/uploads/2021/10/GettyImages-577674005.jpg"
                   class="w3-circle"
                   style="height: 106px; width: 106px"
                   alt="Avatar"
@@ -89,27 +70,6 @@
           </div>
           <br />
 
-          <!-- Accordion -->
-          <div class="w3-card w3-round">
-            <div class="w3-white">
-              <button class="w3-button w3-block w3-theme-l1 w3-left-align">
-                <i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i
-                >LogOut!
-              </button>
-              <div id="Demo1" class="w3-hide w3-container">
-                <p>Some text..</p>
-              </div>
-              <button class="w3-button w3-block w3-theme-l1 w3-left-align">
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>Edit
-                Your Information!
-              </button>
-              <div id="Demo2" class="w3-hide w3-container">
-                <p>Some other text..</p>
-              </div>
-            </div>
-          </div>
-          <br />
-
           <!-- Alert Box -->
           <div
             class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
@@ -123,7 +83,40 @@
             <p><strong>Hey!</strong></p>
             <p>WELCOME SIR. Melville Louis</p>
           </div>
-
+          <!-- Accordion -->
+          <div class="w3-card w3-round">
+            <div class="w3-white">
+              <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+                <i
+                  class="fa fa-circle-o-notch fa-fw w3-margin-right"
+                  style="color: red"
+                ></i
+                >LogOut!
+              </button>
+              <button
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="goToCheckStudents()"
+              >
+                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+                Check Students List!
+              </button>
+              <button
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="goToAddBooks()"
+              >
+                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+                Add Books!
+              </button>
+              <button
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="goToAddStudent()"
+              >
+                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+                Add a new Student!
+              </button>
+            </div>
+          </div>
+          <br />
           <!-- End Left Column -->
         </div>
 
@@ -131,19 +124,74 @@
         <div class="w3-col m7">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
             <h4>Table of Students</h4>
-            <!-- <h1><h1><h1><h1><h1><h1><h1><h1>h
-              <h1>h
-                h
+            <div class="background">
+              <div class="container mt-5 px-2"></div>
+              <div class="scss">
+                <div class="container mt-5 px-2">
+                  <div
+                    class="mb-2 d-flex justify-content-between align-items-center"
+                  >
+                    <div class="position-relative">
+                      <span class="position-absolute search"
+                        ><i class="search"></i>
+                      </span>
+              
+                    </div>
+                  </div>
 
-                <h1><h1>hh
-                  h
-                  h
-                  h
+                  <div class="mat-elevation-z8">
+                    <table class="table table-responsive table-borderless">
+                      <thead>
+                        <tr class="bg-light">
+                          <th scope="col" width="15%">Name</th>
+                          <th scope="col" width="15%">Last Name</th>
+                          <th scope="col" width="15%"><span>Email</span></th>
+                          <th scope="col" width="15%"><span>Password</span></th>
+                          <th scope="col" width="15%"><span>Status</span></th>
+                        </tr>
+                      </thead>
+                      <tbody *ngFor="let item of data">
+                        <tr>
+                          <td>{{ item.name }}</td>
+                          <td>
+                            {{ item.lastname }}
+                          </td>
+                          <td>
+                            {{ item.email }}
+                          </td>
+                          <td>
+                            {{ item.password }}
+                          </td>
+                          <td>
+                            {{ item.status }}
+                          </td>
 
-                  <h1><h1></h1></h1>
-                </h1></h1>
-              </h1>
-            </h1></h1></h1></h1></h1></h1></h1></h1> -->
+                          <td class=" ">
+                            <button
+                              mat-raised-button
+                              type="button"
+                              class="btn btn-primary mr-1"
+                            >
+                              EDIT
+                            </button>
+                            <button
+                              mat-raised-button
+                              type="button"
+                              class="btn btn-danger"
+                            >
+                              Disable
+                            </button>
+                          </td>
+                        </tr>
+                        <hr />
+                        <thead></thead>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <hr />
           </div>
 
@@ -154,60 +202,19 @@
         <div class="w3-col m2">
           <div class="w3-card w3-round w3-white w3-center">
             <div class="w3-container">
-              <p>Alert Email!</p>
-
-              <p>
-                <strong
-                  >Hello, I hope that this email finds you well! Your deadline
-                  is ending! Please turn back the book! Sicerely, Library
-                  IkubInfo.
-                </strong>
+              <h2>Email Panel</h2>
+              <hr />
+              <p style="color: blue">
+                Sir, If you want to check your email, click the button below!
               </p>
-
-              <p>
-                <button class="w3-button w3-block w3-theme-l4">
-                  Send Email
-                </button>
-              </p>
-              <p>
-                <strong
-                  >Hello, I hope that this email finds you well! Your deadline
-                  is ending! Please turn back the book! Sicerely, Library
-                  IkubInfo.
-                </strong>
-              </p>
-
-              <p>
-                <button class="w3-button w3-block w3-theme-l4">
-                  Send Email
-                </button>
-              </p>
-              <p>
-                <strong
-                  >Hello, I hope that this email finds you well! Your deadline
-                  is ending! Please turn back the book! Sicerely, Library
-                  IkubInfo.
-                </strong>
-              </p>
-
-              <p>
-                <button class="w3-button w3-block w3-theme-l4">
-                  Send Email
-                </button>
-              </p>
-              <p>
-                <strong
-                  >Hello, I hope that this email finds you well! Your deadline
-                  is ending! Please turn back the book! Sicerely, Library
-                  IkubInfo.
-                </strong>
-              </p>
-
-              <p>
-                <button class="w3-button w3-block w3-theme-l4">
-                  Send Email
-                </button>
-              </p>
+              <div class="w3-card w3-round w3-white w3-center">
+                <a
+                  href="https://accounts.google.com/v3/signin/identifier?dsh=S-1962830822%3A1671186130850041&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh6m7sl6W5oJKF_a-T0zm0W73RxpWSmvuO2O6ElVK9U906F_q4Y3Iw8UFz7OqY12p1HrojQXUQ"
+                  >GMAIL</a
+                >
+                <br />
+              </div>
+              <hr />
             </div>
           </div>
           <br />
@@ -221,10 +228,5 @@
       <!-- End Page Container -->
     </div>
     <br />
-
-    <!-- Footer -->
-    <footer class="w3-container w3-theme-d3 w3-padding-16">
-      <h5>Admin Panel!</h5>
-    </footer>
   </body>
 </html>
