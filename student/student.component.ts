@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core"
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
+import { AuthService } from "../auth.service";
 
 @Component({
   selector: "app-student",
@@ -7,7 +8,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./student.component.scss"],
 })
 export class StudentComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute) {}
+  constructor(private activatedRoute: ActivatedRoute,    private auth: AuthService,  private router: Router,) {}
 
   ngOnInit(): void {
     this.activatedRoute.fragment.subscribe((value) => {
@@ -17,5 +18,12 @@ export class StudentComponent implements OnInit {
   jumpTo(section: any) {
     document.getElementById(section)
       ?.scrollIntoView({ behavior: "smooth" });
+  }
+  onLogout() {
+    this.auth.isLoggedIn = false;
+    this.auth.isAdmin = false;
+    localStorage.removeItem('login');
+    localStorage.clear();
+    this.router.navigate(['']);
   }
 }

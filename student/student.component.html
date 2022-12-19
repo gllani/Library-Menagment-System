@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
 
 <html>
-  <body class="w3-black ">
+  <body class="w3-black">
     <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
       <img
         src="https://images.assetsdelivery.com/compings_v2/sofiiashunkina/sofiiashunkina2003/sofiiashunkina200300813.jpg"
@@ -45,6 +45,7 @@
         <p>PANEL</p>
       </a>
       <button
+        (click)="onLogout()"
         class="w3-button w3-padding-large far fa-smile"
         style="font-size: 48px; color: red"
       >
@@ -65,7 +66,7 @@
           height="600"
         />
       </header>
-  </div>
+    </div>
   </body>
 </html>
 <app-home id="home"></app-home>

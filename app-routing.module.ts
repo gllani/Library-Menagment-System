@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
+import { BooksListComponent } from "./admin/books-list/books-list.component";
 import { BooksComponent } from "./admin/books/books.component";
 import { NewStudentComponent } from "./admin/new-student/new-student.component";
 import { StudentsListComponent } from "./admin/students-list/students-list.component";
@@ -17,18 +18,22 @@ const routes: Routes = [
     component: HomepageComponent,
   },
   {
+    path: "home",
+    component: HomepageComponent,
+  },
+  {
     path: "login",
     component: LoginComponent,
   },
   {
     path: "admin",
     component: AdminComponent,
-    canActivate: [GuardService] 
+    canActivate: [GuardService],
   },
   {
     path: "student",
     component: StudentComponent,
-    canActivate: [GuardService] 
+    canActivate: [GuardService],
   },
   {
     path: "search-modal",
@@ -45,7 +50,12 @@ const routes: Routes = [
   {
     path: "books",
     component: BooksComponent,
-  },  {
+  },
+  {
+    path: "books-list",
+    component: BooksListComponent,
+  },
+  {
     path: "reserve",
     component: ReserveComponent,
   },

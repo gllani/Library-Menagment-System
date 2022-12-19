@@ -86,7 +86,10 @@
           <!-- Accordion -->
           <div class="w3-card w3-round">
             <div class="w3-white">
-              <button class="w3-button w3-block w3-theme-l1 w3-left-align">
+              <button
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="logOut()"
+              >
                 <i
                   class="fa fa-circle-o-notch fa-fw w3-margin-right"
                   style="color: red"
@@ -100,6 +103,13 @@
                 <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
                 Check Students List!
               </button>
+              <button
+              class="w3-button w3-block w3-theme-l1 w3-left-align"
+              (click)="goToCheckBooks()"
+            >
+              <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+              Check Books List!
+            </button>
               <button
                 class="w3-button w3-block w3-theme-l1 w3-left-align"
                 (click)="goToAddBooks()"
@@ -135,7 +145,6 @@
                       <span class="position-absolute search"
                         ><i class="search"></i>
                       </span>
-              
                     </div>
                   </div>
 

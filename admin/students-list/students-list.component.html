@@ -1,87 +1,51 @@
-<div class="background"> 
-  <div class="container mt-5 px-2">
-    <button
-      type="button"
-      class="btn btn-danger"
-      href="#"
-      routerLink="/admin"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      Turn back to the main page
-    </button>
-  </div>
-  <div class="scss">
-    <div class="container mt-5 px-2">
-      <div class="mb-2 d-flex justify-content-between align-items-center">
-        <div class="position-relative">
-          <span class="position-absolute search"><i class="search"></i> </span>
-          <button>
-            <form>
-              <input
-                type="search"
-                required
-                class="form-control w-100"
-                placeholder="Search Student Id!"
-                formControlName="filter"
-                (input)="filter()"
-              />
-            </form>
-          </button>
-        </div>
-      </div>
+<div class="container mt-5 px-2">
+  <button
+    type="button"
+    class="btn btn-danger"
+    href="#"
+    routerLink="/admin"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+  >
+    Turn To The Main Page
+  </button>
 
-      <div class="mat-elevation-z8">
-        <table class="table table-responsive table-borderless">
-          <thead>
-            <tr class="bg-light">
-              <th scope="col" width="15%">Student Id</th>
-              <th scope="col" width="15%">Name</th>
-              <th scope="col" width="15%">Last Name</th>
-              <th scope="col" width="15%"><span>Email</span></th>
-              <th scope="col" width="15%"><span>Password</span></th>
-              <th scope="col" width="15%">Status</th>
-              <th scope="col" width="15%"><span>Edit</span></th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let item of data">
-            <tr>
-              <td>{{ item.id }}</td>
-              <td>{{ item.name }}</td>
-              <td>
-                {{ item.lastname }}
-              </td>
-              <td>
-                {{ item.email }}
-              </td>
-              <td>
-                {{ item.password }}
-              </td>
-              <td>
-                {{ item.status }}
-              </td>
-              <td>
-                {{ item.edit }}
-              </td>
+  <div class="container mt-5 px-2"></div>
 
-              <td class=" ">
-                <button
-                  mat-raised-button
-                  type="button"
-                  class="btn btn-primary mr-1"
-                >
-                  EDIT
-                </button>
-                <button mat-raised-button type="button" class="btn btn-danger">
-                  Disable
-                </button>
-              </td>
-            </tr>
-            <hr />
-            <thead></thead>
-          </tbody>
-        </table>
-      </div>
-    </div>
-  </div>
+  <table mat-table class="mat-elevation-z8" >
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>Id</th>
+      <td mat-cell *matCellDef="let element" formControlName="id">{{ element.id }}</td>
+    </ng-container>
+    <ng-container matColumnDef="username">
+      <th mat-header-cell *matHeaderCellDef>username</th>
+      <td mat-cell *matCellDef="let element" formControlName="username">{{ element.username }}</td>
+    </ng-container>
+    <ng-container matColumnDef="password">
+      <th mat-header-cell *matHeaderCellDef>password</th>
+      <td mat-cell *matCellDef="let element " formControlName="password">{{ element.password }}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef>Action</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.action }}
+        <button mat-button (click)="deleteFunction(element)">Delete</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <div class="container mt-5 px-2"></div>
+  <button
+    type="button"
+    class="btn btn-primary"
+    href="#"
+    routerLink="/new-student"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+  >
+    Add a new Student!
+  </button>
+  <div class="container mt-5 px-2"></div>
 </div>

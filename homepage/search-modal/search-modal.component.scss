@@ -4,7 +4,8 @@
             border-radius: 1px !important;
   }
   .container{
-    position: fixed;
+    display: flex;
+    justify-content: center;
 
   }
   #logo {
@@ -49,4 +50,13 @@
     outline: 0;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 1px rgba(0, 109, 0, 0.8);
             box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 1px rgba(0, 109, 0, 0.8);
+  }
+  .example-form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .example-full-width {
+    width: 100%;
   }

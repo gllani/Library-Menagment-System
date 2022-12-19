@@ -7,6 +7,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth.service";
+import { FirebaseService } from "../firebase.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -27,7 +28,8 @@ export class LoginComponent {
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private firebase: FirebaseService
   ) {}
 
   ngOnInit(): void {
@@ -35,10 +37,17 @@ export class LoginComponent {
       username: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
     });
+    this.firebase.getPunonjes().subscribe((data: any) => {
+      console.log("data", data);
+      this.student = data;
+    });
   }
-  onSubmit() {
+
+  test() {
+    console.log("test");
     if (this.loginForm.valid) {
       this.student.map((student: any) => {
+        console.log("students", student);
         if (
           student.username === this.loginForm.value.username &&
           student.password === this.loginForm.value.password

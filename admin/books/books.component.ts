@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import {  Router } from "@angular/router";
+import { Router } from "@angular/router";
+import { FirebaseService } from "src/app/firebase.service";
+import { BookService } from "./book.service";
 
 @Component({
   selector: "app-books",
@@ -8,28 +10,40 @@ import {  Router } from "@angular/router";
   styleUrls: ["./books.component.scss"],
 })
 export class BooksComponent implements OnInit {
-  title = "form";
+  title = "books";
   form!: FormGroup;
-  
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private bookservice: BookService,
+    private firebase: FirebaseService
+  ) {}
 
   ngOnInit(): void {
-    let Id: any = "";
+    let BookName: any = "";
     let Name: any = "";
-    let lastname: any = "";
-    let Email: any = "";
-    let Password: any = "";
+    if (this.bookservice.editableData.BookName !== "") {
+      BookName = this.bookservice.editableData.BookName;
+    }
+    if (this.bookservice.editableData.Name !== "") {
+      Name = this.bookservice.editableData.Name;
+    }
 
     this.form = new FormGroup({
-      Id: new FormControl(Id, Validators.required),
-      Emri: new FormControl(Name, Validators.required),
-      Cmimi: new FormControl(lastname, Validators.required),
-      Sasia: new FormControl(Email, Validators.required),
-      lloji: new FormControl(Password, Validators.required),
+      BookName: new FormControl(BookName, Validators.required),
+      Name: new FormControl(Name, Validators.required),
     });
   }
   kthehu() {
-    this.router.navigate(['/admin']);
+    this.router.navigate(["/admin"]);
   }
+
+    goToAdd() {
+      let item = {
+        BookName: this.form.value.BookName,
+        Name: this.form.value.Name,
+      };
+      this.firebase.addProduct(item);
+      this.router.navigate(["/books-list"]);
+    }
 }
