@@ -9,6 +9,7 @@ import { GuardService } from "./guard.service";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
 import { LoginComponent } from "./login/login.component";
+import { ReserveComponent } from "./student/reserve/reserve.component";
 import { StudentComponent } from "./student/student.component";
 
 const routes: Routes = [
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: "books-list",
     component: BooksListComponent,
+  },
+  {
+    path: "reserve",
+    component: ReserveComponent,
   },
 
   {

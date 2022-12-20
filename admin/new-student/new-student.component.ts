@@ -15,7 +15,7 @@ export class NewStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      Id: new FormControl('', Validators.required),
+      id: new FormControl('', Validators.required),
       username: new FormControl('', Validators.required),
       password: new FormControl('', Validators.required),
     });
@@ -25,7 +25,7 @@ export class NewStudentComponent implements OnInit {
   }
   goToAdd() {
     let item = {
-      Id: this.form.value.Id,
+      id: this.form.value.id,
       username: this.form.value.username,
       password: this.form.value.password,
       role: "employeer",

@@ -45,7 +45,7 @@ export class StudentsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.studentsService.editableData = {
-      id: 0,
+      id: '',
       username: 0,
       password: 0,
     };

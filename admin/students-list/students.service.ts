@@ -5,8 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class StudentsService {
   editableData = {
-    id: 0,
-
+    id: '',
     username: 0,
     password: 0,
   };
