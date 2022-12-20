@@ -9,7 +9,6 @@ import { GuardService } from "./guard.service";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
 import { LoginComponent } from "./login/login.component";
-import { ReserveComponent } from "./student/reserve/reserve.component";
 import { StudentComponent } from "./student/student.component";
 
 const routes: Routes = [
@@ -18,20 +17,35 @@ const routes: Routes = [
     component: HomepageComponent,
   },
   {
-    path: "home",
-    component: HomepageComponent,
-  },
-  {
     path: "login",
     component: LoginComponent,
   },
+
   {
-    path: "admin",
+    path: "Admin",
     component: AdminComponent,
     canActivate: [GuardService],
+    children: [
+      {
+        path: "new-student",
+        component: NewStudentComponent,
+      },
+      {
+        path: "students-list",
+        component: StudentsListComponent,
+      },
+      {
+        path: "books",
+        component: BooksComponent,
+      },
+      {
+        path: "books-list",
+        component: BooksListComponent,
+      },
+    ],
   },
   {
-    path: "student",
+    path: "Student",
     component: StudentComponent,
     canActivate: [GuardService],
   },
@@ -39,26 +53,7 @@ const routes: Routes = [
     path: "search-modal",
     component: SearchModalComponent,
   },
-  {
-    path: "new-student",
-    component: NewStudentComponent,
-  },
-  {
-    path: "students-list",
-    component: StudentsListComponent,
-  },
-  {
-    path: "books",
-    component: BooksComponent,
-  },
-  {
-    path: "books-list",
-    component: BooksListComponent,
-  },
-  {
-    path: "reserve",
-    component: ReserveComponent,
-  },
+  { path: "**", redirectTo: "login", pathMatch: "full" },
 ];
 
 @NgModule({

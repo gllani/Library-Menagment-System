@@ -20,8 +20,8 @@ export class BooksListComponent implements OnInit {
   allData: any = [];
   data: any = [];
   searchText: any;
-  todayDate : Date = new Date();
-  dateVal  =new Date();
+  todayDate: Date = new Date();
+  dateVal = new Date();
 
   constructor(
     private router: Router,

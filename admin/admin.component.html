@@ -104,12 +104,12 @@
                 Check Students List!
               </button>
               <button
-              class="w3-button w3-block w3-theme-l1 w3-left-align"
-              (click)="goToCheckBooks()"
-            >
-              <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-              Check Books List!
-            </button>
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="goToCheckBooks()"
+              >
+                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+                Check Books List!
+              </button>
               <button
                 class="w3-button w3-block w3-theme-l1 w3-left-align"
                 (click)="goToAddBooks()"
@@ -127,13 +127,12 @@
             </div>
           </div>
           <br />
-          <!-- End Left Column -->
         </div>
 
         <!-- Middle Column -->
         <div class="w3-col m7">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
-            <h4>Table of Students</h4>
+            <h4 style="color: green">Table of Students</h4>
             <div class="background">
               <div class="container mt-5 px-2"></div>
               <div class="scss">
@@ -148,54 +147,48 @@
                     </div>
                   </div>
 
-                  <div class="mat-elevation-z8">
-                    <table class="table table-responsive table-borderless">
-                      <thead>
-                        <tr class="bg-light">
-                          <th scope="col" width="15%">Name</th>
-                          <th scope="col" width="15%">Last Name</th>
-                          <th scope="col" width="15%"><span>Email</span></th>
-                          <th scope="col" width="15%"><span>Password</span></th>
-                          <th scope="col" width="15%"><span>Status</span></th>
-                        </tr>
-                      </thead>
-                      <tbody *ngFor="let item of data">
-                        <tr>
-                          <td>{{ item.name }}</td>
-                          <td>
-                            {{ item.lastname }}
-                          </td>
-                          <td>
-                            {{ item.email }}
-                          </td>
-                          <td>
-                            {{ item.password }}
-                          </td>
-                          <td>
-                            {{ item.status }}
-                          </td>
+                  <div class="scss">
+                    <div class="mat-elevation-z8">
+                      <table class="table table-responsive table-borderless">
+                        <thead>
+                          <tr class="bg-light">
+                            <th scope="col" width="21.1%">Student Id</th>
+                            <th scope="col" width="21.1%">Username</th>
+                            <th scope="col" width="21.1%">Password</th>
+                            <th scope="col" width="21.1%">
+                              <span>Books</span>
+                            </th>
+                          </tr>
+                        </thead>
+                        <tbody *ngFor="let item of data">
+                          <tr>
+                            <td>{{ item.id }}</td>
+                            <td>{{ item.username }}</td>
+                            <td>{{ item.password }}</td>
 
-                          <td class=" ">
-                            <button
-                              mat-raised-button
-                              type="button"
-                              class="btn btn-primary mr-1"
-                            >
-                              EDIT
-                            </button>
-                            <button
-                              mat-raised-button
-                              type="button"
-                              class="btn btn-danger"
-                            >
-                              Disable
-                            </button>
-                          </td>
-                        </tr>
-                        <hr />
-                        <thead></thead>
-                      </tbody>
-                    </table>
+                            <td class=" ">
+                              <div class="example-button-row">
+                                <div class="example-flex-container">
+                                  <div class="example-button-container">
+                                    <button
+                                      (click)="openDialog()"
+                                      mat-mini-fab
+                                      color="primary"
+                                      aria-label="Example icon button with a menu icon"
+                                    >
+                                      <mat-icon>menu</mat-icon>
+                                    </button>
+                                  </div>
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+
+                          <hr />
+                          <thead></thead>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
                 </div>
               </div>

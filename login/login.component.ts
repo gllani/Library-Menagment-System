@@ -14,19 +14,12 @@ import { FirebaseService } from "../firebase.service";
   styleUrls: ["./login.component.scss"],
 })
 export class LoginComponent {
-  firstFormGroup = this._formBuilder.group({
-    firstCtrl: ["", Validators.required],
-  });
-  secondFormGroup = this._formBuilder.group({
-    secondCtrl: ["", Validators.required],
-  });
   title = "login";
   loginForm!: FormGroup;
   student: any[] = [];
   dontexist = false;
 
   constructor(
-    private _formBuilder: FormBuilder,
     private router: Router,
     private authService: AuthService,
     private firebase: FirebaseService
@@ -56,11 +49,11 @@ export class LoginComponent {
           if (student.role === "admin") {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = true;
-            this.router.navigate(["admin"]);
+            this.router.navigate(["Admin"]);
           } else {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = false;
-            this.router.navigate(["student"]);
+            this.router.navigate(["Student"]);
           }
         } else {
           this.dontexist = true;

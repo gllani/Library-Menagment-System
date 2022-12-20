@@ -28,10 +28,14 @@ import { FIREBASE_OPTIONS } from "@angular/fire/compat";
 import { HttpClientModule } from "@angular/common/http";
 import { MatAutocompleteModule } from "@angular/material/autocomplete";
 import { MatInputModule } from "@angular/material/input";
-import { BooksListComponent } from './admin/books-list/books-list.component';
-import {MatTableModule} from '@angular/material/table';
-import { DeleteModalComponent } from './admin/delete-modal/delete-modal.component';
-
+import { BooksListComponent } from "./admin/books-list/books-list.component";
+import { MatTableModule } from "@angular/material/table";
+import { DeleteModalComponent } from "./admin/delete-modal/delete-modal.component";
+import { DialogComponent } from "./admin/dialog/dialog.component";
+import { MatDialogModule } from "@angular/material/dialog";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +54,7 @@ import { DeleteModalComponent } from './admin/delete-modal/delete-modal.componen
     ReserveComponent,
     BooksListComponent,
     DeleteModalComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,8 +71,11 @@ import { DeleteModalComponent } from './admin/delete-modal/delete-modal.componen
     HttpClientModule,
     MatAutocompleteModule,
     MatInputModule,
-    MatTableModule
-    
+    MatTableModule,
+    MatDialogModule,
+    MatButtonModule,
+    MatIconModule,
+    MatSlideToggleModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],

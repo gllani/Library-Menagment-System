@@ -1,16 +1,16 @@
 <div class="background">
-<div class="container mt-5 px-2">
-  <button
-    type="button"
-    class="btn btn-danger"
-    href="#"
-    routerLink="/admin"
-    routerLinkActive="active"
-    ariaCurrentWhenActive="page"
-  >
-    Turn back to the main page!
-  </button>
-</div>
+  <div class="container mt-5 px-2">
+    <button
+      type="button"
+      class="btn btn-danger"
+      href="#"
+      routerLink="/admin"
+      routerLinkActive="active"
+      ariaCurrentWhenActive="page"
+    >
+      Turn back to the main page!
+    </button>
+  </div>
 
   <div class="container mt-5 px-2">
     <div class="mb-2 d-flex justify-content-between align-items-center">
@@ -40,64 +40,66 @@
         Add a new Book!
       </button>
     </div>
-<div class="scss">
-    <div class="mat-elevation-z8">
-      <table class="table table-responsive table-borderless">
-        <thead>
-          <tr class="bg-light">
-            <th scope="col" width="21.1%">Book Title</th>
-            <th scope="col" width="21.1%">Author</th>
+    <div class="scss">
+      <div class="mat-elevation-z8">
+        <table class="table table-responsive table-borderless">
+          <thead>
+            <tr class="bg-light">
+              <th scope="col" width="21.1%">Book Title</th>
+              <th scope="col" width="21.1%">Author</th>
 
-            <th scope="col" width="21.1%"><span>Edit</span></th>
-          </tr>
-        </thead>
-        <tbody *ngFor="let item of data">
-          <tr>
-            <td>{{ item.BookName }}</td>
-            <td>{{ item.Name }}</td>
+              <th scope="col" width="21.1%">
+                <span>Edit</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody *ngFor="let item of data">
+            <tr>
+              <td>{{ item.BookName }}</td>
+              <td>{{ item.Name }}</td>
 
-            <td class=" ">
-              <button
-                mat-raised-button
-                type="button"
-                class="btn btn-primary mr-1"
-                (click)="goToEdit(item)"
-              >
-                EDIT
-              </button>
-              <button
-                mat-raised-button
-                type="button"
-                class="btn btn-light "
-                (click)="goToDisable(item)"
-              >
-                Disable
-              </button>
-              <button
-                mat-raised-button
-                (click)="setShowModal(true, item)"
-                type="button"
-                class="btn btn-danger"
-              >
-                DELETE
-              </button>
-            </td>
-         
-          </tr>
-          <p class="color">
-          {{dateVal | date: "d/M/y HH:mm:ss" }}</p>
-          <hr />
-          <thead></thead>
-        </tbody>
-      </table>
+              <td class=" ">
+                <button
+                  mat-raised-button
+                  type="button"
+                  class="btn btn-primary mr-1"
+                  (click)="goToEdit(item)"
+                >
+                  EDIT
+                </button>
+                <button
+                  mat-raised-button
+                  type="button"
+                  class="btn btn-light"
+                  (click)="goToDisable(item)"
+                >
+                  Disable
+                </button>
+                <button
+                  mat-raised-button
+                  (click)="setShowModal(true, item)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  DELETE
+                </button>
+              </td>
+            </tr>
+            <p class="color">
+              {{ dateVal | date : "d/M/y HH:mm:ss" }}
+            </p>
+            <hr />
+            <thead></thead>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 
-<div class="container mt-5 px-2"></div>
+  <div class="container mt-5 px-2"></div>
 
-<app-delete-modal
-  *ngIf="showModal"
-  (newItemEvent)="deleteFunction($event)"
-></app-delete-modal>
+  <app-delete-modal
+    *ngIf="showModal"
+    (newItemEvent)="deleteFunction($event)"
+  ></app-delete-modal>
 </div>

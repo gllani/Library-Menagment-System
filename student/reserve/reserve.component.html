@@ -41,10 +41,13 @@
                 <th scope="col" width="21%">Reserve</th>
               </tr>
             </thead>
-            <tbody>
+
+            <tbody *ngFor="let item of data">
+              
+
               <tr>
-                <td>Book Name</td>
-                <td>Author</td>
+                <td>{{ item.BookName }}</td>
+                <td>{{ item.Name }}</td>
                 <mat-form-field>
                   <mat-date-range-input [rangePicker]="picker">
                     <input matStartDate placeholder="Start date" />
@@ -68,44 +71,7 @@
                   </button>
                 </td>
               </tr>
-              <hr />
-              <thead></thead>
-              <tr>
-                <td>Book Name</td>
-                <td>Author</td>
-                <mat-form-field appearance="fill">
-                  <mat-date-range-input>
-                    <input
-                      matStartDate
-                      formControlName="startdate"
-                      placeholder="Start date"
-                    />
-                    <input
-                      matEndDate
-                      formControlName="enddate"
-                      placeholder="End date"
-                    />
-                  </mat-date-range-input>
-                  <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                  <mat-datepicker-toggle
-                    matIconSuffix
-                    [for]="picker"
-                  ></mat-datepicker-toggle>
-                  <mat-date-range-picker #picker></mat-date-range-picker>
-                </mat-form-field>
-
-                <td>
-                  <button
-                    mat-raised-button
-                    type="button"
-                    class="btn btn-primary mr-1"
-                  >
-                    Save!
-                  </button>
-                </td>
-              </tr>
-              <hr />
-              <thead></thead>
+         
             </tbody>
           </table>
         </div>

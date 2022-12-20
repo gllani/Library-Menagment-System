@@ -11,25 +11,36 @@ import { StudentsService } from "./students.service";
 export class StudentsListComponent implements OnInit {
   showModal: boolean = false;
   deletePunonjes: boolean = false;
-  displayedColumns: string[] = ['id', 'username', 'password', 'action'];
+  displayedColumns: string[] = ["id", "username", "password", "action"];
   data: any[] = [];
   allData: any = [];
   form!: FormGroup;
+  todayDate: Date = new Date();
+  dateVal = new Date();
 
-  constructor(private firebase: FirebaseService, private studentsService :StudentsService) {}
+  constructor(
+    private firebase: FirebaseService,
+    private studentsService: StudentsService
+  ) {}
+ 
 
-  setShowModal(value: boolean, item: any) {
-    console.log(item);
-    this.firebase = item;
-    this.showModal = value;
-  }
-  goToDelete(item: any) {
-    this.deletePunonjes = false;
-    this.showModal = true;
-    this.deletePunonjes = item;
-  }
-  deleteFunction(event: any) {
-    this.firebase.fshiPunonjes(event.customIdName);
+  searchArray = (toSearch: string, array: any[]) => {
+    let terms = toSearch.split(" ");
+    return array.filter((object) =>
+      terms.every((term) =>
+        Object.values(object).some((value: any) =>
+          typeof value === "string" || value instanceof String
+            ? value.includes(term)
+            : false
+        )
+      )
+    );
+  };
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
   }
 
   ngOnInit(): void {
@@ -37,7 +48,6 @@ export class StudentsListComponent implements OnInit {
       id: 0,
       username: 0,
       password: 0,
-      
     };
     this.firebase.getPunonjes().subscribe((data: any) => {
       console.log("data nga firebasi", data);
@@ -48,4 +58,5 @@ export class StudentsListComponent implements OnInit {
       filter: new FormControl(""),
     });
   }
+  
 }

@@ -33,7 +33,7 @@
                 minlength="5"
               />
             </div>
-       
+
             <div class="mb-3">
               <h3>Email</h3>
               <input
@@ -68,6 +68,12 @@
                 required
                 minlength="3"
               />
+            </div>
+            <div class="mb-3">
+              <h3>Active/Dissable</h3>
+              <button mat-raised-button type="button" class="btn btn-light">
+                <mat-slide-toggle> </mat-slide-toggle>
+              </button>
             </div>
             <div *ngIf="!form.valid" class="error">
               <p>Please complete the required placeholders!</p>

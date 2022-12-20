@@ -8,7 +8,7 @@ import { AuthService } from "../auth.service";
   styleUrls: ["./student.component.scss"],
 })
 export class StudentComponent implements OnInit {
-  constructor(private activatedRoute: ActivatedRoute,    private auth: AuthService,  private router: Router,) {}
+  constructor(private activatedRoute: ActivatedRoute,private auth: AuthService,private router: Router,) {}
 
   ngOnInit(): void {
     this.activatedRoute.fragment.subscribe((value) => {
