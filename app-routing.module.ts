@@ -20,35 +20,34 @@ const routes: Routes = [
     path: "login",
     component: LoginComponent,
   },
-
   {
-    path: "Admin",
+    path: "admin",
     component: AdminComponent,
     canActivate: [GuardService],
-    children: [
-      {
-        path: "new-student",
-        component: NewStudentComponent,
-      },
-      {
-        path: "students-list",
-        component: StudentsListComponent,
-      },
-      {
-        path: "books",
-        component: BooksComponent,
-      },
-      {
-        path: "books-list",
-        component: BooksListComponent,
-      },
-    ],
   },
   {
-    path: "Student",
+    path: "student",
     component: StudentComponent,
     canActivate: [GuardService],
   },
+
+  {
+    path: "new-student",
+    component: NewStudentComponent,
+  },
+  {
+    path: "students-list",
+    component: StudentsListComponent,
+  },
+  {
+    path: "books",
+    component: BooksComponent,
+  },
+  {
+    path: "books-list",
+    component: BooksListComponent,
+  },
+
   {
     path: "search-modal",
     component: SearchModalComponent,

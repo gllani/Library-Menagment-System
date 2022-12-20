@@ -49,11 +49,11 @@ export class LoginComponent {
           if (student.role === "admin") {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = true;
-            this.router.navigate(["Admin"]);
+            this.router.navigate(["admin"]);
           } else {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = false;
-            this.router.navigate(["Student"]);
+            this.router.navigate(["student"]);
           }
         } else {
           this.dontexist = true;
