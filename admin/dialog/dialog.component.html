@@ -1,19 +1,12 @@
-
 <div mat-dialog-content>
-<h1 style="color: green"> Books List! </h1>
+  <h1 style="color: green">Books List!</h1>
   <ul>
-    <hr>
-    <li>
-      <span *ngIf="data.students === 'x'">&#10003;</span> x
-    <h2 style="color: red">Date</h2>
-    </li>
-    <hr>
-    <li>
-        <span *ngIf="data.students === 'y'">&#10003;</span> y
-        <h2 style="color:red">Date</h2>
-      </li>
-      <hr>
+    <div *ngFor="let book of books">
+      <hr />
+      <h2>{{ book.title }}</h2>
+      <h4>{{ consvertStartDate(book) | date : "dd/MM/yyyy" }} - {{consvertEndDate(book) | date : "dd/MM/yyyy"}}</h4>
+    </div>
   </ul>
-  
-  <button mat-button mat-dialog-close style="color:green">Close</button>
+
+  <button mat-button mat-dialog-close style="color: green">Close</button>
 </div>

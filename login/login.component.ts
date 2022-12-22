@@ -1,10 +1,5 @@
 import { Component } from "@angular/core";
-import {
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  Validators,
-} from "@angular/forms";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth.service";
 import { FirebaseService } from "../firebase.service";
@@ -37,7 +32,6 @@ export class LoginComponent {
   }
 
   test() {
-    console.log("test");
     if (this.loginForm.valid) {
       this.student.map((student: any) => {
         console.log("students", student);
@@ -45,7 +39,7 @@ export class LoginComponent {
           student.username === this.loginForm.value.username &&
           student.password === this.loginForm.value.password
         ) {
-          localStorage.setItem("login", student);
+          localStorage.setItem("login", JSON.stringify(student));
           if (student.role === "admin") {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = true;
@@ -63,4 +57,6 @@ export class LoginComponent {
       alert("Please Enter Valid Username and Password");
     }
   }
+  
+  
 }

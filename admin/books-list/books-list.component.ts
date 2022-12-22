@@ -1,8 +1,10 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/firebase.service";
+import { AdminComponent } from "../admin.component";
 import { BookService } from "../books/book.service";
 
 @Component({
@@ -26,9 +28,20 @@ export class BooksListComponent implements OnInit {
   constructor(
     private router: Router,
     private bookService: BookService,
-    private firebase: FirebaseService
+    private firebase: FirebaseService,
+    private dialogRef: MatDialogRef<AdminComponent>,
+    private dialog: MatDialog,
+    private bookservice: BookService
   ) {}
-
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
   searchArray = (toSearch: string, array: any[]) => {
     let terms = toSearch.split(" ");
     return array.filter((object) =>
@@ -41,13 +54,6 @@ export class BooksListComponent implements OnInit {
       )
     );
   };
-
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
 
   setShowModal(value: boolean, item: any) {
     console.log(item);
@@ -64,6 +70,9 @@ export class BooksListComponent implements OnInit {
       this.showModal = false;
     }
   }
+  onClose(): void {
+    this.dialogRef.close(true);
+  }
 
   ngAfterViewInit() {}
 
@@ -79,6 +88,19 @@ export class BooksListComponent implements OnInit {
     });
     this.form = new FormGroup({
       filter: new FormControl(""),
+    });
+    let BookName: any = "";
+    let Name: any = "";
+    if (this.bookservice.editableData.BookName !== "") {
+      BookName = this.bookservice.editableData.BookName;
+    }
+    if (this.bookservice.editableData.Name !== "") {
+      Name = this.bookservice.editableData.Name;
+    }
+
+    this.form = new FormGroup({
+      BookName: new FormControl(BookName, Validators.required),
+      Name: new FormControl(Name, Validators.required),
     });
   }
 
@@ -99,5 +121,13 @@ export class BooksListComponent implements OnInit {
     this.router.navigate(["books"]);
     this.bookService.editableData = item;
   }
-  goToDisable(item: any) {}
+
+  goToAddbooks() {
+    let item = {
+      BookName: this.form.value.BookName,
+      Name: this.form.value.Name,
+    };
+    this.firebase.addProduct(item);
+    this.router.navigate(["/books-list"]);
+  }
 }

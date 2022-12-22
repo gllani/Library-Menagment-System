@@ -1,55 +1,90 @@
-<div class="section">
-  <div class="container">
-    <div class="form">
-      <div class="left-side">
-        <span class="brand"
-          ><img
-            src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
-          /><small>Login to your account!</small></span
-        >
-        <form class="was-validated" [formGroup]="loginForm">
-          <div class="form-inputs">
-            <label for="validationTextarea" class="form-label">Username</label>
-            <input
-              type="text"
-              class="form-control valid"
-              placeholder="User Name"
-              formControlName="username"
-              required
-              minlength="3"
-            />
+<div class="w3-top">
+  <div class="w3-bar">
+    <a
+      class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
+      href="javascript:void(0);"
+      title="Toggle Navigation Menu"
+    >
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="#home" class="w3-bar-item w3-button">HOME</a>
+    <a href="#about" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-user"></i> ABOUT</a
+    >
+    <a href="#portfolio" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-th"></i> PORTFOLIO</a
+    >
+    <a
+      href="#"
+      [routerLink]="['/homepage/books']"
+      routerLinkActive="router-link-active"
+      class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-th"></i> BOOKS</a
+    >
+    <a href="#contact" class="w3-bar-item w3-button w3-hide-small"
+      ><i class="fa fa-envelope"></i> CONTACT</a
+    >
 
-            <div class="password">
+    <button class="w3-bar-item w3-button w3-hide-small" routerLink="/login">
+      <i class="fa fa-envelope"></i>
+      Login!
+    </button>
+  </div>
+  <div class="section">
+    <div class="container">
+      <div class="form">
+        <div class="left-side">
+          <span class="brand"
+            ><img
+              src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
+            /><small>Login to your account!</small></span
+          >
+          <form class="was-validated" [formGroup]="loginForm">
+            <div class="form-inputs">
               <label for="validationTextarea" class="form-label"
-                >Password</label
+                >Username</label
               >
               <input
+                type="text"
                 class="form-control valid"
-                id="password"
-                type="password"
-                placeholder="Password"
-                formControlName="password"
-                minlength="4"
+                placeholder="User Name"
+                formControlName="username"
                 required
+                minlength="3"
               />
-              <div *ngIf="!loginForm.valid" class="error">
-                <p>Please fill all the forms above</p>
-              </div>
 
-              <div *ngIf="dontexist" class="error">
-                <p>This User does not exist!</p>
+              <div class="password">
+                <label for="validationTextarea" class="form-label"
+                  >Password</label
+                >
+                <input
+                  class="form-control valid"
+                  id="password"
+                  type="password"
+                  placeholder="Password"
+                  formControlName="password"
+                  minlength="4"
+                  required
+                />
+                <div *ngIf="!loginForm.valid" class="error">
+                  <p>Please fill all the forms above</p>
+                </div>
+
+                <div *ngIf="dontexist" class="error">
+                  <p>This User does not exist!</p>
+                </div>
+                <p class="random_password"></p>
               </div>
-              <p class="random_password"></p>
+              <input id="submit_button" type="submit" (click)="test()" />
             </div>
-            <input id="submit_button" type="submit" (click)="test()" />
-          </div>
-        </form>
-      </div>
-      <div class="right-side">
-        <span class="circle1"></span>
-        <img
-          src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
-        />
+          </form>
+        </div>
+        <div class="right-side">
+          <span class="circle1"></span>
+          <img
+            src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
+          />
+        </div>
       </div>
     </div>
   </div>

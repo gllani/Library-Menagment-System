@@ -1,22 +1,5 @@
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<link
-  rel="stylesheet"
-  href="https://www.w3schools.com/lib/w3-theme-blue-grey.css"
-/>
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Open+Sans"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
-
 <html class="position">
   <body class="w3-theme-l5">
-    <!-- Navbar -->
     <div class="w3-top">
       <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
         <a
@@ -29,17 +12,12 @@
         >
       </div>
     </div>
-
-    <!-- Page Container -->
     <div
       class="w3-container w3-content"
       style="max-width: 1400px; margin-top: 80px"
     >
-      <!-- The Grid -->
       <div class="w3-row">
-        <!-- Left Column -->
         <div class="w3-col m3">
-          <!-- Profile -->
           <div class="w3-card w3-round w3-white">
             <div class="w3-container">
               <h4 class="w3-center">My Profile</h4>
@@ -70,7 +48,6 @@
           </div>
           <br />
 
-          <!-- Alert Box -->
           <div
             class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
           >
@@ -83,7 +60,7 @@
             <p><strong>Hey!</strong></p>
             <p>WELCOME SIR. Melville Louis</p>
           </div>
-          <!-- Accordion -->
+
           <div class="w3-card w3-round">
             <div class="w3-white">
               <button
@@ -110,29 +87,14 @@
                 <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
                 Check Books List!
               </button>
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="goToAddBooks()"
-              >
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-                Add Books!
-              </button>
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="goToAddStudent()"
-              >
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-                Add a new Student!
-              </button>
             </div>
           </div>
           <br />
         </div>
 
-        <!-- Middle Column -->
         <div class="w3-col m7">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
-            <h4 style="color: green">Table of Students</h4>
+            <h4 style="color: green">Reserved Books</h4>
             <div class="background">
               <div class="container mt-5 px-2"></div>
               <div class="scss">
@@ -171,7 +133,7 @@
                                 <div class="example-flex-container">
                                   <div class="example-button-container">
                                     <button
-                                      (click)="openDialog()"
+                                      (click)="openDialog(item)"
                                       mat-mini-fab
                                       color="primary"
                                       aria-label="Example icon button with a menu icon"
@@ -196,11 +158,8 @@
 
             <hr />
           </div>
-
-          <!-- End Middle Column -->
         </div>
 
-        <!-- Right Column -->
         <div class="w3-col m2">
           <div class="w3-card w3-round w3-white w3-center">
             <div class="w3-container">
@@ -220,14 +179,8 @@
             </div>
           </div>
           <br />
-
-          <!-- End Right Column -->
         </div>
-
-        <!-- End Grid -->
       </div>
-
-      <!-- End Page Container -->
     </div>
     <br />
   </body>

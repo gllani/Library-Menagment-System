@@ -1,87 +1,149 @@
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-
-<html>
-  <body class="w3-black">
-    <nav class="w3-sidebar w3-bar-block w3-small w3-hide-small w3-center">
-      <img
-        src="https://images.assetsdelivery.com/compings_v2/sofiiashunkina/sofiiashunkina2003/sofiiashunkina200300813.jpg"
-        style="width: 100%"
-      />
-      <a
-        [routerLink]="['/student']"
-        routerLinkActive="router-link-active"
-        fragment="home"
-        class="w3-bar-item w3-button w3-padding-large w3-black"
+<div class="w3-top">
+  <div class="w3-bar">
+    <div class="w3-bar-item w3-button">͙B͙ ͙O͙ ͙O͙ ͙K͙ ͙S͙ ͙ ͙ ͙W͙ ͙O͙ ͙R͙ ͙L͙ ͙D͙ ͙ ͙</div>
+    <div (click)="onLogout()">
+      <a class="w3-bar-item w3-button w3-hide-small"
+        ><i class="fa fa-user"></i> LogOut!</a
       >
-        <i class="fa fa-home w3-xxlarge"></i>
-        <p>Home</p>
-      </a>
-      <a
-        [routerLink]="['/student']"
-        routerLinkActive="router-link-active"
-        fragment="about"
-        class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-      >
-        <i class="fa fa-user w3-xxlarge"></i>
-        <p>ABOUT</p>
-      </a>
-
-      <a
-        [routerLink]="['/student']"
-        routerLinkActive="router-link-active"
-        fragment="contact"
-        class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-      >
-        <i class="fa fa-envelope w3-xxlarge"></i>
-        <p>CONTACT</p>
-      </a>
-      <a
-        [routerLink]="['/student']"
-        routerLinkActive="router-link-active"
-        fragment="panel"
-        class="w3-bar-item w3-button w3-padding-large w3-hover-black"
-      >
-        <i class="fa fa-eye w3-xxlarge"></i>
-        <p>PANEL</p>
-      </a>
-      <button
-        (click)="onLogout()"
-        class="w3-button w3-padding-large far fa-smile"
-        style="font-size: 48px; color: red"
-      >
-        <h3>Logout!</h3>
-      </button>
-    </nav>
-    <div class="w3-padding-large">
-      <header
-        class="w3-container w3-padding-32 w3-center w3-black"
-        id="homestudent"
-      >
-        <h3 class="w3-jumbo">
-          <span class="w3-hide-small">WELCOME</span> TO OUR STORE
-        </h3>
-        <img
-          src="https://images.unsplash.com/photo-1568667256549-094345857637?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8bGlicmFyeXxlbnwwfHwwfHw%3D&amp;w=1000&amp;q=80"
-          width="700"
-          height="600"
-        />
-      </header>
     </div>
-  </body>
-</html>
-<app-home id="home"></app-home>
-<app-about id="about"></app-about>
-<app-contact id="contact"></app-contact>
-<app-panel id="panel"> </app-panel>
+  </div>
 
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
-<link
-  rel="stylesheet"
-  href="https://fonts.googleapis.com/css?family=Montserrat"
-/>
-<link
-  rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-/>
+  <div
+    class="w3-container w3-content"
+    style="max-width: 1400px; margin-top: 80px"
+  >
+    <div class="w3-row">
+      <div class="w3-col m3">
+        <div class="w3-card w3-round w3-white">
+          <div class="w3-container">
+            <h4 class="w3-center">Search...</h4>
+            <hr />
+            <p>Book Title</p>
+            <button>
+              <input
+                type="search"
+                required
+                class="form-control w-100"
+                placeholder="Search Book Title!"
+                (input)="filter()"
+              />
+            </button>
+            <p></p>
+            <p>Author Name</p>
+            <button>
+              <input
+                type="search"
+                required
+                class="form-control w-100"
+                placeholder="Search Book Author!"
+                (input)="filter()"
+              />
+            </button>
+
+            <p></p>
+            <p>Category</p>
+            <li></li>
+            <p></p>
+
+            <p>
+              <button class="form-control w-50">Clear</button>
+            </p>
+          </div>
+        </div>
+
+        <br />
+        <div
+          class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
+        >
+          <p><strong>Hey!</strong></p>
+          <h4>Your Messages From Librarian!</h4>
+          <p><li>empty</li></p>
+        </div>
+      </div>
+
+      <div class="w3-col m9">
+        <div class="w3-row-padding">
+          <div class="w3-col m12">
+            <div class="w3-card w3-round w3-white">
+              <div class="w3-container w3-padding">
+                <h1 style="color: rgb(214, 168, 108)">Books List</h1>
+            
+                <div class="background">
+                  <div class="container mt-5 px-2"></div>
+                  <div>
+                    <form [formGroup]="form">
+                      <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                        <table class="table table-bordered table-striped mb-0">
+                          <thead>
+                            <tr class="bg-light">
+                              <th scope="col" width="21%">Book Name</th>
+                              <th scope="col" width="21%">Author</th>
+                              <th scope="col" width="21%">Description</th>
+                              <th scope="col" width="21%">Select Date</th>
+                              <th scope="col" width="21%">Reserve</th>
+                            </tr>
+                          </thead>
+
+                          <tbody *ngFor="let item of data">
+                            <tr>
+                              <td>{{ item.BookName }}</td>
+                              <td>{{ item.Name }}</td>
+                              <td>{{ item.description }}</td>
+                              <mat-form-field>
+                                <mat-date-range-input
+                                  [rangePicker]="picker"
+                                  [min]="minDate"
+                                  [max]="maxDate"
+                                >
+                                  <input
+                                    matStartDate
+                                    placeholder="Start date"
+                                  />
+                                  <input matEndDate placeholder="End date" />
+                                </mat-date-range-input>
+                                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                                <mat-datepicker-toggle
+                                  matIconSuffix
+                                  [for]="picker"
+                                ></mat-datepicker-toggle>
+                                <mat-date-range-picker
+                                  #picker
+                                ></mat-date-range-picker>
+                              </mat-form-field>
+
+                              <td>
+                                <button
+                                  mat-raised-button
+                                  type="button"
+                                  class="btn btn-primary mr-1"
+                                >
+                                  Save!
+                                </button>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<body class="d-flex flex-column" style="position: fixed; width: 100%">
+  <div id="page-content">
+    <div class="container text-center">
+      <div class="row justify-content-center"></div>
+    </div>
+  </div>
+  <footer id="sticky-footer" class="flex-shrink-0 py-4 btn-light text-dark-50">
+    <div class="container text-center">
+      <small>Student &copy; Panel</small>
+    </div>
+  </footer>
+</body>

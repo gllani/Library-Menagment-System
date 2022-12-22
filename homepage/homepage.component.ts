@@ -11,5 +11,8 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+openIt(){
+  const url = 'localhost:4200/search-modal';
+  window.open(url);
+}
 }

@@ -11,9 +11,9 @@
       Turn back to the main page
     </button>
   </div>
-  <div class="scss">
-    <form [formGroup]="form">
-      <div class="container mt-5 px-2">
+  <div >
+    <form [formGroup]="form" >
+      <div class="container mt-5 px-2 scss">
         <div class="mb-2 d-flex justify-content-between align-items-center">
           <div class="position-relative">
             <span class="position-absolute search"
@@ -43,14 +43,16 @@
             </thead>
 
             <tbody *ngFor="let item of data">
-              
-
               <tr>
                 <td>{{ item.BookName }}</td>
                 <td>{{ item.Name }}</td>
                 <mat-form-field>
-                  <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate placeholder="Start date" />
+                  <mat-date-range-input
+                    [rangePicker]="picker"
+                    [min]="minDate"
+                    [max]="maxDate"
+                  >
+                    <input matStartDate placeholder="Start date" >
                     <input matEndDate placeholder="End date" />
                   </mat-date-range-input>
                   <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
@@ -66,12 +68,12 @@
                     mat-raised-button
                     type="button"
                     class="btn btn-primary mr-1"
+                    (click)="save(item)"
                   >
                     Save!
                   </button>
                 </td>
               </tr>
-         
             </tbody>
           </table>
         </div>

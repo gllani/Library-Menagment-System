@@ -1,16 +1,14 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
-import { ActivatedRoute, Router } from "@angular/router";
-import { BookService } from "../admin/books/book.service";
-import { AuthService } from "../auth.service";
-import { FirebaseService } from "../firebase.service";
+import { FormGroup, FormControl } from "@angular/forms";
+import { BookService } from "src/app/admin/books/book.service";
+import { FirebaseService } from "src/app/firebase.service";
 
 @Component({
-  selector: "app-student",
-  templateUrl: "./student.component.html",
-  styleUrls: ["./student.component.scss"],
+  selector: "app-homepage-books",
+  templateUrl: "./homepage-books.component.html",
+  styleUrls: ["./homepage-books.component.scss"],
 })
-export class StudentComponent implements OnInit {
+export class HomepageBooksComponent implements OnInit {
   form!: FormGroup;
   allData: any = [];
   data: any = [];
@@ -19,9 +17,6 @@ export class StudentComponent implements OnInit {
   logedInIndividual: any;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
-    private auth: AuthService,
-    private router: Router,
     private bookService: BookService,
     private firebase: FirebaseService
   ) {}
@@ -45,32 +40,13 @@ export class StudentComponent implements OnInit {
       filter: new FormControl(""),
     });
   }
-
-  onLogout() {
-    this.auth.isLoggedIn = false;
-    this.auth.isAdmin = false;
-    localStorage.removeItem("login");
-    localStorage.clear();
-    this.router.navigate([""]);
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-      startdate: new FormControl(""),
-      enddate: new FormControl(""),
-    });
-    this.bookService.editableData = {
-      BookName: "",
-      Name: "",
-    };
-    this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
-      this.allData = data;
-      this.data = this.allData;
-    });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-    });
-  }
   filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
+  filterauthor() {
     this.data = this.searchArray(this.form.value.filter, this.data);
     if (this.form.value.filter === "") {
       this.data = this.allData;

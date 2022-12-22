@@ -13,14 +13,33 @@ export class ReserveComponent implements OnInit {
   form!: FormGroup;
   allData: any = [];
   data: any = [];
+  minDate!: any;
+  maxDate!: any;
+  logedInIndividual: any;
 
   constructor(
-    private router: Router,
     private bookService: BookService,
     private firebase: FirebaseService
-  ) {}
+  ) {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date();
+    var future = new Date();
+    this.maxDate = new Date(future.setDate(future.getDate() + 30));
+  }
+
+  save(item: any) {
+    console.log("item", item);
+    let bookItem = {
+      title: item.BookName,
+      author: item.Name,
+      startDate: this.form.value.startdate,
+      endDate: this.form.value.enddate,
+    };
+    console.log("item", bookItem);
+  }
 
   ngOnInit(): void {
+    this.logedInIndividual = JSON.parse(localStorage.getItem("login") || "");
     this.form = new FormGroup({
       filter: new FormControl(""),
       startdate: new FormControl(""),

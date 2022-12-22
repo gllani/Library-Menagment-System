@@ -12,9 +12,7 @@ import { StudentsListComponent } from "./admin/students-list/students-list.compo
 import { BooksComponent } from "./admin/books/books.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
 import { AboutComponent } from "./student/about/about.component";
-import { ContactComponent } from "./student/contact/contact.component";
 import { PanelComponent } from "./student/panel/panel.component";
-import { HomeComponent } from "./student/home/home.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { environment } from "../environments/environment";
@@ -36,6 +34,8 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
+import { HomepageBooksComponent } from './homepage/homepage-books/homepage-books.component';
+import {MatSelectModule} from '@angular/material/select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,13 +48,12 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     BooksComponent,
     SearchModalComponent,
     AboutComponent,
-    ContactComponent,
     PanelComponent,
-    HomeComponent,
     ReserveComponent,
     BooksListComponent,
     DeleteModalComponent,
     DialogComponent,
+    HomepageBooksComponent,
   ],
   imports: [
     BrowserModule,
@@ -76,6 +75,7 @@ import { MatSlideToggleModule } from "@angular/material/slide-toggle";
     MatButtonModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatSelectModule
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],

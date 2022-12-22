@@ -1,6 +1,9 @@
-import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { Component, OnInit, TemplateRef } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/firebase.service";
+import { AdminComponent } from "../admin.component";
 import { StudentsService } from "./students.service";
 
 @Component({
@@ -17,13 +20,30 @@ export class StudentsListComponent implements OnInit {
   form!: FormGroup;
   todayDate: Date = new Date();
   dateVal = new Date();
+  fshiPunonjes: boolean = false;
+  getPunonjes: boolean = false;
+  addStudent: boolean = false;
 
   constructor(
     private firebase: FirebaseService,
-    private studentsService: StudentsService
+    private studentsService: StudentsService,
+    private router: Router,
+    private dialogRef: MatDialogRef<AdminComponent>,
+    private dialog: MatDialog
   ) {}
- 
 
+  onClose(): void {
+    this.dialogRef.close(true);
+  }
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
   searchArray = (toSearch: string, array: any[]) => {
     let terms = toSearch.split(" ");
     return array.filter((object) =>
@@ -36,16 +56,10 @@ export class StudentsListComponent implements OnInit {
       )
     );
   };
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
 
   ngOnInit(): void {
     this.studentsService.editableData = {
-      id: '',
+      id: "",
       username: 0,
       password: 0,
     };
@@ -57,6 +71,27 @@ export class StudentsListComponent implements OnInit {
     this.form = new FormGroup({
       filter: new FormControl(""),
     });
+    this.form = new FormGroup({
+      id: new FormControl("", Validators.required),
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
+    });
   }
-  
+
+  setShowModal(value: boolean, item: any) {
+    console.log(item);
+    this.firebase = item;
+    this.showModal = value;
+  }
+
+  goToAdd() {
+    let item = {
+      id: this.form.value.id,
+      username: this.form.value.username,
+      password: this.form.value.password,
+      role: "employeer",
+    };
+    this.firebase.punonjesIRi(item);
+    this.router.navigate(["/students-list"]);
+  }
 }

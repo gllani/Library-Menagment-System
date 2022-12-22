@@ -4,7 +4,11 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { AuthService } from "../auth.service";
 import { FirebaseService } from "../firebase.service";
+import { BooksListComponent } from "./books-list/books-list.component";
+import { BooksComponent } from "./books/books.component";
 import { DialogComponent } from "./dialog/dialog.component";
+import { NewStudentComponent } from "./new-student/new-student.component";
+import { StudentsListComponent } from "./students-list/students-list.component";
 import { StudentsService } from "./students-list/students.service";
 
 @Component({
@@ -26,7 +30,7 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.studentsService.editableData = {
-      id: '',
+      id: "",
       username: 0,
       password: 0,
     };
@@ -39,25 +43,47 @@ export class AdminComponent implements OnInit {
       filter: new FormControl(""),
     });
   }
-  openDialog() {
-    this.dialog.open(DialogComponent, {
-      data: {
-    
-      },
-    });
+  openDialog(item: any) {
+    let dialogueRef = this.dialog.open(DialogComponent);
+    let instance = dialogueRef.componentInstance;
+    instance.books = item.books;
   }
 
   goToAddBooks() {
-    this.router.navigate(["/books"]);
+    const dialogRef = this.dialog.open(BooksComponent, {
+      maxWidth: '50vw',
+      maxHeight: '50vh',
+      height: '50%',
+      width: '50%',
+    
+    });
   }
   goToCheckBooks() {
-    this.router.navigate(["/books-list"]);
+    const dialogRef = this.dialog.open(BooksListComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+    
+    });
   }
   goToAddStudent() {
-    this.router.navigate(["/new-student"]);
+    const dialogRef = this.dialog.open(NewStudentComponent, {
+      maxWidth: '50vw',
+      maxHeight: '50vh',
+      height: '50%',
+      width: '50%',
+    
+    });
   }
   goToCheckStudents() {
-    this.router.navigate(["/students-list"]);
+    const dialogRef = this.dialog.open(StudentsListComponent, {
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      height: '100%',
+      width: '100%',
+    
+    });
   }
   searchArray(filter: any, data: any): any {
     const result: any[] = [];

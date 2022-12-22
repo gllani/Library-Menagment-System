@@ -1,15 +1,6 @@
 <div class="background">
   <div class="container mt-5 px-2">
-    <button
-      type="button"
-      class="btn btn-danger"
-      href="#"
-      routerLink="/admin"
-      routerLinkActive="active"
-      ariaCurrentWhenActive="page"
-    >
-      Turn back to the main page!
-    </button>
+    <button mat-button mat-dialog-close>Close</button>
   </div>
 
   <div class="container mt-5 px-2">
@@ -23,23 +14,88 @@
               required
               class="form-control w-100"
               placeholder="Search..."
-              formControlName="filter"
               (input)="filter()"
             />
           </form>
         </button>
       </div>
       <button
-        type="button"
-        class="btn btn-primary"
-        href="#"
-        routerLink="/books"
-        routerLinkActive="active"
-        ariaCurrentWhenActive="page"
+        mat-button
+        color="primary"
+        (click)="openDialogWithTemplateRef(myDialog)"
       >
-        Add a new Book!
+   Add Book!
       </button>
     </div>
+    <ng-template #myDialog>
+      <h2 matDialogTitle>Dialog!</h2>
+      <mat-dialog-content>
+      
+        <div class="background">
+          <div class="col-md-6 ">
+            <div class="container mt-5 px-2">
+              <div class="mb-4 d-flex justify-content-between align-items-center">
+                <div class="position-relative">
+                  <form [formGroup]="form">
+                    <div class="mb-3">
+                      <h3>Book Name</h3>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="BookName"
+                        formControlName="BookName"
+                        placeholder="Book Name"
+                        minlength="2"
+                      />
+                    </div>
+                    <div class="mb-3">
+                      <h3>Author</h3>
+                      <input
+                      formControlName="Name"
+                        type="text"
+                        class="form-control"
+                        id="Name"
+                        placeholder="Author Name"
+                        required
+                      />
+                    </div>
+        
+                    <hr />
+                    <button
+                      type="button"
+                      class="btn btn-light"
+                      href="#"
+                      routerLinkActive="active"
+                      ariaCurrentWhenActive="page"
+                      (click)="goToAddbooks()"
+                    >
+                      Generate a new book manually!
+                    </button>
+                    <br>
+                    <hr>
+                    <button
+                    type="button"
+                    class="btn btn-primary"
+                    href="#"
+                    routerLinkActive="active"
+                    ariaCurrentWhenActive="page"
+        
+                  >
+                    Generate a new book automatically!
+                  </button>
+
+                 
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+
+
+      </mat-dialog-content>
+    </ng-template>
     <div class="scss">
       <div class="mat-elevation-z8">
         <table class="table table-responsive table-borderless">
@@ -67,14 +123,7 @@
                 >
                   EDIT
                 </button>
-                <button
-                  mat-raised-button
-                  type="button"
-                  class="btn btn-light"
-                  (click)="goToDisable(item)"
-                >
-                  Disable
-                </button>
+
                 <button
                   mat-raised-button
                   (click)="setShowModal(true, item)"
