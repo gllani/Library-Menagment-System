@@ -13,23 +13,21 @@ import { StudentsService } from "./students.service";
 })
 export class StudentsListComponent implements OnInit {
   showModal: boolean = false;
-  deletePunonjes: boolean = false;
   displayedColumns: string[] = ["id", "username", "password", "action"];
   data: any[] = [];
   allData: any = [];
   form!: FormGroup;
-  todayDate: Date = new Date();
-  dateVal = new Date();
-  fshiPunonjes: boolean = false;
   getPunonjes: boolean = false;
   addStudent: boolean = false;
+  fshiPunonjes: boolean = false;
 
   constructor(
     private firebase: FirebaseService,
     private studentsService: StudentsService,
     private router: Router,
     private dialogRef: MatDialogRef<AdminComponent>,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    
   ) {}
 
   onClose(): void {
@@ -78,11 +76,8 @@ export class StudentsListComponent implements OnInit {
     });
   }
 
-  setShowModal(value: boolean, item: any) {
-    console.log(item);
-    this.firebase = item;
-    this.showModal = value;
-  }
+
+  
 
   goToAdd() {
     let item = {

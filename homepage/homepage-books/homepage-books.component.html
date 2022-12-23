@@ -2,8 +2,6 @@
   <div class="w3-bar">
     <a
       class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right"
-      href="javascript:void(0);"
-      title="Toggle Navigation Menu"
     >
       <i class="fa fa-bars"></i>
     </a>
@@ -31,7 +29,7 @@
     </button>
   </div>
 
-  <div
+  <form
     class="w3-container w3-content"
     style="max-width: 1400px; margin-top: 80px"
   >
@@ -46,9 +44,8 @@
               <input
                 type="search"
                 required
-                class="form-control w-100"
+                class="form-control"
                 placeholder="Search Book Title!"
-                (input)="filter()"
               />
             </button>
             <p></p>
@@ -57,9 +54,8 @@
               <input
                 type="search"
                 required
-                class="form-control w-100"
+                class="form-control"
                 placeholder="Search Author Name!"
-                (input)="filterauthor()"
               />
             </button>
             <p></p>
@@ -82,7 +78,7 @@
             <p></p>
 
             <p>
-              <button>Clear</button>
+              <input type="reset" />
             </p>
           </div>
         </div>
@@ -131,7 +127,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </form>
 </div>
 <body class="d-flex flex-column" style="position: fixed; width: 100%">
   <div id="page-content">

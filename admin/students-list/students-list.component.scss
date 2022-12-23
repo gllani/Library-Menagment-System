@@ -24,3 +24,8 @@
 .scss{
   background-color:rgb(243, 235, 235);
 }
+.my-custom-scrollbar {
+  position: relative;
+  height: 70vh;
+  overflow: auto;
+  }

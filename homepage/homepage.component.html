@@ -31,7 +31,6 @@
     </button>
   </div>
 
-  <!-- Navbar on small screens -->
   <div
     id="nav"
     class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium"
@@ -50,8 +49,6 @@
     </span>
   </div>
 </div>
-
-<!-- Container (About Section) -->
 <div class="w3-content w3-container w3-padding-64" id="about">
   <h3 class="w3-center">ABOUT BOOKS</h3>
   <p class="w3-center"><em>Different Genres of Books</em></p>
@@ -89,7 +86,6 @@
       />
     </div>
 
-    <!-- Hide this text on small devices -->
     <div class="w3-col m6 w3-hide-small w3-padding-large">
       <p>
         There are not one but various advantages of reading books. To begin
@@ -114,7 +110,7 @@
         (click)="openIt()"
         class="w3-bar-item w3-button w3-hide-small w3-right w3-hover"
       >
-        <div class="container">
+        <div class="container" style="padding: 8px 98px;">
           <h1>Search Every BooK!</h1>
         </div>
       </div>
@@ -269,13 +265,9 @@
           disabled
         />
 
-        <button class="w3-button w3-black w3-right w3-section" type="submit">
+        <button class="w3-button w3-black w3-right w3-section" type="submit"  (click)="openGmail()">
           <i class="fa fa-paper-plane"></i>
-          <a
-            href="https://accounts.google.com/v3/signin/identifier?dsh=S-1962830822%3A1671186130850041&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh6m7sl6W5oJKF_a-T0zm0W73RxpWSmvuO2O6ElVK9U906F_q4Y3Iw8UFz7OqY12p1HrojQXUQ"
-          >
-            SEND EMAIL</a
-          >
+            SEND EMAIL
         </button>
         <br />
         <li style="color: red">
@@ -307,7 +299,7 @@
   </div>
 </div>
 
-<!-- Footer -->
+
 <footer
   class="w3-center w3-black w3-padding-64 w3-opacity w3-hover-opacity-off"
 >

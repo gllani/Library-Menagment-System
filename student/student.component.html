@@ -1,6 +1,6 @@
 <div class="w3-top">
   <div class="w3-bar">
-    <div class="w3-bar-item w3-button">͙B͙ ͙O͙ ͙O͙ ͙K͙ ͙S͙ ͙ ͙ ͙W͙ ͙O͙ ͙R͙ ͙L͙ ͙D͙ ͙ ͙</div>
+    <div class="w3-bar-item w3-button">Ｂ ｏ ｏ ｋ ｓ   Ｗ ｏ ｒ ｌ ｄ</div>
     <div (click)="onLogout()">
       <a class="w3-bar-item w3-button w3-hide-small"
         ><i class="fa fa-user"></i> LogOut!</a
@@ -10,12 +10,15 @@
 
   <div
     class="w3-container w3-content"
-    style="max-width: 1400px; margin-top: 80px"
+    style="max-width: 1400px; margin-top: 13px"
   >
     <div class="w3-row">
       <div class="w3-col m3">
-        <div class="w3-card w3-round w3-white">
-          <div class="w3-container">
+        <div class="w3-card w3-round">
+          <div
+            class="w3-container"
+            style="background-color: #dfe5e8 !important"
+          >
             <h4 class="w3-center">Search...</h4>
             <hr />
             <p>Book Title</p>
@@ -42,11 +45,23 @@
 
             <p></p>
             <p>Category</p>
-            <li></li>
+            <mat-form-field appearance="fill">
+              <mat-label >Select an option</mat-label>
+              <mat-select disableRipple>
+                <mat-option value="1">--</mat-option>
+                <mat-option value="2">Adventure stories</mat-option>
+                <mat-option value="3">Classics</mat-option>
+                <mat-option value="2">Crime</mat-option>
+                <mat-option value="2">Fantasy</mat-option>
+                <mat-option value="2">Historical fiction</mat-option>
+                <mat-option value="2">Horror</mat-option>
+                <mat-option value="2">Humour and satire</mat-option>
+              </mat-select>
+            </mat-form-field>
             <p></p>
 
             <p>
-              <button class="form-control w-50">Clear</button>
+              <input type="reset" />
             </p>
           </div>
         </div>
@@ -55,9 +70,23 @@
         <div
           class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
         >
-          <p><strong>Hey!</strong></p>
-          <h4>Your Messages From Librarian!</h4>
-          <p><li>empty</li></p>
+          <h4 style="color: red">Your Messages From Librarian!</h4>
+          <p style="color: red"><li>empty</li></p>
+          <p style="color: red"><li>empty</li></p>
+        </div>
+        <div
+          class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
+        >
+          <p><strong>List of Books!!</strong></p>
+          <li>1.</li>
+          <h4>Date</h4>
+          <p></p>
+          <li>2.</li>
+          <h4>Date</h4>
+          <p></p>
+          <li>3.</li>
+          <h4>Date</h4>
+          <p></p>
         </div>
       </div>
 
@@ -67,7 +96,7 @@
             <div class="w3-card w3-round w3-white">
               <div class="w3-container w3-padding">
                 <h1 style="color: rgb(214, 168, 108)">Books List</h1>
-            
+
                 <div class="background">
                   <div class="container mt-5 px-2"></div>
                   <div>
@@ -78,7 +107,7 @@
                             <tr class="bg-light">
                               <th scope="col" width="21%">Book Name</th>
                               <th scope="col" width="21%">Author</th>
-                              <th scope="col" width="21%">Description</th>
+                              <th scope="col" width="21%">Review</th>
                               <th scope="col" width="21%">Select Date</th>
                               <th scope="col" width="21%">Reserve</th>
                             </tr>
@@ -88,7 +117,7 @@
                             <tr>
                               <td>{{ item.BookName }}</td>
                               <td>{{ item.Name }}</td>
-                              <td>{{ item.description }}</td>
+                              <td>{{ item.review }}</td>
                               <mat-form-field>
                                 <mat-date-range-input
                                   [rangePicker]="picker"

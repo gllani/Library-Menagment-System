@@ -14,7 +14,7 @@
     </div>
     <div
       class="w3-container w3-content"
-      style="max-width: 1400px; margin-top: 80px"
+      style="max-width: 1400px; margin-top: 55px"
     >
       <div class="w3-row">
         <div class="w3-col m3">
@@ -87,6 +87,13 @@
                 <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
                 Check Books List!
               </button>
+              <button
+                class="w3-button w3-block w3-theme-l1 w3-left-align"
+                (click)="goToSendMessage()"
+              >
+                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+                Send Alert Message!
+              </button>
             </div>
           </div>
           <br />
@@ -97,63 +104,8 @@
             <h4 style="color: green">Reserved Books</h4>
             <div class="background">
               <div class="container mt-5 px-2"></div>
-              <div class="scss">
-                <div class="container mt-5 px-2">
-                  <div
-                    class="mb-2 d-flex justify-content-between align-items-center"
-                  >
-                    <div class="position-relative">
-                      <span class="position-absolute search"
-                        ><i class="search"></i>
-                      </span>
-                    </div>
-                  </div>
 
-                  <div class="scss">
-                    <div class="mat-elevation-z8">
-                      <table class="table table-responsive table-borderless">
-                        <thead>
-                          <tr class="bg-light">
-                            <th scope="col" width="21.1%">Student id</th>
-                            <th scope="col" width="21.1%">Username</th>
-                            <th scope="col" width="21.1%">Password</th>
-                            <th scope="col" width="21.1%">
-                              <span>Books</span>
-                            </th>
-                          </tr>
-                        </thead>
-                        <tbody *ngFor="let item of data">
-                          <tr>
-                            <td>{{ item.id }}</td>
-                            <td>{{ item.username }}</td>
-                            <td>{{ item.password }}</td>
-
-                            <td class=" ">
-                              <div class="example-button-row">
-                                <div class="example-flex-container">
-                                  <div class="example-button-container">
-                                    <button
-                                      (click)="openDialog(item)"
-                                      mat-mini-fab
-                                      color="primary"
-                                      aria-label="Example icon button with a menu icon"
-                                    >
-                                      <mat-icon>menu</mat-icon>
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </td>
-                          </tr>
-
-                          <hr />
-                          <thead></thead>
-                        </tbody>
-                      </table>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              
             </div>
 
             <hr />
@@ -168,13 +120,14 @@
               <p style="color: blue">
                 Sir, If you want to check your email, click the button below!
               </p>
-              <div class="w3-card w3-round w3-white w3-center">
-                <a
-                  href="https://accounts.google.com/v3/signin/identifier?dsh=S-1962830822%3A1671186130850041&continue=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&emr=1&followup=https%3A%2F%2Fmail.google.com%2Fmail%2Fu%2F0%2F&osid=1&passive=1209600&service=mail&flowName=GlifWebSignIn&flowEntry=ServiceLogin&ifkv=AeAAQh6m7sl6W5oJKF_a-T0zm0W73RxpWSmvuO2O6ElVK9U906F_q4Y3Iw8UFz7OqY12p1HrojQXUQ"
-                  >GMAIL</a
-                >
-                <br />
-              </div>
+              <button
+                class="w3-button w3-black w3-right w3-section"
+                type="submit"
+                (click)="openGmail()"
+              >
+                <i class="fa fa-paper-plane"></i>
+                Check Gmail
+              </button>
               <hr />
             </div>
           </div>

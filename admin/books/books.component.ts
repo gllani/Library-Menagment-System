@@ -38,12 +38,12 @@ export class BooksComponent implements OnInit {
     this.router.navigate(["/admin"]);
   }
 
-    goToAdd() {
-      let item = {
-        BookName: this.form.value.BookName,
-        Name: this.form.value.Name,
-      };
-      this.firebase.addProduct(item);
-      this.router.navigate(["/books-list"]);
-    }
+  goToAdd() {
+    let item = {
+      BookName: this.form.value.BookName,
+      Name: this.form.value.Name,
+    };
+    this.firebase.addProduct(item);
+    this.router.navigate(["/books-list"]);
+  }
 }

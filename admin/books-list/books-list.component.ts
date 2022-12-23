@@ -1,7 +1,6 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
-import { MatTableDataSource } from "@angular/material/table";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/firebase.service";
 import { AdminComponent } from "../admin.component";
@@ -24,6 +23,15 @@ export class BooksListComponent implements OnInit {
   searchText: any;
   todayDate: Date = new Date();
   dateVal = new Date();
+  displayData: any = [];
+
+  displayFn(user: any): string {
+    return user && user.name ? user.name : "";
+  }
+  display(option: any) {
+    this.displayData = [];
+    this.displayData.push(option);
+  }
 
   constructor(
     private router: Router,
@@ -120,14 +128,5 @@ export class BooksListComponent implements OnInit {
     this.editProduct = false;
     this.router.navigate(["books"]);
     this.bookService.editableData = item;
-  }
-
-  goToAddbooks() {
-    let item = {
-      BookName: this.form.value.BookName,
-      Name: this.form.value.Name,
-    };
-    this.firebase.addProduct(item);
-    this.router.navigate(["/books-list"]);
   }
 }

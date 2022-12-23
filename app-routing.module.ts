@@ -25,7 +25,6 @@ const routes: Routes = [
   {
     path: "login",
     component: LoginComponent,
-    canActivate: [GuardService],
   },
   {
     path: "admin",
@@ -54,12 +53,6 @@ const routes: Routes = [
     path: "student",
     component: StudentComponent,
     canActivate: [GuardService],
-    children: [
-      {
-        path: "reserve",
-        component: ReserveComponent,
-      },
-    ],
   },
 
   {

@@ -9,13 +9,13 @@ import { GoogleAPIService } from "./google-api.service";
 })
 export class SearchModalComponent implements OnInit {
   form!: FormGroup;
-  allData: any = [];
+  
   data: any = [];
   myControl = new FormControl<string | any>("");
   options: any[] = [];
   filteredOptions!: Observable<any[]>;
   displayData: any = [];
-
+  allData: any = [];
   displayFn(user: any): string {
     return user && user.name ? user.name : "";
   }

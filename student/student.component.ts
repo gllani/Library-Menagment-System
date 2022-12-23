@@ -24,7 +24,12 @@ export class StudentComponent implements OnInit {
     private router: Router,
     private bookService: BookService,
     private firebase: FirebaseService
-  ) {}
+  ) {
+    const currentYear = new Date().getFullYear();
+    this.minDate = new Date();
+    var future = new Date();
+    this.maxDate = new Date(future.setDate(future.getDate() + 30));
+  }
 
   ngOnInit(): void {
     this.form = new FormGroup({
@@ -35,6 +40,7 @@ export class StudentComponent implements OnInit {
     this.bookService.editableData = {
       BookName: "",
       Name: "",
+
     };
     this.firebase.getData().subscribe((data: any) => {
       console.log("data nga firebasi", data);
@@ -57,10 +63,7 @@ export class StudentComponent implements OnInit {
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
-    this.bookService.editableData = {
-      BookName: "",
-      Name: "",
-    };
+   
     this.firebase.getData().subscribe((data: any) => {
       console.log("data nga firebasi", data);
       this.allData = data;

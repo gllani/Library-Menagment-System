@@ -6,7 +6,8 @@ import { Injectable } from '@angular/core';
 export class BookService {
   editableData = {
     BookName: '',
-    Name: ''
+    Name: '',
+
 
   };
   upgrateData: any;

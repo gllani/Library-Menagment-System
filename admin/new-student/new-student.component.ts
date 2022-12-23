@@ -15,9 +15,9 @@ export class NewStudentComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      id: new FormControl('', Validators.required),
-      username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      id: new FormControl("", Validators.required),
+      username: new FormControl("", Validators.required),
+      password: new FormControl("", Validators.required),
     });
   }
   kthehu() {

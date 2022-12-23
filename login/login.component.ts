@@ -57,6 +57,4 @@ export class LoginComponent {
       alert("Please Enter Valid Username and Password");
     }
   }
-  
-  
 }

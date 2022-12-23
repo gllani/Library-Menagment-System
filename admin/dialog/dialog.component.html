@@ -4,7 +4,10 @@
     <div *ngFor="let book of books">
       <hr />
       <h2>{{ book.title }}</h2>
-      <h4>{{ consvertStartDate(book) | date : "dd/MM/yyyy" }} - {{consvertEndDate(book) | date : "dd/MM/yyyy"}}</h4>
+      <h4>
+        {{ consvertStartDate(book) | date : "dd/MM/yyyy" }} -
+        {{ consvertEndDate(book) | date : "dd/MM/yyyy" }}
+      </h4>
     </div>
   </ul>
 

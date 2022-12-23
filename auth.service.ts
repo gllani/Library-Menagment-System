@@ -5,6 +5,6 @@ import { Injectable } from "@angular/core";
 })
 export class AuthService {
   isLoggedIn = true;
-  isAdmin = true;
+  isAdmin = false;
   constructor() {}
 }
