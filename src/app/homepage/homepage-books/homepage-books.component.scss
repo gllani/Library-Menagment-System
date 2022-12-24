@@ -1,0 +1,29 @@
+
+ .w3-bar{
+    background-color: rgb(241, 238, 238);
+
+}
+.w3-top {
+    background-color: rgb(243, 253, 253);
+}
+.my-custom-scrollbar {
+    position: relative;
+    height: 62vh;
+    overflow: auto;
+    }
+#page-content {
+  flex: 1 0 auto;
+}
+.card{
+    margin: 10px;
+    height: 280px;
+    width: 170px;
+}
+.imageContainer{
+    display: flex;
+    flex-wrap: wrap;
+}
+.img{
+    height: 250px;
+    width: 150px;
+}

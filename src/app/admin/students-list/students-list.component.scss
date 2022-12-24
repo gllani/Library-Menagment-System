@@ -1,0 +1,31 @@
+.form-control{
+  width: 600px;
+}
+.text-center {
+  margin-top: 30px;
+}
+
+.error{
+  color: red;
+}
+.example-radio-group {
+  display: flex;
+  flex-direction: column;
+  margin: 15px 0;
+  align-items: flex-start;
+}
+
+.example-radio-button {
+  margin: 5px;
+}
+.color{
+  background-color: rgb(212, 224, 224);
+}
+.scss{
+  background-color:rgb(243, 235, 235);
+}
+.my-custom-scrollbar {
+  position: relative;
+  height: 70vh;
+  overflow: auto;
+  }

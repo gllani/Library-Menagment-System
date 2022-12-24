@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "internship-47e0d": {
+      "hosting": {
+        "Library-Menagment": [
+          "internship-47e0d"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "internship-47e0d"
+  }
+}

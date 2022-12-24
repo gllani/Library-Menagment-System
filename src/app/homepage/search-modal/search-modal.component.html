@@ -1,0 +1,36 @@
+<div class="container" style="margin-top: 10%">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="row">
+      <div id="logo" class="text-center">
+        <h1>Search Every BooK!</h1>
+        <br />
+        <p>Here You Will Find The Description Of The Book!</p>
+      </div>
+      <form role="form" id="form-buscar" [formGroup]="form">
+        <mat-form-field class="example-full-width" appearance="fill">
+          <mat-label>Search</mat-label>
+          <input
+            type="text"
+            matInput
+            formControlName="search"
+            (input)="filter()"
+            [matAutocomplete]="auto"
+          />
+          <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+            <mat-option *ngFor="let option of allData" [value]="option">
+              <div (click)="display(option)">
+                {{ option.volumeInfo.title }}
+              </div>
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
+      </form>
+    </div>
+    <div *ngFor="let data of displayData">
+      <h1>{{ data.volumeInfo.title }}</h1>
+      <h2>{{ data.volumeInfo.authors[0] }}</h2>
+      <p>{{ data.volumeInfo.description }}</p>
+      <img src="{{ data.volumeInfo.imageLinks.thumbnail }}" />
+    </div>
+  </div>
+</div>

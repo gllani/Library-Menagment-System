@@ -1,0 +1,45 @@
+<div class="background">
+  <div class="col-md-6 offset-md-3">
+    <div class="container mt-5 px-2">
+      <div class="mb-4 d-flex justify-content-between align-items-center">
+        <div class="position-relative">
+          <form [formGroup]="form">
+            <div class="mb-3">
+              <h3>Book Name</h3>
+              <input
+                type="text"
+                class="form-control"
+                id="BookName"
+                formControlName="BookName"
+                placeholder="Book Name"
+                minlength="2"
+              />
+            </div>
+            <div class="mb-3">
+              <h3>Author</h3>
+              <input
+                type="text"
+                class="form-control"
+                id="Name"
+                placeholder="Author Name"
+                required
+              />
+            </div>
+
+            <hr />
+            <button
+              type="button"
+              class="btn btn-primary"
+              href="#"
+              routerLinkActive="active"
+              ariaCurrentWhenActive="page"
+              (click)="goToAdd()"
+            >
+              Generate a new book !
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
