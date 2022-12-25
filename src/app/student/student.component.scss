@@ -9,7 +9,7 @@
 
 .my-custom-scrollbar {
     position: relative;
-    height: 74.5vh;
+    height: 17vh;
     overflow: auto;
     }
     .table-wrapper-scroll-y {
@@ -18,3 +18,26 @@
     #page-content {
         flex: 1 0 auto;
       }
+      .card{
+        margin: 10px;
+        height: 280px;
+        width: 170px;
+    }
+ 
+    
+.buttons{
+    display: flex;
+    justify-content: center;
+
+}
+
+.yesButton{
+    margin: 10px;
+    background-color: green;
+    color: white;
+}
+.noButton{
+    margin: 10px;
+    background-color: red;
+    color: white;
+}

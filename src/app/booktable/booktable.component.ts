@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { FirebaseService } from "../firebase.service";
 import { PreviewService } from "./preview/preview.service";
@@ -10,8 +10,12 @@ import { PreviewComponent } from "./preview/preview.component";
   styleUrls: ["./booktable.component.scss"],
 })
 export class BooktableComponent implements OnInit {
-  allData: any;
+  allData: any[] = [];
   user: any;
+  inactiveClass: any;
+  @Input() admin: boolean = false;
+  @Input() bookMenu: boolean = false;
+  @Input() student: boolean = false;
 
   constructor(
     private firebase: FirebaseService,
@@ -21,8 +25,21 @@ export class BooktableComponent implements OnInit {
 
   ngOnInit(): void {
     this.firebase.getData().subscribe((data: any) => {
-      this.allData = data;
+      if (this.admin === false) {
+        this.allData = data;
+      } else {
+        data.map((book: any) => {
+          if (book.status === "reserved") {
+            this.allData.push(book);
+          }
+        });
+      }
     });
+    if (this.admin === true || this.bookMenu === true) {
+      this.inactiveClass = "card";
+    } else {
+      this.inactiveClass = "deactriveCard";
+    }
     let user = localStorage.getItem("login");
     this.user = JSON.parse(user || "");
     this.firebase
@@ -32,11 +49,20 @@ export class BooktableComponent implements OnInit {
       });
   }
   openDialog(item: any) {
-    this.previewService.item = item;
-    const dialogRef = this.dialog.open(PreviewComponent);
+    if (this.student === true && item.status === "free") {
+      this.previewService.item = item;
+      const dialogRef = this.dialog.open(PreviewComponent);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+      });
+    } else {
+      this.previewService.item = item;
+      const dialogRef = this.dialog.open(PreviewComponent);
+
+      dialogRef.afterClosed().subscribe((result) => {
+        console.log(`Dialog result: ${result}`);
+      });
+    }
   }
 }

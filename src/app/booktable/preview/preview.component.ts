@@ -48,12 +48,22 @@ export class PreviewComponent implements OnInit {
         startDate: this.form.value.startDate,
         endDate: this.form.value.endDate,
       };
+      let stringArray: any = [];
       data.books.map((book: any) => {
-        let generatedBook = JSON.stringify(bookItem);
-        let bookFromuser = JSON.stringify(book);
+        let bookFromuser = JSON.stringify(book.title);
+        stringArray.push(bookFromuser);
       });
-      data.books.push(bookItem);
-      this.firebase.reserveBook(data);
+
+      let stringBook: any = JSON.stringify(bookItem.title);
+      console.log("string", stringArray, stringBook);
+      if (!stringArray.includes(stringBook)) {
+        item.status = "reserved";
+        data.books.push(bookItem);
+        this.firebase.ndryshoProdukt(item);
+        this.firebase.reserveBook(data);
+      } else {
+        alert("You alredy have this book");
+      }
     }
   }
 }

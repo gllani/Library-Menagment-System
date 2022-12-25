@@ -53,6 +53,7 @@ export class BooksListComponent implements OnInit {
       Name: this.displayData.volumeInfo.authors[0],
       description: this.displayData.volumeInfo.description,
       img: this.displayData.volumeInfo.imageLinks.thumbnail,
+      status: "free",
     };
     this.firebase.addProduct(item);
   }

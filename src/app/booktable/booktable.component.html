@@ -5,9 +5,16 @@
     <table class="table table-bordered table-striped mb-0">
       <div class="imageContainer">
         <div *ngFor="let item of allData">
-          <mat-card class="card" (click)="openDialog(item)">
-            <img class="img" src="{{ item.img }}" />
-          </mat-card>
+          <div *ngIf="item.status === 'reserved'">
+            <mat-card class="{{inactiveClass}}" (click)="openDialog(item)">
+              <img class="img" src="{{ item.img }}" />
+            </mat-card>
+          </div>
+          <div *ngIf="item.status === 'free'">
+            <mat-card class="card" (click)="openDialog(item)">
+              <img class="img" src="{{ item.img }}" />
+            </mat-card>
+          </div>
         </div>
       </div>
     </table>
