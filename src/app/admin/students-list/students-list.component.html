@@ -1,5 +1,5 @@
 <div class="container mt-5 px-2">
-  <button mat-button mat-dialog-close style="color:red">Close</button>
+  <button mat-button mat-dialog-close style="color: red">Close</button>
   <div class="container mt-5 px-2"></div>
 
   <div class="container mt-5 px-2">
@@ -54,29 +54,6 @@
                   </div>
 
                   <div class="mb-3">
-                    <h3>Name, Last Name</h3>
-                    <input
-                      type="text"
-                      class="form-control valid"
-                      id="Emri"
-                      placeholder="Name, Last Name"
-                      required
-                      minlength="5"
-                    />
-                  </div>
-
-                  <div class="mb-3">
-                    <h3>Email</h3>
-                    <input
-                      type="text"
-                      class="form-control valid"
-                      id="Email"
-                      placeholder="Email"
-                      required
-                      minlength="7"
-                    />
-                  </div>
-                  <div class="mb-3">
                     <h3>Username</h3>
                     <input
                       type="text"
@@ -97,6 +74,7 @@
                       formControlName="password"
                       placeholder="Password"
                       required
+                      ngModel
                       minlength="3"
                     />
                   </div>
@@ -137,6 +115,22 @@
             </tr>
           </thead>
           <tbody *ngFor="let item of data">
+            <ng-template #myDialog1 class="dialogue"
+              ><div>
+                <h1>Are you sure you want to delete this user?</h1>
+                <div class="buttons">
+                  <button
+                    class="yes"
+                    mat-button
+                    (click)="deleteFunction(item)"
+                    mat-dialog-close
+                  >
+                    Yes
+                  </button>
+                  <button class="no" mat-button mat-dialog-close>NO</button>
+                </div>
+              </div></ng-template
+            >
             <tr>
               <td>{{ item.id }}</td>
               <td>{{ item.username }}</td>
@@ -150,21 +144,21 @@
                   mat-raised-button
                   type="button"
                   class="btn btn-primary mr-1"
+                  (click)="openDialogWithTemplateRef(myDialog, true)"
                 >
                   EDIT
                 </button>
-
                 <button
-                mat-raised-button
-                type="button"
-                class="btn btn-danger"
-              >
-                DELETE
-              </button>
+                  mat-raised-button
+                  (click)="openDialogWithTemplateRef(myDialog1)"
+                  type="button"
+                  class="btn btn-danger"
+                >
+                  DELETE
+                </button>
               </td>
             </tr>
-          
-    
+
             <thead></thead>
           </tbody>
         </table>
@@ -173,5 +167,4 @@
   </div>
 
   <div class="container mt-5 px-2"></div>
-
 </div>

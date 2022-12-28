@@ -82,14 +82,14 @@ export class AdminComponent implements OnInit {
       width: "100%",
     });
   }
-  goToSendMessage() {
-    const dialogRef = this.dialog.open(MessageComponent, {
-      maxWidth: "100vw",
-      maxHeight: "100vh",
-      height: "100%",
-      width: "100%",
-    });
-  }
+  // goToSendMessage() {
+  //   const dialogRef = this.dialog.open(MessageComponent, {
+  //     maxWidth: "100vw",
+  //     maxHeight: "100vh",
+  //     height: "100%",
+  //     width: "100%",
+  //   });
+  // }
   searchArray(filter: any, data: any): any {
     const result: any[] = [];
     data.forEach((element: { name: string; email: string }) => {

@@ -47,6 +47,13 @@
           <button mat-button class="inactivebutton" disabled>Reserve</button>
         </div>
       </div>
+      <div *ngIf="displayData">
+        <h1>Currently owned by : {{ dataToDispaly.owner }}</h1>
+        <h2>
+          {{ consvertStartDate(dataToDispaly.start) | date }} -
+          {{ consvertStartDate(dataToDispaly.end) | date }}
+        </h2>
+      </div>
     </div>
   </div>
 </mat-dialog-content>

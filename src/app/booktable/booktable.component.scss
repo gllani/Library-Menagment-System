@@ -18,3 +18,19 @@
     height: 250px;
     width: 150px;
 }
+.my-custom-scrollbar {
+    position: relative;
+    height: 73vh;
+    overflow: auto;
+    }
+    .table-wrapper-scroll-y {
+    display: block;
+    }
+    #page-content {
+        flex: 1 0 auto;
+      }
+      .card{
+        margin: 10px;
+        height: 280px;
+        width: 170px;
+    }

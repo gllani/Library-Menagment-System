@@ -23,6 +23,22 @@
         height: 280px;
         width: 170px;
     }
+    .my-custom-scroll {
+        position: relative;
+        height: 85.5vh;
+        overflow: auto;
+        }
+        .table-wrapper-scroll {
+        display: block;
+        }
+        #page-content {
+            flex: 1 0 auto;
+          }
+          .card{
+            margin: 10px;
+            height: 280px;
+            width: 170px;
+        }
  
     
 .buttons{

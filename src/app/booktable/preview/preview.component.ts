@@ -15,6 +15,9 @@ export class PreviewComponent implements OnInit {
   user: any;
   isAdmin: boolean = false;
   error = false;
+  displayData: boolean = false;
+  item: any;
+  dataToDispaly: any;
 
   constructor(
     public previewService: PreviewService,
@@ -30,11 +33,40 @@ export class PreviewComponent implements OnInit {
       startDate: new FormControl(""),
       endDate: new FormControl(""),
     });
-    let user = localStorage.getItem("login");
-    this.user = JSON.parse(user || "");
-    if (this.user.role === "admin") {
+    this.item = this.previewService.item;
+    this.firebase.getPunonjes().subscribe((users: any) => {
+      users.map((bookaOfUser: any) => {
+        bookaOfUser.books.map((data: any) => {
+          console.log(this.item.Book);
+          if (data.title === this.item.BookName) {
+            this.dataToDispaly = {
+              owner: bookaOfUser.username,
+              start: data.startDate,
+              end: data.endDate,
+            };
+            console.log("data", this.dataToDispaly);
+          }
+        });
+      });
+    });
+    if (localStorage.getItem("login")) {
+      let user = localStorage.getItem("login");
+      this.user = JSON.parse(user || "");
+      if (this.user.role === "admin" || this.user === "") {
+        this.isAdmin = true;
+        this.displayData = true;
+      }
+    } else {
       this.isAdmin = true;
     }
+  }
+
+  consvertStartDate(timeStamp: any) {
+    console.log(timeStamp);
+    let startDate = new Date(
+      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
+    );
+    return startDate;
   }
 
   reserve(item: any) {

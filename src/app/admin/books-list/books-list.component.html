@@ -58,7 +58,7 @@
               <img src="{{ displayData.volumeInfo.imageLinks.thumbnail }}" />
             </div>
             <div *ngIf="displayData.volumeInfo.title">
-              <button mat-button class="addButton" (click)="addBook()">
+              <button mat-button class="addButton"  (click)="addBook()">
                 Add
               </button>
             </div>
@@ -66,15 +66,9 @@
         </div>
       </mat-dialog-content>
     </ng-template>
-    <button
-      mat-button
-      color="light"
-      (click)="openDialogWithTemplateRef(myDialog)"
-    >
-      Add Books Manually!
-    </button>
+
   </div>
-  <ng-template #myDialog>
+  <!-- <ng-template #myDialog>
     <h2 matDialogTitle>ADD Books Manually!</h2>
     <mat-dialog-content>
       <div class="background">
@@ -121,7 +115,7 @@
         </div>
       </div>
     </mat-dialog-content>
-  </ng-template>
+  </ng-template> -->
   <div class="scss">
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-bordered table-striped mb-0">
@@ -132,7 +126,7 @@
             <th scope="col" width="21.1%">Author</th>
 
             <th scope="col" width="21.1%">
-              <span>Edit</span>
+              <span>Delete</span>
             </th>
           </tr>
         </thead>
@@ -147,14 +141,7 @@
             <td>{{ item.Name }}</td>
 
             <td class=" ">
-              <button
-                mat-raised-button
-                type="button"
-                class="btn btn-primary mr-1"
-                (click)="goToEdit(item)"
-              >
-                EDIT
-              </button>
+           
 
               <button
                 mat-raised-button

@@ -57,6 +57,7 @@ export class FirebaseService {
     console.log(id);
     return this.firestore.collection("employeer").doc(id).delete();
   }
+
   punonjesIRi(item: any) {
     return this.firestore.collection("employeer").add(item);
   }

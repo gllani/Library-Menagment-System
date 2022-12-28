@@ -70,24 +70,25 @@ export class BooksListComponent implements OnInit {
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
   searchArray = (toSearch: string, array: any[]) => {
-    let terms = toSearch.split(" ");
+    let terms = toSearch.split('');
     return array.filter((object) =>
       terms.every((term) =>
         Object.values(object).some((value: any) =>
-          typeof value === "string" || value instanceof String
+          typeof value === 'string' || value instanceof String
             ? value.includes(term)
             : false
         )
       )
     );
   };
+
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === '') {
+      this.data = this.allData;
+    }
+  }
 
   search() {
     this.googleApiService
@@ -130,7 +131,7 @@ export class BooksListComponent implements OnInit {
       this.data = this.allData;
     });
     this.form = new FormGroup({
-      filter: new FormControl(""),
+      filter: new FormControl(''),
     });
     this.automaticBook = new FormGroup({
       search: new FormControl(""),
@@ -150,12 +151,7 @@ export class BooksListComponent implements OnInit {
     });
   }
 
-  goToEdit(item: any) {
-    this.editProduct = true;
-    this.addProduct = false;
-    this.bookService.editableData = item;
-    this.router.navigate(["books"]);
-  }
+
   goToDelete(item: any) {
     this.deleteProduct = false;
     this.showModal = true;

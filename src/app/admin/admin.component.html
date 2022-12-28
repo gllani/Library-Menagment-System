@@ -1,7 +1,7 @@
 <html class="position">
   <body class="w3-theme-l5">
     <div class="w3-top">
-      <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
+      <div class="w3-bar w3-theme-d2 w3-left-align w3-large" (click)="logOut()">
         <a
           class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
           href="javascript:void(0);"
@@ -87,13 +87,6 @@
                 <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
                 Check Books List!
               </button>
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="goToSendMessage()"
-              >
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-                Send Alert Message!
-              </button>
             </div>
           </div>
           <br />
@@ -101,9 +94,7 @@
 
         <div class="w3-col m7">
           <div class="w3-container w3-card w3-white w3-round w3-margin">
-            <h4 style="color: green">Reserved Books</h4>
             <div class="background">
-              <div class="container mt-5 px-2"></div>
               <app-booktable [admin]="true"></app-booktable>
             </div>
 
