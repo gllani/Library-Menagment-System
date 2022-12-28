@@ -58,9 +58,7 @@ export class StudentComponent implements OnInit {
       .subscribe((userData: any) => {
         this.userData = userData;
       });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-    });
+
   }
 
   return(item: any) {
@@ -95,7 +93,6 @@ export class StudentComponent implements OnInit {
     localStorage.clear();
     this.router.navigate([""]);
     this.form = new FormGroup({
-      filter: new FormControl(""),
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
@@ -105,8 +102,6 @@ export class StudentComponent implements OnInit {
       this.allData = data;
       this.data = this.allData;
     });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-    });
+  
   }
 }

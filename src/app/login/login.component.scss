@@ -167,7 +167,19 @@
     left: -100px;
     transition: all 1s
 }
+@media (max-width:750px) {
+    .section .container {
+        max-width: 350px
+    }
 
+    .section .container .right-side {
+        display: none
+    }
+
+    .section .container .left-side {
+        width: 100%
+    }
+}
 .right-side .circle2 {
     position: absolute;
     height: 200px;
@@ -210,20 +222,6 @@
 .section .container .right-side svg {
     position: absolute;
     bottom: 0
-}
-
-@media (max-width:750px) {
-    .section .container {
-        max-width: 350px
-    }
-
-    .section .container .right-side {
-        display: none
-    }
-
-    .section .container .left-side {
-        width: 100%
-    }
 }
 .error{
     color: red;

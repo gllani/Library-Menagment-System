@@ -1,4 +1,10 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
@@ -32,6 +38,7 @@ export class StudentsListComponent implements OnInit {
   onClose(): void {
     this.dialogRef.close(true);
   }
+
   openDialogWithTemplateRef(templateRef: any, edit?: any) {
     if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
       if (edit) {
@@ -40,14 +47,8 @@ export class StudentsListComponent implements OnInit {
     }
     this.dialog.open(templateRef);
   }
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
   searchArray = (toSearch: string, array: any[]) => {
-    let terms = toSearch.split("");
+    let terms = toSearch.split(" ");
     return array.filter((object) =>
       terms.every((term) =>
         Object.values(object).some((value: any) =>
@@ -58,6 +59,13 @@ export class StudentsListComponent implements OnInit {
       )
     );
   };
+
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
 
   ngOnInit(): void {
     this.studentsService.editableData = {

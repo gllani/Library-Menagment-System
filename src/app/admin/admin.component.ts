@@ -6,9 +6,9 @@ import { AuthService } from "../auth.service";
 import { FirebaseService } from "../firebase.service";
 import { BooksListComponent } from "./books-list/books-list.component";
 import { BooksComponent } from "./books/books.component";
-import { DialogComponent } from "./dialog/dialog.component";
+import { DialogComponent } from "./books/dialog/dialog.component";
 import { MessageComponent } from "./message/message.component";
-import { NewStudentComponent } from "./new-student/new-student.component";
+import { NewStudentComponent } from "./message/new-student/new-student.component";
 import { StudentsListComponent } from "./students-list/students-list.component";
 import { StudentsService } from "./students-list/students.service";
 
@@ -40,9 +40,9 @@ export class AdminComponent implements OnInit {
       this.allData = data;
       this.data = this.allData;
     });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-    });
+    // this.form = new FormGroup({
+    //   filter: new FormControl(""),
+    // });
   }
   openDialog(item: any) {
     let dialogueRef = this.dialog.open(DialogComponent);
@@ -90,18 +90,18 @@ export class AdminComponent implements OnInit {
   //     width: "100%",
   //   });
   // }
-  searchArray(filter: any, data: any): any {
-    const result: any[] = [];
-    data.forEach((element: { name: string; email: string }) => {
-      if (
-        element.name.toLowerCase().includes(filter.toLowerCase()) ||
-        element.email.toLowerCase().includes(filter.toLowerCase())
-      ) {
-        result.push(element);
-      }
-    });
-    return result;
-  }
+  // searchArray(filter: any, data: any): any {
+  //   const result: any[] = [];
+  //   data.forEach((element: { name: string; email: string }) => {
+  //     if (
+  //       element.name.toLowerCase().includes(filter.toLowerCase()) ||
+  //       element.email.toLowerCase().includes(filter.toLowerCase())
+  //     ) {
+  //       result.push(element);
+  //     }
+  //   });
+  //   return result;
+  // }
   getData(data: any) {
     this.allData = data;
     this.data = data;

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { AfterViewInit, Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
@@ -12,7 +12,7 @@ import { BookService } from "../books/book.service";
   templateUrl: "./books-list.component.html",
   styleUrls: ["./books-list.component.scss"],
 })
-export class BooksListComponent implements OnInit {
+export class BooksListComponent implements OnInit, AfterViewInit {
   addProduct: boolean = false;
   editProduct: boolean = false;
   deleteProduct: boolean = false;
@@ -71,21 +71,21 @@ export class BooksListComponent implements OnInit {
     this.dialog.open(templateRef);
   }
   searchArray = (toSearch: string, array: any[]) => {
-    let terms = toSearch.split('');
+    let terms = toSearch.split("");
     return array.filter((object) =>
       terms.every((term) =>
         Object.values(object).some((value: any) =>
-          typeof value === 'string' || value instanceof String
+          typeof value === "string" || value instanceof String
             ? value.includes(term)
             : false
         )
       )
     );
   };
-
+  
   filter() {
     this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === '') {
+    if (this.form.value.filter === "") {
       this.data = this.allData;
     }
   }
@@ -131,7 +131,7 @@ export class BooksListComponent implements OnInit {
       this.data = this.allData;
     });
     this.form = new FormGroup({
-      filter: new FormControl(''),
+      filter: new FormControl(""),
     });
     this.automaticBook = new FormGroup({
       search: new FormControl(""),
@@ -150,7 +150,6 @@ export class BooksListComponent implements OnInit {
       Name: new FormControl(Name, Validators.required),
     });
   }
-
 
   goToDelete(item: any) {
     this.deleteProduct = false;

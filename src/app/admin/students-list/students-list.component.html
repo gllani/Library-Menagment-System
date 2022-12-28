@@ -88,6 +88,7 @@
                     class="btn btn-primary"
                     href="#"
                     routerLinkActive="active"
+                    [disabled]="!form.valid"
                     (click)="goToAdd()"
                   >
                     Generate a new student !
@@ -127,7 +128,7 @@
                   >
                     Yes
                   </button>
-                  <button class="no" mat-button mat-dialog-close>NO</button>
+                  
                 </div>
               </div></ng-template
             >

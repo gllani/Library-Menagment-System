@@ -39,7 +39,6 @@ export class ReserveComponent implements OnInit {
   ngOnInit(): void {
     this.logedInIndividual = JSON.parse(localStorage.getItem("login") || "");
     this.form = new FormGroup({
-      filter: new FormControl(""),
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
@@ -52,9 +51,7 @@ export class ReserveComponent implements OnInit {
       this.allData = data;
       this.data = this.allData;
     });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
-    });
+ 
   }
 
 }
