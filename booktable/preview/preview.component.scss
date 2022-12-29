@@ -1,0 +1,20 @@
+.img{
+    height: 600px;
+    width: 400px;
+}
+.container{
+    display: flex;
+}
+.description{
+    margin: 20px;
+}
+.button{
+    margin-top: 20px;
+    background-color: green;
+    color: white;
+}
+.inactivebutton{
+    margin-top: 20px;
+    background-color: rgb(88, 122, 88);
+    color: white;
+}

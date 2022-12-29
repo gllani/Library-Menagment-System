@@ -75,7 +75,14 @@
                 </div>
                 <p class="random_password"></p>
               </div>
-              <input id="submit_button" type="submit" (click)="test()" />
+              <button
+                type="submit"
+                class="btn btn-primary"
+                [disabled]="!loginForm.valid"
+                (click)="test()"
+              >
+                Submit
+              </button>
             </div>
           </form>
         </div>

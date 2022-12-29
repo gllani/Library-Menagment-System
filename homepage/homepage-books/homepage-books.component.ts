@@ -1,8 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
+import { MatDialog } from "@angular/material/dialog";
 import { BookService } from "src/app/admin/books/book.service";
-import { FirebaseService } from "src/app/firebase.service";
-
+import { FirebaseService } from "src/app/services/firebase.service";
+import { PreviewComponent } from "../../booktable/preview/preview.component";
+import { PreviewService } from "../../booktable/preview/preview.service";
 @Component({
   selector: "app-homepage-books",
   templateUrl: "./homepage-books.component.html",
@@ -18,7 +20,8 @@ export class HomepageBooksComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private firebase: FirebaseService
+    public dialog: MatDialog,
+    public PreviewService: PreviewService
   ) {}
 
   ngOnInit(): void {
@@ -28,12 +31,7 @@ export class HomepageBooksComponent implements OnInit {
     });
     this.bookService.editableData = {
       BookName: "",
-      Name: ""
+      Name: "",
     };
-    this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
-      this.allData = data;
-      this.data = this.allData;
-    });
   }
 }

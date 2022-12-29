@@ -1,6 +1,8 @@
 <div class="w3-top">
   <div class="w3-bar">
-    <div class="w3-bar-item w3-button">Ｂ ｏ ｏ ｋ ｓ   Ｗ ｏ ｒ ｌ ｄ</div>
+    <div class="w3-bar-item w3-button" (click)="onLogout()">
+      Ｂ ｏ ｏ ｋ ｓ Ｗ ｏ ｒ ｌ ｄ
+    </div>
     <div (click)="onLogout()">
       <a class="w3-bar-item w3-button w3-hide-small"
         ><i class="fa fa-user"></i> LogOut!</a
@@ -28,7 +30,6 @@
                 required
                 class="form-control w-100"
                 placeholder="Search Book Title!"
-                (input)="filter()"
               />
             </button>
             <p></p>
@@ -39,14 +40,13 @@
                 required
                 class="form-control w-100"
                 placeholder="Search Book Author!"
-                (input)="filter()"
               />
             </button>
 
             <p></p>
             <p>Category</p>
             <mat-form-field appearance="fill">
-              <mat-label >Select an option</mat-label>
+              <mat-label>Select an option</mat-label>
               <mat-select disableRipple>
                 <mat-option value="1">--</mat-option>
                 <mat-option value="2">Adventure stories</mat-option>
@@ -78,15 +78,14 @@
           class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
         >
           <p><strong>List of Books!!</strong></p>
-          <li>1.</li>
-          <h4>Date</h4>
-          <p></p>
-          <li>2.</li>
-          <h4>Date</h4>
-          <p></p>
-          <li>3.</li>
-          <h4>Date</h4>
-          <p></p>
+          <div class="table-wrapper-scroll-y my-custom-scrollbar">
+            <button (click)="this.router.navigate(['student/book-list'])">
+              go to booklist
+            </button>
+            <button (click)="this.router.navigate(['student/history'])">
+              go to history
+            </button>
+          </div>
         </div>
       </div>
 
@@ -94,68 +93,8 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-              <div class="w3-container w3-padding">
-                <h1 style="color: rgb(214, 168, 108)">Books List</h1>
-
-                <div class="background">
-                  <div class="container mt-5 px-2"></div>
-                  <div>
-                    <form [formGroup]="form">
-                      <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                        <table class="table table-bordered table-striped mb-0">
-                          <thead>
-                            <tr class="bg-light">
-                              <th scope="col" width="21%">Book Name</th>
-                              <th scope="col" width="21%">Author</th>
-                              <th scope="col" width="21%">Review</th>
-                              <th scope="col" width="21%">Select Date</th>
-                              <th scope="col" width="21%">Reserve</th>
-                            </tr>
-                          </thead>
-
-                          <tbody *ngFor="let item of data">
-                            <tr>
-                              <td>{{ item.BookName }}</td>
-                              <td>{{ item.Name }}</td>
-                              <td>{{ item.review }}</td>
-                              <mat-form-field>
-                                <mat-date-range-input
-                                  [rangePicker]="picker"
-                                  [min]="minDate"
-                                  [max]="maxDate"
-                                >
-                                  <input
-                                    matStartDate
-                                    placeholder="Start date"
-                                  />
-                                  <input matEndDate placeholder="End date" />
-                                </mat-date-range-input>
-                                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
-                                <mat-datepicker-toggle
-                                  matIconSuffix
-                                  [for]="picker"
-                                ></mat-datepicker-toggle>
-                                <mat-date-range-picker
-                                  #picker
-                                ></mat-date-range-picker>
-                              </mat-form-field>
-
-                              <td>
-                                <button
-                                  mat-raised-button
-                                  type="button"
-                                  class="btn btn-primary mr-1"
-                                >
-                                  Save!
-                                </button>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </form>
-                  </div>
-                </div>
+              <div class="table-wrapper-scroll my-custom-scroll">
+                  <router-outlet></router-outlet>
               </div>
             </div>
           </div>

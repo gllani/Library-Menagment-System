@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { Output, EventEmitter } from "@angular/core";
-import { BookService } from "../books/book.service";
+import { BookService } from "../../books/book.service";
 
 @Component({
   selector: "app-delete-modal",

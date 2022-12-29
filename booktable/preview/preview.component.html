@@ -1,0 +1,60 @@
+<h2 mat-dialog-title>{{ previewService.item.BookName }}</h2>
+
+<mat-dialog-content class="mat-typography">
+  <div class="container">
+    <div><img class="img" src="{{ previewService.item.img }}" /></div>
+    <div class="description">
+      <h3>{{ previewService.item.Name }}</h3>
+      <p>{{ previewService.item.description }}</p>
+      <div *ngIf="isAdmin === false">
+        <form [formGroup]="form">
+          <mat-form-field>
+            <mat-date-range-input
+              [rangePicker]="picker"
+              [min]="minDate"
+              [max]="maxDate"
+            >
+              <input
+                formControlName="startDate"
+                matStartDate
+                placeholder="Start date"
+              />
+              <input
+                formControlName="endDate"
+                matEndDate
+                placeholder="End date"
+              />
+            </mat-date-range-input>
+            <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-date-range-picker #picker></mat-date-range-picker>
+          </mat-form-field>
+        </form>
+        <div *ngIf="form.value.satartDate !== '' && form.value.endDate !== ''">
+          <button
+            mat-button
+            class="button"
+            mat-dialog-close
+            (click)="reserve(previewService.item)"
+          >
+            Reserve
+          </button>
+        </div>
+        <div *ngIf="form.value.satartDate === '' || form.value.endDate === ''">
+          <button mat-button class="inactivebutton" disabled>Reserve</button>
+        </div>
+      </div>
+      <div *ngIf="displayData">
+        <h1>Currently owned by : {{ dataToDispaly.owner }}</h1>
+        <h2>
+          {{ consvertStartDate(dataToDispaly.start) | date }} -
+          {{ consvertStartDate(dataToDispaly.end) | date }}
+        </h2>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end"> </mat-dialog-actions>

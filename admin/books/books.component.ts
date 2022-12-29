@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 import { BookService } from "./book.service";
 
 @Component({

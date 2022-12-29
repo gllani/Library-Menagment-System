@@ -1,8 +1,14 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+} from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 import { AdminComponent } from "../admin.component";
 import { StudentsService } from "./students.service";
 
@@ -25,22 +31,16 @@ export class StudentsListComponent implements OnInit {
     private firebase: FirebaseService,
     private studentsService: StudentsService,
     private router: Router,
-    private dialogRef: MatDialogRef<AdminComponent>,
-    private dialog: MatDialog,
-    
+    private dialog: MatDialog
   ) {}
 
-  onClose(): void {
-    this.dialogRef.close(true);
-  }
-  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
-    this.dialog.open(templateRef);
-  }
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
+  openDialogWithTemplateRef(templateRef: any, edit?: any) {
+    if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
+      if (edit) {
+        console.log("this is edit");
+      }
     }
+    this.dialog.open(templateRef);
   }
   searchArray = (toSearch: string, array: any[]) => {
     let terms = toSearch.split(" ");
@@ -54,6 +54,13 @@ export class StudentsListComponent implements OnInit {
       )
     );
   };
+
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
 
   ngOnInit(): void {
     this.studentsService.editableData = {
@@ -76,17 +83,28 @@ export class StudentsListComponent implements OnInit {
     });
   }
 
-
-  
-
   goToAdd() {
     let item = {
       id: this.form.value.id,
       username: this.form.value.username,
       password: this.form.value.password,
       role: "employeer",
+      books: [],
     };
     this.firebase.punonjesIRi(item);
     this.router.navigate(["/students-list"]);
+  }
+
+  setShowModal(value: boolean, item: any) {
+    this.firebase.fshiPunonjes = item;
+    this.showModal = value;
+  }
+
+  deleteFunction(event: any) {
+    if (event.role === "admin") {
+      alert("You can not delete admin");
+    } else {
+      this.firebase.fshiPunonjes(event.customIdName);
+    }
   }
 }

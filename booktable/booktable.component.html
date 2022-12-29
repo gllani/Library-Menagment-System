@@ -1,0 +1,22 @@
+<div class="w3-container w3-padding">
+  <h1 style="color: rgb(214, 168, 108)">Books List</h1>
+  <hr />
+  <div class="table-wrapper-scroll-y my-custom-scrollbar">
+    <table class="table table-bordered table-striped mb-0">
+      <div class="imageContainer">
+        <div *ngFor="let item of allData">
+          <div *ngIf="item.status === 'reserved'">
+            <mat-card class="{{inactiveClass}}" (click)="openDialog(item)">
+              <img class="img" src="{{ item.img }}" />
+            </mat-card>
+          </div>
+          <div *ngIf="item.status === 'free'">
+            <mat-card class="card" (click)="openDialog(item)">
+              <img class="img" src="{{ item.img }}" />
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </table>
+  </div>
+</div>

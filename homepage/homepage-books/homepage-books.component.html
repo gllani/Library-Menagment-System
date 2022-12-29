@@ -89,39 +89,7 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-              <div class="w3-container w3-padding">
-                <h1 style="color: rgb(214, 168, 108)">Books List</h1>
-                <hr />
-                <div class="background">
-                  <div class="container mt-5 px-2"></div>
-                  <div>
-                    <form [formGroup]="form">
-                      <div class="container mt-5 px-2 scss">
-                        <div class="table-wrapper-scroll-y my-custom-scrollbar">
-                          <table
-                            class="table table-bordered table-striped mb-0"
-                          >
-                            <thead>
-                              <tr class="bg-light">
-                                <th scope="col" width="21%">Book Name</th>
-                                <th scope="col" width="21%">Author</th>
-                                <th scope="col" width="21%">Description</th>
-                              </tr>
-                            </thead>
-                            <tbody *ngFor="let item of data">
-                              <tr>
-                                <td>{{ item.BookName }}</td>
-
-                                <td>{{ item.Name }}</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
+              <app-booktable [bookMenu]="true"></app-booktable>
             </div>
           </div>
         </div>

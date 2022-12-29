@@ -29,3 +29,19 @@
   height: 70vh;
   overflow: auto;
   }
+
+  .yes{
+    background-color: green;
+    color: white;
+    margin: 10px;
+  }
+  .no{
+    background-color: red;
+    color: white;
+    margin: 10px;
+  }
+
+  .buttons{
+    display: flex;
+    justify-content: center;
+  }
