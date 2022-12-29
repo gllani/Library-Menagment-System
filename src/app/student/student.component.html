@@ -1,6 +1,8 @@
 <div class="w3-top">
   <div class="w3-bar">
-    <div class="w3-bar-item w3-button" (click)="onLogout()">Ｂ ｏ ｏ ｋ ｓ Ｗ ｏ ｒ ｌ ｄ</div>
+    <div class="w3-bar-item w3-button" (click)="onLogout()">
+      Ｂ ｏ ｏ ｋ ｓ Ｗ ｏ ｒ ｌ ｄ
+    </div>
     <div (click)="onLogout()">
       <a class="w3-bar-item w3-button w3-hide-small"
         ><i class="fa fa-user"></i> LogOut!</a
@@ -77,43 +79,12 @@
         >
           <p><strong>List of Books!!</strong></p>
           <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <table class="table table-bordered table-striped mb-0">
-              <div *ngFor="let item of userData.books">
-                <p>{{ item.title }}</p>
-                <p>
-                  {{ convertstartDate(item.startDate) | date }} -
-                  {{ convertstartDate(item.endDate) | date }}
-                </p>
-
-                <button
-                  mat-raised-button
-                  (click)="openDialogWithTemplateRef(dialog)"
-                >
-                  Return
-                </button>
-                <ng-template #dialog class="dialog">
-                  <h2 matDialogTitle></h2>
-                  <mat-dialog-content>
-                    <h1>Are you sure you wantg to return this book?</h1>
-                    <div class="buttons">
-                      <button
-                        mat-button
-                        class="yesButton"
-                        (click)="return(item)"
-                        mat-dialog-close
-                      >
-                        Yes
-                      </button>
-                      <button mat-button class="noButton" mat-dialog-close>
-                        no
-                      </button>
-                    </div>
-                  </mat-dialog-content>
-                </ng-template>
-
-                <hr />
-              </div>
-            </table>
+            <button (click)="this.router.navigate(['student/book-list'])">
+              go to booklist
+            </button>
+            <button (click)="this.router.navigate(['student/history'])">
+              go to history
+            </button>
           </div>
         </div>
       </div>
@@ -123,9 +94,8 @@
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
               <div class="table-wrapper-scroll my-custom-scroll">
-                <table class="table table-bordered table-striped mb-0">
-              <app-booktable [admin]="false" [student]="true"></app-booktable>
-                </table></div>
+                  <router-outlet></router-outlet>
+              </div>
             </div>
           </div>
         </div>

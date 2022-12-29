@@ -1,8 +1,8 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
-import { AuthService } from "../auth.service";
-import { FirebaseService } from "../firebase.service";
+import { AuthService } from "../services/auth.service";
+import { FirebaseService } from "../services/firebase.service";
 @Component({
   selector: "app-login",
   templateUrl: "./login.component.html",
@@ -43,7 +43,7 @@ export class LoginComponent {
           if (student.role === "admin") {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = true;
-            this.router.navigate(["admin"]);
+            this.router.navigate(["admin/dashboard"]);
           } else {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = false;

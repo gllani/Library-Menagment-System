@@ -8,7 +8,7 @@ import {
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 import { AdminComponent } from "../admin.component";
 import { StudentsService } from "./students.service";
 
@@ -31,13 +31,8 @@ export class StudentsListComponent implements OnInit {
     private firebase: FirebaseService,
     private studentsService: StudentsService,
     private router: Router,
-    private dialogRef: MatDialogRef<AdminComponent>,
     private dialog: MatDialog
   ) {}
-
-  onClose(): void {
-    this.dialogRef.close(true);
-  }
 
   openDialogWithTemplateRef(templateRef: any, edit?: any) {
     if (templateRef._declarationTContainer.localNames[0] === "myDialog") {

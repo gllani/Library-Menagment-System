@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 import { GoogleAPIService } from "src/app/homepage/search-modal/google-api.service";
 import { AdminComponent } from "../admin.component";
 import { BookService } from "../books/book.service";
@@ -62,7 +62,6 @@ export class BooksListComponent implements OnInit, AfterViewInit {
     private router: Router,
     private bookService: BookService,
     private firebase: FirebaseService,
-    private dialogRef: MatDialogRef<AdminComponent>,
     private dialog: MatDialog,
     private bookservice: BookService,
     private googleApiService: GoogleAPIService
@@ -71,6 +70,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
     this.dialog.open(templateRef);
   }
   searchArray = (toSearch: string, array: any[]) => {
+    console.log("data from search", toSearch);
     let terms = toSearch.split("");
     return array.filter((object) =>
       terms.every((term) =>
@@ -82,8 +82,9 @@ export class BooksListComponent implements OnInit, AfterViewInit {
       )
     );
   };
-  
+
   filter() {
+    console.log("form datas", this.form);
     this.data = this.searchArray(this.form.value.filter, this.data);
     if (this.form.value.filter === "") {
       this.data = this.allData;
@@ -114,10 +115,6 @@ export class BooksListComponent implements OnInit, AfterViewInit {
       this.showModal = false;
     }
   }
-  onClose(): void {
-    this.dialogRef.close(true);
-  }
-
   ngAfterViewInit() {}
 
   ngOnInit(): void {

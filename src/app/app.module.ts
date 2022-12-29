@@ -28,7 +28,7 @@ import { BooksListComponent } from "./admin/books-list/books-list.component";
 import { MatTableModule } from "@angular/material/table";
 import { DeleteModalComponent } from "./admin/books-list/delete-modal/delete-modal.component";
 import { DialogComponent } from "./admin/books/dialog/dialog.component";
-import { MatDialogModule } from "@angular/material/dialog";
+import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -38,7 +38,9 @@ import { MessageComponent } from "./admin/message/message.component";
 import { MatCardModule } from "@angular/material/card";
 import { PreviewComponent } from "./booktable/preview/preview.component";
 import { BooktableComponent } from "./booktable/booktable.component";
-
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { HistoryComponent } from './student/history/history.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -58,6 +60,8 @@ import { BooktableComponent } from "./booktable/booktable.component";
     MessageComponent,
     PreviewComponent,
     BooktableComponent,
+    DashboardComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,
@@ -81,6 +85,7 @@ import { BooktableComponent } from "./booktable/booktable.component";
     MatSlideToggleModule,
     MatSelectModule,
     MatCardModule,
+    MatSidenavModule,
   ],
   providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],

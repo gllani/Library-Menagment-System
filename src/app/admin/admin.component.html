@@ -1,130 +1,82 @@
-<html class="position">
-  <body class="w3-theme-l5">
-    <div class="w3-top">
-      <div class="w3-bar w3-theme-d2 w3-left-align w3-large" (click)="logOut()">
-        <a
-          class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
-          href="javascript:void(0);"
-          ><i class="fa fa-bars"></i
-        ></a>
-        <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
-          ><i class="fa fa-home w3-margin-right"></i>Admin Page</a
-        >
-      </div>
-    </div>
-    <div
-      class="w3-container w3-content"
-      style="max-width: 1400px; margin-top: 55px"
-    >
-      <div class="w3-row">
-        <div class="w3-col m3">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container">
-              <h4 class="w3-center">My Profile</h4>
-              <p class="w3-center">
-                <img
-                  src="https://api.time.com/wp-content/uploads/2021/10/GettyImages-577674005.jpg"
-                  class="w3-circle"
-                  style="height: 106px; width: 106px"
-                  alt="Avatar"
-                />
-              </p>
-              <hr />
-              <p>
-                <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
-                Librarian
-              </p>
-              <p>
-                <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
-                Tirana, Albania
-              </p>
-              <p>
-                <i
-                  class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"
-                ></i>
-                April 1, 1955
-              </p>
-            </div>
-          </div>
-          <br />
+<app-message></app-message>
+<mat-drawer-container class="example-container">
+  <mat-drawer class="sidePannel" mode="side" opened style="margin-top: 10px">
+    <h4 class="w3-center">My Profile</h4>
+    <p class="w3-center">
+      <img
+        src="https://api.time.com/wp-content/uploads/2021/10/GettyImages-577674005.jpg"
+        class="w3-circle"
+        style="height: 106px; width: 106px"
+        alt="Avatar"
+      />
+    </p>
+    <hr />
+    <p style="padding-left: 25px">
+      <i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i>
+      Librarian
+    </p>
+    <p style="padding-left: 25px">
+      <i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i>
+      Tirana, Albania
+    </p>
+    <p style="padding-left: 25px">
+      <i class="fa fa-birthday-cake fa-fw w3-margin-right w3-text-theme"></i>
+      April 1, 1955
+    </p>
 
-          <div
-            class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
-          >
-            <span
-              onclick="this.parentElement.style.display='none'"
-              class="w3-button w3-theme-l3 w3-display-topright"
-            >
-              <i class="fa fa-remove"></i>
-            </span>
-            <p><strong>Hey!</strong></p>
-            <p>WELCOME SIR. Melville Louis</p>
-          </div>
-
-          <div class="w3-card w3-round">
-            <div class="w3-white">
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="logOut()"
-              >
-                <i
-                  class="fa fa-circle-o-notch fa-fw w3-margin-right"
-                  style="color: red"
-                ></i
-                >LogOut!
-              </button>
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="goToCheckStudents()"
-              >
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-                Check Students List!
-              </button>
-              <button
-                class="w3-button w3-block w3-theme-l1 w3-left-align"
-                (click)="goToCheckBooks()"
-              >
-                <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
-                Check Books List!
-              </button>
-            </div>
-          </div>
-          <br />
-        </div>
-
-        <div class="w3-col m7">
-          <div class="w3-container w3-card w3-white w3-round w3-margin">
-            <div class="background">
-              <app-booktable [admin]="true"></app-booktable>
-            </div>
-
-            <hr />
-          </div>
-        </div>
-
-        <div class="w3-col m2">
-          <div class="w3-card w3-round w3-white w3-center">
-            <div class="w3-container">
-              <h2>Email Panel</h2>
-              <hr />
-              <p style="color: blue">
-                Sir, If you want to check your email, click the button below!
-              </p>
-              <button
-                class="w3-button w3-black w3-right w3-section"
-                type="submit"
-                (click)="openGmail()"
-              >
-                <i class="fa fa-paper-plane"></i>
-                Check Gmail
-              </button>
-              <hr />
-            </div>
-          </div>
-          <br />
-        </div>
-      </div>
-    </div>
     <br />
-  </body>
-</html>
+
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="this.router.navigate(['admin/dashboard'])"
+    >
+      <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+      Admin Dashboard!
+    </button>
+
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="this.router.navigate(['admin/students'])"
+    >
+      <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+      Check Students List!
+    </button>
+
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="this.router.navigate(['admin/books-list'])"
+    >
+      <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+      Check Books List!
+    </button>
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="openGmail()"
+    >
+      <i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i>
+      Check Email Panel!
+    </button>
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="this.router.navigate(['admin/books-preview'])"
+    >
+      <i class="fa fa-calendar-check-o fa-fw w3-margin-right"> </i>
+      Check rezerved books!
+    </button>
+    <button
+      class="w3-button w3-block w3-theme-l1 w3-left-align"
+      (click)="logOut()"
+    >
+      <i
+        class="fa fa-circle-o-notch fa-fw w3-margin-right"
+        style="color: red"
+      ></i
+      >LogOut!
+    </button>
+
+    <br />
+  </mat-drawer>
+  <mat-drawer-content class="position">
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

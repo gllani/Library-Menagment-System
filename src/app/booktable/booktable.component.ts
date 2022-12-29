@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
-import { FirebaseService } from "../firebase.service";
+import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
 import { PreviewComponent } from "./preview/preview.component";
 

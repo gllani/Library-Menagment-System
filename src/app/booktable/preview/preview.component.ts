@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 import { PreviewService } from "./preview.service";
 
 @Component({

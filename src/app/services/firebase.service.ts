@@ -7,6 +7,23 @@ import { collection, doc } from "@angular/fire/firestore";
 })
 export class FirebaseService {
   constructor(private firestore: AngularFirestore) {}
+
+  getHistory() {
+    return this.firestore
+      .collection("history")
+      .valueChanges({ idField: "customIdName" });
+  }
+  addToHistory(item: any) {
+    return this.firestore
+      .collection("history")
+      .doc(item.customIdName)
+      .update(item);
+  }
+  addNewToHistory(item: any) {
+    return this.firestore.collection("history").add(item);
+  }
+
+  
   getData() {
     return this.firestore
       .collection("books")

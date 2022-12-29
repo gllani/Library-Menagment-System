@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { BookService } from "src/app/admin/books/book.service";
-import { FirebaseService } from "src/app/firebase.service";
+import { FirebaseService } from "src/app/services/firebase.service";
 
 @Component({
   selector: "app-reserve",
@@ -51,7 +51,5 @@ export class ReserveComponent implements OnInit {
       this.allData = data;
       this.data = this.allData;
     });
- 
   }
-
 }
