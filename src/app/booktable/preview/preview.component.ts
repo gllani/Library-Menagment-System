@@ -89,10 +89,18 @@ export class PreviewComponent implements OnInit {
       let stringBook: any = JSON.stringify(bookItem.title);
       console.log("string", stringArray, stringBook);
       if (!stringArray.includes(stringBook)) {
+        let history: any = {
+          title: item.BookName,
+          author: item.Name,
+          startDate: this.form.value.startDate,
+          endDate: this.form.value.endDate,
+          name: this.user.username,
+        };
         item.status = "reserved";
         data.books.push(bookItem);
         this.firebase.ndryshoProdukt(item);
         this.firebase.reserveBook(data);
+        this.firebase.addNewToHistory(history);
       } else {
         alert("You alredy have this book");
       }

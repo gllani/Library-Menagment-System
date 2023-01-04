@@ -12,136 +12,14 @@ import { NewStudentComponent } from "../message/new-student/new-student.componen
 import { StudentsListComponent } from "../students-list/students-list.component";
 import { StudentsService } from "../students-list/students.service";
 
-export interface PeriodicElement {
-  registrationId: number;
-  studentId: number;
-  id: number;
-  date: number;
-  status: string;
-  action: string;
-}
-const ELEMENT_DATA: PeriodicElement[] = [
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 3,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 1,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-  {
-    registrationId: 5,
-    id: 1,
-    studentId: 8,
-    date: 1.0079,
-    status: "H",
-    action: "",
-  },
-];
-
 @Component({
   selector: "app-dashboard",
   templateUrl: "./dashboard.component.html",
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = [
-    "registrationId",
-    "studentId",
-    "id",
-    "date",
-    "status",
-    "action",
-  ];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  displayedColumns: string[] = ["title", "author", "action"];
+  dataSource = [];
   form!: FormGroup;
   allData: any = [];
   data: any = [];
@@ -153,25 +31,16 @@ export class DashboardComponent implements OnInit {
     public dialog: MatDialog
   ) {}
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   ngOnInit() {
     this.studentsService.editableData = {
       id: "",
       username: 0,
       password: 0,
     };
-    this.firebase.getPunonjes().subscribe((data: any) => {
-      console.log("this.allData from fb", data);
-      this.allData = data;
-      this.data = this.allData;
+    this.firebase.getReservedBooks().subscribe((data: any) => {
+      console.log(data);
+      this.dataSource = data;
     });
-    // this.form = new FormGroup({
-    //   filter: new FormControl(""),
-    // });
   }
   return(item: any) {
     this.allData.map((books: any) => {
@@ -180,10 +49,25 @@ export class DashboardComponent implements OnInit {
         this.firebase.ndryshoProdukt(books);
 
         let bookHistory = {
-          title : item.title,
-          users : []
-        }
+          title: item.title,
+          users: [],
+        };
       }
+    });
+  }
+  retrunBook(element: any) {
+    element.status = "free";
+    this.firebase.ndryshoProdukt(element);
+    this.firebase.getPunonjes().subscribe((users: any) => {
+      users.map((user: any) => {
+        user.books.map((book: any) => {
+          if (book.title === element.BookName) {
+            let index = user.books.indexOf(book);
+            user.books.splice(index, index + 1);
+            this.firebase.reserveBook(user);
+          }
+        });
+      });
     });
   }
 

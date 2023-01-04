@@ -34,7 +34,6 @@ export class LoginComponent {
   test() {
     if (this.loginForm.valid) {
       this.student.map((student: any) => {
-        console.log("students", student);
         if (
           student.username === this.loginForm.value.username &&
           student.password === this.loginForm.value.password

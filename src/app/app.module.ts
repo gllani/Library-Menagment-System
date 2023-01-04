@@ -87,7 +87,7 @@ import { HistoryComponent } from './student/history/history.component';
     MatCardModule,
     MatSidenavModule,
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
