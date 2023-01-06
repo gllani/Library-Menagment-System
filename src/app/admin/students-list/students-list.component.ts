@@ -1,15 +1,8 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output,
-  TemplateRef,
-} from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/services/firebase.service";
-import { AdminComponent } from "../admin.component";
 import { StudentsService } from "./students.service";
 
 @Component({
@@ -33,7 +26,6 @@ export class StudentsListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {}
-
   openDialogWithTemplateRef(templateRef: any, edit?: any) {
     if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
       if (edit) {
@@ -41,25 +33,6 @@ export class StudentsListComponent implements OnInit {
       }
     }
     this.dialog.open(templateRef);
-  }
-  searchArray = (toSearch: string, array: any[]) => {
-    let terms = toSearch.split(" ");
-    return array.filter((object) =>
-      terms.every((term) =>
-        Object.values(object).some((value: any) =>
-          typeof value === "string" || value instanceof String
-            ? value.includes(term)
-            : false
-        )
-      )
-    );
-  };
-
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
   }
 
   ngOnInit(): void {
@@ -72,9 +45,6 @@ export class StudentsListComponent implements OnInit {
       console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
-    });
-    this.form = new FormGroup({
-      filter: new FormControl(""),
     });
     this.form = new FormGroup({
       id: new FormControl("", Validators.required),

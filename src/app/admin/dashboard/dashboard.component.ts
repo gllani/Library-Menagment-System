@@ -1,9 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatTableDataSource } from "@angular/material/table";
-import { Router } from "@angular/router";
-import { AuthService } from "src/app/services/auth.service";
+import { BehaviorSubject, elementAt } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { BooksListComponent } from "../books-list/books-list.component";
 import { BooksComponent } from "../books/books.component";
@@ -18,14 +16,22 @@ import { StudentsService } from "../students-list/students.service";
   styleUrls: ["./dashboard.component.scss"],
 })
 export class DashboardComponent implements OnInit {
-  displayedColumns: string[] = ["title", "author", "action"];
-  dataSource = [];
+  displayedColumns: string[] = [
+    "bookId",
+    "title",
+    "author",
+    "startDate",
+    "endDate",
+    "action",
+  ];
+  user: any;
+  dataSource: any = [];
   form!: FormGroup;
   allData: any = [];
   data: any = [];
+  loading: any = new BehaviorSubject(false);
+
   constructor(
-    private router: Router,
-    private auth: AuthService,
     private studentsService: StudentsService,
     private firebase: FirebaseService,
     public dialog: MatDialog
@@ -38,10 +44,46 @@ export class DashboardComponent implements OnInit {
       password: 0,
     };
     this.firebase.getReservedBooks().subscribe((data: any) => {
-      console.log(data);
-      this.dataSource = data;
+      this.firebase.getPunonjes().subscribe((students: any) => {
+        students.map((student: any) => {
+          student.books.map((book: any) => {
+            data.filter((e: any) => {
+              if (e.BookName === book.title) {
+                let item: any = {
+                  BookName: e.BookName,
+                  Name: e.Name,
+                  customIdName: e.customIdName,
+                  startDate: book.startDate,
+                  endDate: book.endDate,
+                  student: student.username,
+                };
+                this.dataSource.push(item);
+              }
+            });
+          });
+        });
+        console.log(this.dataSource);
+        this.loading.next(true);
+      });
     });
   }
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+  consvertStartDate(timeStamp: any) {
+    console.log(timeStamp);
+    let startDate = new Date(
+      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
+    );
+    return startDate;
+  }
+
+  sortByDate() {
+    this.dataSource.sort(function (x: { timestamp: number; }, y: { timestamp: number; }) {
+      return x.timestamp - y.timestamp;
+    });
+  }
+
   return(item: any) {
     this.allData.map((books: any) => {
       if (books.BookName === item.title) {
@@ -50,6 +92,8 @@ export class DashboardComponent implements OnInit {
 
         let bookHistory = {
           title: item.title,
+          startDate: item.startDate,
+          endDate: item.endDate,
           users: [],
         };
       }
@@ -70,7 +114,6 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-
   openDialog(item: any) {
     let dialogueRef = this.dialog.open(DialogComponent);
     let instance = dialogueRef.componentInstance;

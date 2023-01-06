@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { PreviewService } from "./preview.service";
@@ -35,16 +35,15 @@ export class PreviewComponent implements OnInit {
     });
     this.item = this.previewService.item;
     this.firebase.getPunonjes().subscribe((users: any) => {
-      users.map((bookaOfUser: any) => {
-        bookaOfUser.books.map((data: any) => {
+      users.map((booksOfUsers: any) => {
+        booksOfUsers.books.map((data: any) => {
           console.log(this.item.Book);
           if (data.title === this.item.BookName) {
             this.dataToDispaly = {
-              owner: bookaOfUser.username,
+              owner: booksOfUsers.username,
               start: data.startDate,
               end: data.endDate,
             };
-            console.log("data", this.dataToDispaly);
           }
         });
       });

@@ -42,10 +42,6 @@ export class ReserveComponent implements OnInit {
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
-    this.bookService.editableData = {
-      BookName: "",
-      Name: "",
-    };
     this.firebase.getData().subscribe((data: any) => {
       console.log("data nga firebasi", data);
       this.allData = data;

@@ -30,7 +30,6 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    canActivate: [GuardService],
     children: [
       {
         path: "dashboard",
@@ -53,6 +52,8 @@ const routes: Routes = [
         component: BooktableComponent,
       },
     ],
+    canActivate: [GuardService],
+    
   },
   {
     path: "student",

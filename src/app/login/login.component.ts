@@ -46,7 +46,7 @@ export class LoginComponent {
           } else {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = false;
-            this.router.navigate(["student"]);
+            this.router.navigate(["student/book-list"]);
           }
         } else {
           this.dontexist = true;

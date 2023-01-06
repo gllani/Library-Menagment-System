@@ -39,8 +39,10 @@ import { MatCardModule } from "@angular/material/card";
 import { PreviewComponent } from "./booktable/preview/preview.component";
 import { BooktableComponent } from "./booktable/booktable.component";
 import { MatSidenavModule } from "@angular/material/sidenav";
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { HistoryComponent } from './student/history/history.component';
+import { DashboardComponent } from "./admin/dashboard/dashboard.component";
+import { HistoryComponent } from "./student/history/history.component";
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -86,8 +88,9 @@ import { HistoryComponent } from './student/history/history.component';
     MatSelectModule,
     MatCardModule,
     MatSidenavModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase}],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

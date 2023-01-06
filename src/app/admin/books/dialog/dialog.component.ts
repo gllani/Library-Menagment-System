@@ -13,6 +13,7 @@ export class DialogComponent implements OnInit {
   startDate: any;
   endDate: any;
   constructor(private dialog: MatDialog) {}
+  
 
   // consvertStartDate(timeStamp: any) {
   //   let startDate = new Date(
@@ -32,4 +33,5 @@ export class DialogComponent implements OnInit {
   // }
 
   ngOnInit(): void {}
+  
 }

@@ -8,7 +8,7 @@
             required
             class="form-control w-100"
             placeholder="Search..."
-            (input)="filter()"
+       
           />
         </form>
       </button>
@@ -84,6 +84,7 @@
                   href="#"
                   routerLinkActive="active"
                   [disabled]="!form.valid"
+                  mat-dialog-close
                   (click)="goToAdd()"
                 >
                   Generate a new student !
@@ -130,9 +131,6 @@
             <td>{{ item.password }}</td>
 
             <td class=" ">
-              <!-- <button mat-raised-button type="button" class="btn btn-light">
-                  <mat-slide-toggle> </mat-slide-toggle>
-                </button> -->
               <button
                 mat-raised-button
                 type="button"

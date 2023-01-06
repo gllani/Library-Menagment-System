@@ -32,6 +32,7 @@ export class HomepageBooksComponent implements OnInit {
     this.bookService.editableData = {
       BookName: "",
       Name: "",
+      
     };
   }
 }
