@@ -19,6 +19,8 @@ export class StudentsListComponent implements OnInit {
   getPunonjes: boolean = false;
   addStudent: boolean = false;
   fshiPunonjes: boolean = false;
+  addProduct: boolean = false;
+  editProduct: boolean = false;
 
   constructor(
     private firebase: FirebaseService,
@@ -26,14 +28,6 @@ export class StudentsListComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog
   ) {}
-  openDialogWithTemplateRef(templateRef: any, edit?: any) {
-    if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
-      if (edit) {
-        console.log("this is edit");
-      }
-    }
-    this.dialog.open(templateRef);
-  }
 
   ngOnInit(): void {
     this.studentsService.editableData = {
@@ -42,7 +36,6 @@ export class StudentsListComponent implements OnInit {
       password: 0,
     };
     this.firebase.getPunonjes().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
     });
@@ -52,7 +45,13 @@ export class StudentsListComponent implements OnInit {
       password: new FormControl("", Validators.required),
     });
   }
-
+  openDialogWithTemplateRef(templateRef: any, edit?: any) {
+    if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
+      if (edit) {
+      }
+    }
+    this.dialog.open(templateRef);
+  }
   goToAdd() {
     let item = {
       id: this.form.value.id,

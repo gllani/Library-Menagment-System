@@ -2,7 +2,7 @@ import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { BookService } from "../admin/books/book.service";
+import { BookService } from "../services/book.service";
 import { AuthService } from "../services/auth.service";
 import { FirebaseService } from "../services/firebase.service";
 
@@ -42,7 +42,6 @@ export class StudentComponent implements OnInit {
     this.bookService.editableData = {
       BookName: "",
       Name: "",
-    
     };
     this.firebase.getData().subscribe((data: any) => {
       this.allData = data;
@@ -73,7 +72,6 @@ export class StudentComponent implements OnInit {
       enddate: new FormControl(""),
     });
     this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
     });

@@ -33,9 +33,24 @@ export class FirebaseService {
       .collection("books", (ref) => ref.where("status", "==", "reserved"))
       .valueChanges();
   }
+  getFreeBooks() {
+    return this.firestore
+      .collection("books", (ref) => ref.where("status", "==", "free"))
+      .valueChanges();
+  }
+  // getOverdueBooks() {
+  //   return this.firestore
+  //     .collection("employeer", (ref) => ref.where("endDate", "<=", new Date))
+  //     .valueChanges();
+  // }
+
+  getSpecificBooks(bookname: any) {
+    return this.firestore
+      .collection("books", (ref) => ref.where("BookName", "==", bookname))
+      .valueChanges();
+  }
 
   fshiProdukt(id: any) {
-    console.log(id);
     return this.firestore.collection("books").doc(id).delete();
   }
   addreservedBook(item: any) {
@@ -76,7 +91,6 @@ export class FirebaseService {
     return this.firestore.collection("books").add(item);
   }
   fshiPunonjes(id: any) {
-    console.log(id);
     return this.firestore.collection("employeer").doc(id).delete();
   }
 

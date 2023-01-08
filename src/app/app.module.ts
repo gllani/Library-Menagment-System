@@ -7,16 +7,13 @@ import { HomepageComponent } from "./homepage/homepage.component";
 import { AdminComponent } from "./admin/admin.component";
 import { StudentComponent } from "./student/student.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { NewStudentComponent } from "./admin/message/new-student/new-student.component";
 import { StudentsListComponent } from "./admin/students-list/students-list.component";
-import { BooksComponent } from "./admin/books/books.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { initializeApp, provideFirebaseApp } from "@angular/fire/app";
 import { environment } from "../environments/environment";
 import { provideAuth, getAuth } from "@angular/fire/auth";
 import { provideFirestore, getFirestore } from "@angular/fire/firestore";
-import { ReserveComponent } from "./student/reserve/reserve.component";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatNativeDateModule } from "@angular/material/core";
@@ -27,7 +24,6 @@ import { MatInputModule } from "@angular/material/input";
 import { BooksListComponent } from "./admin/books-list/books-list.component";
 import { MatTableModule } from "@angular/material/table";
 import { DeleteModalComponent } from "./admin/books-list/delete-modal/delete-modal.component";
-import { DialogComponent } from "./admin/books/dialog/dialog.component";
 import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
@@ -50,14 +46,10 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     HomepageComponent,
     AdminComponent,
     StudentComponent,
-    NewStudentComponent,
     StudentsListComponent,
-    BooksComponent,
     SearchModalComponent,
-    ReserveComponent,
     BooksListComponent,
     DeleteModalComponent,
-    DialogComponent,
     HomepageBooksComponent,
     MessageComponent,
     PreviewComponent,

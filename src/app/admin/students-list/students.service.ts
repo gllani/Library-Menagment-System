@@ -5,12 +5,11 @@ import { Injectable } from "@angular/core";
 })
 export class StudentsService {
   editableData = {
-    id: '',
+    id: "",
     username: 0,
     password: 0,
   };
   upgrateData: any;
-
   deleteItem: any;
   constructor() {}
 }

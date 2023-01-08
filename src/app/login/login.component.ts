@@ -26,7 +26,6 @@ export class LoginComponent {
       password: new FormControl("", Validators.required),
     });
     this.firebase.getPunonjes().subscribe((data: any) => {
-      console.log("data", data);
       this.student = data;
     });
   }

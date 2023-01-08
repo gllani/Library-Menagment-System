@@ -1,9 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { BookService } from "src/app/admin/books/book.service";
-import { FirebaseService } from "src/app/services/firebase.service";
-import { PreviewComponent } from "../../booktable/preview/preview.component";
+import { BookService } from "src/app/services/book.service";
 import { PreviewService } from "../../booktable/preview/preview.service";
 @Component({
   selector: "app-homepage-books",
@@ -32,7 +30,6 @@ export class HomepageBooksComponent implements OnInit {
     this.bookService.editableData = {
       BookName: "",
       Name: "",
-      
     };
   }
 }

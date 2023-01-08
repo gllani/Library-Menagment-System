@@ -2,7 +2,6 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
 import { BooksListComponent } from "./admin/books-list/books-list.component";
-import { NewStudentComponent } from "./admin/message/new-student/new-student.component";
 import { StudentsListComponent } from "./admin/students-list/students-list.component";
 import { GuardService } from "./services/guard.service";
 import { HomepageBooksComponent } from "./homepage/homepage-books/homepage-books.component";
@@ -34,10 +33,6 @@ const routes: Routes = [
       {
         path: "dashboard",
         component: DashboardComponent,
-      },
-      {
-        path: "new-student",
-        component: NewStudentComponent,
       },
       {
         path: "students",

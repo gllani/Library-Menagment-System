@@ -1,23 +1,35 @@
 <mat-form-field class="search">
   <mat-label>Filter</mat-label>
-  <input matInput placeholder="Ex. ium" #inputItem />
+  <form [formGroup]="form">
+    <input
+      matInput
+      placeholder="Ex. ium"
+      #inputItem
+      formControlName="search"
+      (input)="searchArray(this.form.value.search, this.dataSource)"
+    />
+  </form>
 </mat-form-field>
 <div class="sidePannel2">
   <div
     class="table-wrapper-scroll-y my-custom-scrollbar"
-    *ngIf="loading | async else loadingSpinner"
+    *ngIf="loading | async; else loadingSpinner"
   >
     <table class="table table-striped mb-0" mat-table [dataSource]="dataSource">
       <div class="mat-elevation-z8">
         <!-- RegistrationId Column -->
         <ng-container matColumnDef="bookId">
-          <th mat-header-cell *matHeaderCellDef>Book Id</th>
+          <th mat-header-cell *matHeaderCellDef style="width: 230px">
+            Book Id
+          </th>
           <td mat-cell *matCellDef="let element">
             {{ element.customIdName }}
           </td>
         </ng-container>
         <ng-container matColumnDef="title">
-          <th mat-header-cell *matHeaderCellDef>Book title</th>
+          <th mat-header-cell *matHeaderCellDef style="width: 230px">
+            Book title
+          </th>
           <td mat-cell *matCellDef="let element">
             {{ element.BookName }}
           </td>
@@ -25,13 +37,13 @@
 
         <!-- studentId Column -->
         <ng-container matColumnDef="author">
-          <th mat-header-cell *matHeaderCellDef>Author</th>
+          <th mat-header-cell *matHeaderCellDef style="width: 195px">Author</th>
           <td mat-cell *matCellDef="let element">
             {{ element.Name }}
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="startDate" >
+        <ng-container matColumnDef="startDate">
           <th mat-header-cell *matHeaderCellDef>Start Date</th>
           <td mat-cell *matCellDef="let element">
             {{ consvertStartDate(element.startDate) | date }}
@@ -45,7 +57,7 @@
           </td>
         </ng-container>
 
-        <ng-container matColumnDef="reservedBy" >
+        <ng-container matColumnDef="reservedBy">
           <th mat-header-cell *matHeaderCellDef>Student</th>
           <td mat-cell *matCellDef="let element">{{ element.student }}</td>
         </ng-container>
@@ -65,8 +77,10 @@
 
   <!-- <app-booktable [admin]="true"></app-booktable> -->
 </div>
-<ng-template #loadingSpinner> <div class="spinner"><mat-spinner></mat-spinner></div> </ng-template>
+<ng-template #loadingSpinner>
+  <div class="spinner"><mat-spinner></mat-spinner></div>
+</ng-template>
 <ng-template #dialogue>
-  <button mat-button mat-dialog-close style="color:green" ></button>
-  <button mat-dialog-close mat-button style="color:red" ></button>
+  <button mat-button mat-dialog-close style="color: green"></button>
+  <button mat-dialog-close mat-button style="color: red"></button>
 </ng-template>
