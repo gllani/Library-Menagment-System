@@ -1,12 +1,23 @@
-<div class="w3-container w3-padding">
+<div
+  class="w3-container w3-padding"
+  *ngIf="loading | async; else loadingSpinner"
+>
   <h1 style="color: rgb(214, 168, 108)">Books List</h1>
+  <div *ngIf="this.user.role === 'admin'">
+    <button mat-button style="color: green" (click)="getFree()">free</button
+    ><button mat-button style="color: orange" (click)="getReserved()">
+      reserved</button
+    ><button mat-button style="color: red" (click)="getOverdue();">
+      overdue
+    </button>
+  </div>
   <hr />
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
       <div class="imageContainer">
         <div *ngFor="let item of allData">
           <div *ngIf="item.status === 'reserved'">
-            <mat-card class="{{inactiveClass}}" (click)="openDialog(item)">
+            <mat-card class="{{ inactiveClass }}" (click)="openDialog(item)">
               <img class="img" src="{{ item.img }}" />
             </mat-card>
           </div>
@@ -20,3 +31,6 @@
     </table>
   </div>
 </div>
+<ng-template #loadingSpinner>
+  <div class="spinner"><mat-spinner></mat-spinner></div>
+</ng-template>

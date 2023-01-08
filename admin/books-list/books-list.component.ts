@@ -1,18 +1,20 @@
-import { AfterViewInit, Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { MatDialog, MatDialogRef } from "@angular/material/dialog";
+import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { GoogleAPIService } from "src/app/homepage/search-modal/google-api.service";
 import { AdminComponent } from "../admin.component";
-import { BookService } from "../books/book.service";
+import { BookService } from "../../services/book.service";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-books-list",
   templateUrl: "./books-list.component.html",
   styleUrls: ["./books-list.component.scss"],
 })
-export class BooksListComponent implements OnInit, AfterViewInit {
+export class BooksListComponent implements OnInit {
+  loading: any = new BehaviorSubject(false);
   addProduct: boolean = false;
   editProduct: boolean = false;
   deleteProduct: boolean = false;
@@ -22,6 +24,7 @@ export class BooksListComponent implements OnInit, AfterViewInit {
   automaticBook!: FormGroup;
   allData: any = [];
   data: any = [];
+  searchData: any[] = [];
   searchText: any;
   todayDate: Date = new Date();
   dateVal = new Date();
@@ -35,29 +38,6 @@ export class BooksListComponent implements OnInit, AfterViewInit {
       },
     },
   };
-
-  searchData: any[] = [];
-
-  displayFn(user: any): string {
-    return user && user.name ? user.name : "";
-  }
-
-  display(option: any) {
-    this.displayData = {};
-    this.displayData = option;
-  }
-
-  addBook() {
-    let item = {
-      BookName: this.displayData.volumeInfo.title,
-      Name: this.displayData.volumeInfo.authors[0],
-      description: this.displayData.volumeInfo.description,
-      img: this.displayData.volumeInfo.imageLinks.thumbnail,
-      status: "free",
-    };
-    this.firebase.addProduct(item);
-  }
-
   constructor(
     private router: Router,
     private bookService: BookService,
@@ -66,64 +46,12 @@ export class BooksListComponent implements OnInit, AfterViewInit {
     private bookservice: BookService,
     private googleApiService: GoogleAPIService
   ) {}
-  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
-    this.dialog.open(templateRef);
-  }
-  searchArray = (toSearch: string, array: any[]) => {
-    console.log("data from search", toSearch);
-    let terms = toSearch.split("");
-    return array.filter((object) =>
-      terms.every((term) =>
-        Object.values(object).some((value: any) =>
-          typeof value === "string" || value instanceof String
-            ? value.includes(term)
-            : false
-        )
-      )
-    );
-  };
-
-  filter() {
-    console.log("form datas", this.form);
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
-
-  search() {
-    this.googleApiService
-      .searchBook(this.automaticBook.value.search)
-      .subscribe((data: any) => {
-        console.log(data);
-        this.searchData = data.items;
-      });
-  }
-
-  setShowModal(value: boolean, item: any) {
-    console.log(item);
-    this.bookService.deleteItem = item;
-    this.showModal = value;
-  }
-
-  deleteFunction(event: any) {
-    if (event.type === "yes") {
-      this.firebase.fshiProdukt(event.id);
-      this.showModal = false;
-    }
-    if (event.type === "close" || event.type === "no") {
-      this.showModal = false;
-    }
-  }
-  ngAfterViewInit() {}
-
   ngOnInit(): void {
     this.bookService.editableData = {
       BookName: "",
       Name: "",
     };
     this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
     });
@@ -146,6 +74,82 @@ export class BooksListComponent implements OnInit, AfterViewInit {
       BookName: new FormControl(BookName, Validators.required),
       Name: new FormControl(Name, Validators.required),
     });
+  }
+  searchArray = (toSearch: string, array: any[]) => {
+    this.loading.next(false);
+    if (toSearch === "") {
+      this.allData = [];
+      this.firebase.getData().subscribe((data: any) => {
+        this.allData = data;
+        this.data = this.allData;
+      });
+    } else {
+      let terms = toSearch.split(" ");
+      this.allData = array.filter((object) =>
+        terms.every((term) =>
+          Object.values(object).some((value: any) =>
+            typeof value === "string" || value instanceof String
+              ? value.includes(term)
+              : false
+          )
+        )
+      );
+      this.loading.next(true);
+    }
+  };
+
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
+    }
+  }
+
+  displayFn(user: any): string {
+    return user && user.name ? user.name : "";
+  }
+
+  display(option: any) {
+    this.displayData = {};
+    this.displayData = option;
+  }
+
+  addBook() {
+    let item = {
+      BookName: this.displayData.volumeInfo.title,
+      Name: this.displayData.volumeInfo.authors[0],
+      description: this.displayData.volumeInfo.description,
+      img: this.displayData.volumeInfo.imageLinks.thumbnail,
+      status: "free",
+    };
+    this.firebase.addProduct(item);
+  }
+
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+    this.dialog.open(templateRef);
+  }
+
+  search() {
+    this.googleApiService
+      .searchBook(this.automaticBook.value.search)
+      .subscribe((data: any) => {
+        this.searchData = data.items;
+      });
+  }
+
+  setShowModal(value: boolean, item: any) {
+    this.bookService.deleteItem = item;
+    this.showModal = value;
+  }
+
+  deleteFunction(event: any) {
+    if (event.type === "yes") {
+      this.firebase.fshiProdukt(event.id);
+      this.showModal = false;
+    }
+    if (event.type === "close" || event.type === "no") {
+      this.showModal = false;
+    }
   }
 
   goToDelete(item: any) {

@@ -1,18 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { AuthService } from "../services/auth.service";
-import { FirebaseService } from "../services/firebase.service";
-import { BooksListComponent } from "./books-list/books-list.component";
-import { BooksComponent } from "./books/books.component";
-import { DialogComponent } from "./books/dialog/dialog.component";
-import { MessageComponent } from "./message/message.component";
-import { NewStudentComponent } from "./message/new-student/new-student.component";
-import { StudentsListComponent } from "./students-list/students-list.component";
-import { StudentsService } from "./students-list/students.service";
-
-import {MatTableDataSource} from '@angular/material/table';
 
 @Component({
   selector: "app-admin",
@@ -20,18 +10,16 @@ import {MatTableDataSource} from '@angular/material/table';
   styleUrls: ["./admin.component.scss"],
 })
 export class AdminComponent implements OnInit {
+  data: any[] = [];
+  allData: any = [];
   form!: FormGroup;
   constructor(
     public router: Router,
     private auth: AuthService,
-    private studentsService: StudentsService,
-    private firebase: FirebaseService,
     public dialog: MatDialog
   ) {}
-  
-  ngOnInit() {
 
-  }
+  ngOnInit() {}
 
   logOut() {
     this.auth.isLoggedIn = false;

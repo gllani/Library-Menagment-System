@@ -3,6 +3,7 @@ import { MatDialog } from "@angular/material/dialog";
 import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
 import { PreviewComponent } from "./preview/preview.component";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-booktable",
@@ -16,6 +17,7 @@ export class BooktableComponent implements OnInit {
   @Input() admin: boolean = false;
   @Input() bookMenu: boolean = false;
   @Input() student: boolean = false;
+  loading: any = new BehaviorSubject(false);
 
   constructor(
     private firebase: FirebaseService,
@@ -24,6 +26,7 @@ export class BooktableComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.loading.next(false);
     this.firebase.getData().subscribe((data: any) => {
       if (this.admin === false) {
         this.allData = data;
@@ -46,6 +49,7 @@ export class BooktableComponent implements OnInit {
       .getSpecificUser(this.user.customIdName)
       .subscribe((user: any) => {
         this.previewService.user = user;
+        this.loading.next(true);
       });
   }
   openDialog(item: any) {
@@ -54,15 +58,77 @@ export class BooktableComponent implements OnInit {
       const dialogRef = this.dialog.open(PreviewComponent);
 
       dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
       });
     } else {
       this.previewService.item = item;
       const dialogRef = this.dialog.open(PreviewComponent);
 
       dialogRef.afterClosed().subscribe((result) => {
-        console.log(`Dialog result: ${result}`);
       });
     }
+  }
+
+  getFree() {
+    this.allData = [];
+    this.firebase.getFreeBooks().subscribe((data: any) => {
+      if (this.admin === false) {
+        this.allData = data;
+      } else {
+        data.map((book: any) => {
+          if (book.status === "reserved") {
+            this.allData.push(book);
+          }
+        });
+      }
+    });
+  }
+  getReserved() {
+    this.loading.next(false);
+    this.allData = [];
+    this.firebase.getReservedBooks().subscribe((data: any) => {
+      if (this.admin === false) {
+        this.allData = data;
+      } else {
+        data.map((book: any) => {
+          if (book.status === "reserved") {
+            this.allData.push(book);
+          }
+        });
+      }
+      this.loading.next(true);
+    });
+  }
+
+  getOverdue() {
+    this.loading.next(false);
+    this.allData = [];
+    let testArray: any = [];
+    this.firebase.getPunonjes().subscribe((user: any) => {
+      user.map((specificUser: any) => {
+        specificUser.books.map((book: any) => {
+          var varDate = new Date(this.consvertStartDate(book.endDate));
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (varDate < today) {
+            testArray.push(book);
+          }
+        });
+      });
+      testArray.map((overdue: any) => {
+        this.firebase
+          .getSpecificBooks(overdue.title)
+          .subscribe((overdueBook: any) => {
+            this.allData.push(overdueBook[0]);
+            this.loading.next(true);
+          });
+      });
+    });
+  }
+
+  consvertStartDate(timeStamp: any) {
+    let startDate = new Date(
+      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
+    );
+    return startDate;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { PreviewService } from "./preview.service";
@@ -35,16 +35,14 @@ export class PreviewComponent implements OnInit {
     });
     this.item = this.previewService.item;
     this.firebase.getPunonjes().subscribe((users: any) => {
-      users.map((bookaOfUser: any) => {
-        bookaOfUser.books.map((data: any) => {
-          console.log(this.item.Book);
+      users.map((booksOfUsers: any) => {
+        booksOfUsers.books.map((data: any) => {
           if (data.title === this.item.BookName) {
             this.dataToDispaly = {
-              owner: bookaOfUser.username,
+              owner: booksOfUsers.username,
               start: data.startDate,
               end: data.endDate,
             };
-            console.log("data", this.dataToDispaly);
           }
         });
       });
@@ -62,7 +60,6 @@ export class PreviewComponent implements OnInit {
   }
 
   consvertStartDate(timeStamp: any) {
-    console.log(timeStamp);
     let startDate = new Date(
       timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
     );
@@ -70,32 +67,43 @@ export class PreviewComponent implements OnInit {
   }
 
   reserve(item: any) {
-    let data = this.previewService.user;
-    if (data.books.length === 3) {
-      alert("You can not reserve more books");
-    } else {
-      let bookItem = {
-        title: item.BookName,
-        author: item.Name,
-        startDate: this.form.value.startDate,
-        endDate: this.form.value.endDate,
-      };
-      let stringArray: any = [];
-      data.books.map((book: any) => {
-        let bookFromuser = JSON.stringify(book.title);
-        stringArray.push(bookFromuser);
-      });
-
-      let stringBook: any = JSON.stringify(bookItem.title);
-      console.log("string", stringArray, stringBook);
-      if (!stringArray.includes(stringBook)) {
-        item.status = "reserved";
-        data.books.push(bookItem);
-        this.firebase.ndryshoProdukt(item);
-        this.firebase.reserveBook(data);
+    if (item.status === "free") {
+      let data = this.previewService.user;
+      if (data.books.length === 3) {
+        alert("You can not reserve more books");
       } else {
-        alert("You alredy have this book");
+        let bookItem = {
+          title: item.BookName,
+          author: item.Name,
+          startDate: this.form.value.startDate,
+          endDate: this.form.value.endDate,
+        };
+        let stringArray: any = [];
+        data.books.map((book: any) => {
+          let bookFromuser = JSON.stringify(book.title);
+          stringArray.push(bookFromuser);
+        });
+
+        let stringBook: any = JSON.stringify(bookItem.title);
+        if (!stringArray.includes(stringBook)) {
+          let history: any = {
+            title: item.BookName,
+            author: item.Name,
+            startDate: this.form.value.startDate,
+            endDate: this.form.value.endDate,
+            name: this.user.username,
+          };
+          item.status = "reserved";
+          data.books.push(bookItem);
+          this.firebase.ndryshoProdukt(item);
+          this.firebase.reserveBook(data);
+          this.firebase.addNewToHistory(history);
+        } else {
+          alert("You alredy have this book");
+        }
       }
+    } else {
+      alert("this book is alredy reserved");
     }
   }
 }

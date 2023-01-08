@@ -1,9 +1,8 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
-import { MatDatepickerApply } from "@angular/material/datepicker";
 import { MatDialog } from "@angular/material/dialog";
-import { ActivatedRoute, Router } from "@angular/router";
-import { BookService } from "../admin/books/book.service";
+import { Router } from "@angular/router";
+import { BookService } from "../services/book.service";
 import { AuthService } from "../services/auth.service";
 import { FirebaseService } from "../services/firebase.service";
 
@@ -23,7 +22,6 @@ export class StudentComponent implements OnInit {
   userData: any;
 
   constructor(
-    private activatedRoute: ActivatedRoute,
     private auth: AuthService,
     public router: Router,
     private bookService: BookService,
@@ -35,7 +33,6 @@ export class StudentComponent implements OnInit {
     var future = new Date();
     this.maxDate = new Date(future.setDate(future.getDate() + 30));
   }
-
   ngOnInit(): void {
     this.form = new FormGroup({
       filter: new FormControl(""),
@@ -47,7 +44,6 @@ export class StudentComponent implements OnInit {
       Name: "",
     };
     this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
     });
@@ -59,17 +55,12 @@ export class StudentComponent implements OnInit {
         this.userData = userData;
       });
   }
-
-
-
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
-
   convertstartDate(item: any) {
     return new Date(item.seconds * 1000 + item.nanoseconds / 1000000);
   }
-
   onLogout() {
     this.auth.isLoggedIn = false;
     this.auth.isAdmin = false;
@@ -80,9 +71,7 @@ export class StudentComponent implements OnInit {
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
-
     this.firebase.getData().subscribe((data: any) => {
-      console.log("data nga firebasi", data);
       this.allData = data;
       this.data = this.allData;
     });

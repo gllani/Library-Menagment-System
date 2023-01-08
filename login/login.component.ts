@@ -26,7 +26,6 @@ export class LoginComponent {
       password: new FormControl("", Validators.required),
     });
     this.firebase.getPunonjes().subscribe((data: any) => {
-      console.log("data", data);
       this.student = data;
     });
   }
@@ -34,7 +33,6 @@ export class LoginComponent {
   test() {
     if (this.loginForm.valid) {
       this.student.map((student: any) => {
-        console.log("students", student);
         if (
           student.username === this.loginForm.value.username &&
           student.password === this.loginForm.value.password
@@ -47,7 +45,7 @@ export class LoginComponent {
           } else {
             this.authService.isLoggedIn = true;
             this.authService.isAdmin = false;
-            this.router.navigate(["student"]);
+            this.router.navigate(["student/book-list"]);
           }
         } else {
           this.dontexist = true;

@@ -9,13 +9,29 @@ import { GoogleAPIService } from "./google-api.service";
 })
 export class SearchModalComponent implements OnInit {
   form!: FormGroup;
-  
+
   data: any = [];
   myControl = new FormControl<string | any>("");
   options: any[] = [];
   filteredOptions!: Observable<any[]>;
   displayData: any = [];
   allData: any = [];
+  constructor(private googleAPI: GoogleAPIService) {}
+
+  ngOnInit(): void {
+    this.form = new FormGroup({
+      search: new FormControl(""),
+    });
+    this.googleAPI.getBooks().subscribe((data: any) => {
+    });
+    this.filteredOptions = this.myControl.valueChanges.pipe(
+      startWith(""),
+      map((value) => {
+        const name = typeof value === "string" ? value : value?.name;
+        return name ? this._filter(name as string) : this.options.slice();
+      })
+    );
+  }
   displayFn(user: any): string {
     return user && user.name ? user.name : "";
   }
@@ -28,28 +44,10 @@ export class SearchModalComponent implements OnInit {
     );
   }
 
-  constructor(private googleAPI: GoogleAPIService) {}
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      search: new FormControl(""),
-    });
-    this.googleAPI.getBooks().subscribe((data: any) => {
-      console.log("data from google api", data);
-    });
-    this.filteredOptions = this.myControl.valueChanges.pipe(
-      startWith(""),
-      map((value) => {
-        const name = typeof value === "string" ? value : value?.name;
-        return name ? this._filter(name as string) : this.options.slice();
-      })
-    );
-  }
   filter() {
     this.allData = [];
     this.googleAPI.searchBook(this.form.value.search).subscribe((data: any) => {
       this.allData = data.items;
-      console.log(this.allData);
     });
   }
   searchArray(filter: any, data: any): any {

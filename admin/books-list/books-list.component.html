@@ -1,22 +1,19 @@
-<div class="container mt-2">
-  <button mat-button mat-dialog-close style="color: red">Close</button>
-</div>
-
-<div class="container mt-5 px-2">
+<div class="container mt-5 px-0">
   <div class="mb-2 d-flex justify-content-between align-items-center">
     <div class="position-relative">
       <span class="position-absolute search"><i class="search"></i> </span>
-      <button>
+      <mat-form-field class="search">
+        <mat-label>Filter</mat-label>
         <form [formGroup]="form">
           <input
-            type="search"
-            required
-            class="form-control w-100"
-            placeholder="Search..."
-            (input)="filter()"
+            matInput
+            placeholder="Ex. ium"
+            #inputItem
+            formControlName="filter"
+            (input)="searchArray(this.form.value.search, this.allData)"
           />
         </form>
-      </button>
+      </mat-form-field>
     </div>
     <button
       mat-button
@@ -38,6 +35,7 @@
                 formControlName="search"
                 (input)="search()"
                 [matAutocomplete]="auto"
+                style="width: 250px"
               />
               <mat-autocomplete
                 #auto="matAutocomplete"
@@ -58,7 +56,12 @@
               <img src="{{ displayData.volumeInfo.imageLinks.thumbnail }}" />
             </div>
             <div *ngIf="displayData.volumeInfo.title">
-              <button mat-button class="addButton"  (click)="addBook()">
+              <button
+                mat-button
+                class="addButton"
+                mat-dialog-close
+                (click)="addBook()"
+              >
                 Add
               </button>
             </div>
@@ -66,7 +69,6 @@
         </div>
       </mat-dialog-content>
     </ng-template>
-
   </div>
   <!-- <ng-template #myDialog>
     <h2 matDialogTitle>ADD Books Manually!</h2>
@@ -141,8 +143,6 @@
             <td>{{ item.Name }}</td>
 
             <td class=" ">
-           
-
               <button
                 mat-raised-button
                 (click)="setShowModal(true, item)"
@@ -167,3 +167,7 @@
     (newItemEvent)="deleteFunction($event)"
   ></app-delete-modal>
 </div>
+
+<ng-template #loadingSpinner>
+  <div class="spinner"><mat-spinner></mat-spinner></div>
+</ng-template>
