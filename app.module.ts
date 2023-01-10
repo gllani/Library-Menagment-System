@@ -38,6 +38,9 @@ import { MatSidenavModule } from "@angular/material/sidenav";
 import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MyDirective } from "./homepage/search-modal/mydirective";
+
+
 
 
 @NgModule({
@@ -57,6 +60,8 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     BooktableComponent,
     DashboardComponent,
     HistoryComponent,
+    MyDirective
+
   ],
   imports: [
     BrowserModule,

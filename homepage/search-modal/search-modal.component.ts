@@ -9,7 +9,6 @@ import { GoogleAPIService } from "./google-api.service";
 })
 export class SearchModalComponent implements OnInit {
   form!: FormGroup;
-
   data: any = [];
   myControl = new FormControl<string | any>("");
   options: any[] = [];
