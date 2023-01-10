@@ -69,14 +69,8 @@ export class BooksListComponent implements OnInit {
     if (this.bookservice.editableData.Name !== "") {
       Name = this.bookservice.editableData.Name;
     }
-
-    this.form = new FormGroup({
-      BookName: new FormControl(BookName, Validators.required),
-      Name: new FormControl(Name, Validators.required),
-    });
   }
   searchArray = (toSearch: string, array: any[]) => {
-    this.loading.next(false);
     if (toSearch === "") {
       this.allData = [];
       this.firebase.getData().subscribe((data: any) => {
@@ -85,7 +79,7 @@ export class BooksListComponent implements OnInit {
       });
     } else {
       let terms = toSearch.split(" ");
-      this.allData = array.filter((object) =>
+      this.data = array.filter((object) =>
         terms.every((term) =>
           Object.values(object).some((value: any) =>
             typeof value === "string" || value instanceof String
@@ -94,7 +88,6 @@ export class BooksListComponent implements OnInit {
           )
         )
       );
-      this.loading.next(true);
     }
   };
 

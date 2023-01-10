@@ -3,7 +3,6 @@ import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin/admin.component";
 import { BooksListComponent } from "./admin/books-list/books-list.component";
 import { StudentsListComponent } from "./admin/students-list/students-list.component";
-import { GuardService } from "./services/guard.service";
 import { HomepageBooksComponent } from "./homepage/homepage-books/homepage-books.component";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
@@ -12,6 +11,7 @@ import { StudentComponent } from "./student/student.component";
 import { BooktableComponent } from "./booktable/booktable.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { DashboardComponent } from "./admin/dashboard/dashboard.component";
+import { GuardService } from "./guards/guard.service";
 
 const routes: Routes = [
   {
@@ -23,12 +23,19 @@ const routes: Routes = [
     component: HomepageBooksComponent,
   },
   {
+    path: "search-modal",
+    component: SearchModalComponent,
+  },
+
+  {
     path: "login",
     component: LoginComponent,
   },
   {
     path: "admin",
     component: AdminComponent,
+    data: { requireLogin: true },
+    canActivate: [GuardService],
     children: [
       {
         path: "dashboard",
@@ -47,12 +54,11 @@ const routes: Routes = [
         component: BooktableComponent,
       },
     ],
-    canActivate: [GuardService],
-    
   },
   {
     path: "student",
     component: StudentComponent,
+    data: { requireLogin: true },
     canActivate: [GuardService],
     children: [
       {
@@ -66,10 +72,6 @@ const routes: Routes = [
     ],
   },
 
-  {
-    path: "search-modal",
-    component: SearchModalComponent,
-  },
   { path: "**", redirectTo: "home", pathMatch: "full" },
 ];
 

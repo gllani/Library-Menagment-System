@@ -1,11 +1,13 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
-import { collection, doc } from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: "root",
 })
 export class FirebaseService {
+  subscribe(arg0: (overdueBook: any) => void) {
+    throw new Error("Method not implemented.");
+  }
   constructor(private firestore: AngularFirestore) {}
 
   getHistory(user: any) {
@@ -38,11 +40,11 @@ export class FirebaseService {
       .collection("books", (ref) => ref.where("status", "==", "free"))
       .valueChanges();
   }
-  // getOverdueBooks() {
-  //   return this.firestore
-  //     .collection("employeer", (ref) => ref.where("endDate", "<=", new Date))
-  //     .valueChanges();
-  // }
+  getOverdueBooks() {
+    return this.firestore
+      .collection("employeer", (ref) => ref.where("endDate", "<=", new Date))
+      .valueChanges();
+  }
 
   getSpecificBooks(bookname: any) {
     return this.firestore

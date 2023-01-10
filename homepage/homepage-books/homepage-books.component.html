@@ -41,12 +41,16 @@
             <hr />
             <p>Book Title</p>
             <button>
-              <input
-                type="search"
-                required
-                class="form-control"
-                placeholder="Search Book Title!"
-              />
+              <form [formGroup]="form">
+                <input
+                  type="search"
+                  required
+                  class="form-control"
+                  placeholder="Search Book Title!"
+                  formControlName="filter"
+                  (input)="(this.form.value.filter)"
+                />
+              </form>
             </button>
             <p></p>
             <p>Author Name</p>

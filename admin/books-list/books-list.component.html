@@ -1,19 +1,14 @@
 <div class="container mt-5 px-0">
   <div class="mb-2 d-flex justify-content-between align-items-center">
     <div class="position-relative">
-      <span class="position-absolute search"><i class="search"></i> </span>
-      <mat-form-field class="search">
-        <mat-label>Filter</mat-label>
-        <form [formGroup]="form">
-          <input
-            matInput
-            placeholder="Ex. ium"
-            #inputItem
-            formControlName="filter"
-            (input)="searchArray(this.form.value.search, this.allData)"
-          />
-        </form>
-      </mat-form-field>
+      <form [formGroup]="form">
+        <input
+          type="text"
+          placeholder="filter"
+          formControlName="filter"
+          (input)="searchArray(this.form.value.filter, allData)"
+        />
+      </form>
     </div>
     <button
       mat-button
@@ -70,54 +65,6 @@
       </mat-dialog-content>
     </ng-template>
   </div>
-  <!-- <ng-template #myDialog>
-    <h2 matDialogTitle>ADD Books Manually!</h2>
-    <mat-dialog-content>
-      <div class="background">
-        <div class="col-md-6">
-          <div class="mb-4 d-flex justify-content-between align-items-center">
-            <div class="position-relative">
-              <form [formGroup]="form">
-                <div class="mb-3">
-                  <h3>Book Name</h3>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="BookName"
-                    formControlName="BookName"
-                    placeholder="Book Name"
-                    minlength="2"
-                  />
-                </div>
-                <div class="mb-3">
-                  <h3>Author</h3>
-                  <input
-                    formControlName="Name"
-                    type="text"
-                    class="form-control"
-                    id="Name"
-                    placeholder="Author Name"
-                    required
-                  />
-                </div>
-
-                <hr />
-                <button
-                  type="button"
-                  class="btn btn-light"
-                  href="#"
-                  routerLinkActive="active"
-                  ariaCurrentWhenActive="page"
-                >
-                  Generate a new book manually!
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </mat-dialog-content>
-  </ng-template> -->
   <div class="scss">
     <div class="table-wrapper-scroll-y my-custom-scrollbar">
       <table class="table table-bordered table-striped mb-0">

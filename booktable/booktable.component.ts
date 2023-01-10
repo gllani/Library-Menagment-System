@@ -4,6 +4,7 @@ import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
 import { PreviewComponent } from "./preview/preview.component";
 import { BehaviorSubject } from "rxjs";
+import { BookTableService } from "./book-table.service";
 
 @Component({
   selector: "app-booktable",
@@ -11,7 +12,7 @@ import { BehaviorSubject } from "rxjs";
   styleUrls: ["./booktable.component.scss"],
 })
 export class BooktableComponent implements OnInit {
-  allData: any[] = [];
+  allData: any = [];
   user: any;
   inactiveClass: any;
   @Input() admin: boolean = false;
@@ -22,8 +23,14 @@ export class BooktableComponent implements OnInit {
   constructor(
     private firebase: FirebaseService,
     public previewService: PreviewService,
-    public dialog: MatDialog
-  ) {}
+    public dialog: MatDialog,
+    public bookTableService: BookTableService
+  ) {
+    this.bookTableService.filter.subscribe((changes: any) => {
+      console.log(changes);
+      this.searchArray(this.bookTableService.filter, this.allData);
+    });
+  }
 
   ngOnInit(): void {
     this.loading.next(false);
@@ -43,28 +50,58 @@ export class BooktableComponent implements OnInit {
     } else {
       this.inactiveClass = "deactriveCard";
     }
-    let user = localStorage.getItem("login");
-    this.user = JSON.parse(user || "");
-    this.firebase
-      .getSpecificUser(this.user.customIdName)
-      .subscribe((user: any) => {
-        this.previewService.user = user;
-        this.loading.next(true);
-      });
+    if (localStorage.getItem("login")) {
+      let user = localStorage.getItem("login");
+      this.user = JSON.parse(user || "");
+    }
+    console.log(this.user);
+    if (this.user !== undefined) {
+      this.firebase
+        .getSpecificUser(this.user.customIdName)
+        .subscribe((user: any) => {
+          this.previewService.user = user;
+        });
+    }
+
+    this.loading.next(true);
   }
+
+  searchArray = (toSearch: string, array: any[]) => {
+    this.loading.next(false);
+    if (toSearch === "") {
+    } else {
+      let terms: any = toSearch;
+      this.allData = array.filter((object) =>
+        terms.every((term: any) =>
+          Object.values(object).some((value: any) =>
+            typeof value === "string" || value instanceof String
+              ? value.includes(term)
+              : false
+          )
+        )
+      );
+      this.loading.next(true);
+    }
+  };
+
+  filter() {
+    this.allData = this.searchArray(this.bookTableService.filter, this.allData);
+    if (this.bookTableService.filter === "") {
+      this.allData = this.allData;
+    }
+  }
+
   openDialog(item: any) {
     if (this.student === true && item.status === "free") {
       this.previewService.item = item;
       const dialogRef = this.dialog.open(PreviewComponent);
 
-      dialogRef.afterClosed().subscribe((result) => {
-      });
+      dialogRef.afterClosed().subscribe(() => {});
     } else {
       this.previewService.item = item;
       const dialogRef = this.dialog.open(PreviewComponent);
 
-      dialogRef.afterClosed().subscribe((result) => {
-      });
+      dialogRef.afterClosed().subscribe(() => {});
     }
   }
 
@@ -75,7 +112,7 @@ export class BooktableComponent implements OnInit {
         this.allData = data;
       } else {
         data.map((book: any) => {
-          if (book.status === "reserved") {
+          if (book.status === "free") {
             this.allData.push(book);
           }
         });
@@ -103,27 +140,60 @@ export class BooktableComponent implements OnInit {
     this.loading.next(false);
     this.allData = [];
     let testArray: any = [];
-    this.firebase.getPunonjes().subscribe((user: any) => {
-      user.map((specificUser: any) => {
-        specificUser.books.map((book: any) => {
+    this.firebase.getOverdueBooks().subscribe((data: any) => {
+      if (this.admin === false) {
+        this.allData = data;
+      } else {
+        data.map((book: any) => {
+          if (book.status === "overdue") {
+            this.allData.push(book);
+          }
           var varDate = new Date(this.consvertStartDate(book.endDate));
           const today = new Date();
           today.setHours(0, 0, 0, 0);
           if (varDate < today) {
-            testArray.push(book);
+            return testArray.push(book);
           }
         });
-      });
-      testArray.map((overdue: any) => {
-        this.firebase
-          .getSpecificBooks(overdue.title)
-          .subscribe((overdueBook: any) => {
-            this.allData.push(overdueBook[0]);
-            this.loading.next(true);
-          });
-      });
+        testArray.map((overdue: any) => {
+          this.firebase
+            .getSpecificBooks(overdue.title)
+            .subscribe((overdueBook: any) => {
+              this.allData.push(overdueBook[0]);
+              this.loading.next(true);
+            });
+        });
+      }
+      this.loading.next(true);
     });
   }
+
+  // getOverdue() {
+  //   this.loading.next(false);
+  //   this.allData = [];
+  //   let testArray: any = [];
+  //   this.firebase.getPunonjes().subscribe((user: any) => {
+  //     user.map((specificUser: any) => {
+  //       specificUser.books.map((book: any) => {
+  //         var varDate = new Date(this.consvertStartDate(book.endDate));
+  //         const today = new Date();
+  //         today.setHours(0, 0, 0, 0);
+  //         if (varDate < today) {
+  //           return testArray.push(book);
+  //         }
+  //       });
+  //     });
+
+  //     testArray.map((overdue: any) => {
+  //       this.firebase
+  //         .getSpecificBooks(overdue.title)
+  //         .subscribe((overdueBook: any) => {
+  //           this.allData.push(overdueBook[0]);
+  //           this.loading.next(true);
+  //         });
+  //     });
+  //   });
+  // }
 
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(

@@ -8,6 +8,8 @@
           required
           class="form-control w-100"
           placeholder="Search..."
+          formControlName="filter"
+          (input)="searchArray(this.form.value.filter, data)"
         />
       </form>
     </button>
@@ -97,7 +99,7 @@
   </mat-dialog-content>
 </ng-template>
 
-<div class="scss">
+<div class="scss" *ngIf="loading | async; else loadingSpinner">
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
       <thead>
@@ -155,3 +157,6 @@
     </table>
   </div>
 </div>
+<ng-template #loadingSpinner>
+  <div class="spinner"><mat-spinner></mat-spinner></div>
+</ng-template>
