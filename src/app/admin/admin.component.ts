@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../guards/auth.service";
 
 @Component({
   selector: "app-admin",

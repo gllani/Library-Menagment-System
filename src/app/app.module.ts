@@ -24,7 +24,7 @@ import { MatInputModule } from "@angular/material/input";
 import { BooksListComponent } from "./admin/books-list/books-list.component";
 import { MatTableModule } from "@angular/material/table";
 import { DeleteModalComponent } from "./admin/books-list/delete-modal/delete-modal.component";
-import { MatDialogModule, MatDialogRef } from "@angular/material/dialog";
+import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
@@ -83,7 +83,7 @@ import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
     MatSidenavModule,
     MatProgressSpinnerModule,
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase } ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

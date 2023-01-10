@@ -3,7 +3,7 @@ import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { BookService } from "../services/book.service";
-import { AuthService } from "../services/auth.service";
+import { AuthService } from "../guards/auth.service";
 import { FirebaseService } from "../services/firebase.service";
 
 @Component({

@@ -1,5 +1,3 @@
-
-
 .section {
     height: 100vh;
     display: flex;
@@ -167,57 +165,14 @@
     left: -100px;
     transition: all 1s
 }
-@media (max-width:750px) {
-    .section .container {
-        max-width: 350px
-    }
 
-    .section .container .right-side {
-        display: none
-    }
-
-    .section .container .left-side {
-        width: 100%
-    }
-}
-.right-side .circle2 {
-    position: absolute;
-    height: 200px;
-    width: 200px;
-    background-color: #000;
-    border-radius: 50%;
-    top: 250px;
-    right: 50px;
-    transition: all 1s;
-    transition-delay: 3s
-}
-
-.right-side .circle3 {
-    position: absolute;
-    height: 100px;
-    width: 100px;
-    background-color: #000;
-    border-radius: 50%;
-    top: 50px;
-    right: 10px;
-    transition: all 1s;
-    transition-delay: 2s
-}
 
 .right-side:hover .circle1 {
     height: 350px;
     width: 350px
 }
 
-.right-side:hover .circle2 {
-    height: 250px;
-    width: 250px
-}
 
-.right-side:hover .circle3 {
-    height: 150px;
-    width: 150px
-}
 
 .section .container .right-side svg {
     position: absolute;
@@ -226,7 +181,3 @@
 .error{
     color: red;
 }
-
-
-
-
