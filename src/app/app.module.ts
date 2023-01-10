@@ -39,6 +39,7 @@ import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
+
 @NgModule({
   declarations: [
     AppComponent,

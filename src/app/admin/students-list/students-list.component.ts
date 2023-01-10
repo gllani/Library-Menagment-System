@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { StudentsService } from "./students.service";
 
@@ -13,7 +14,7 @@ import { StudentsService } from "./students.service";
 export class StudentsListComponent implements OnInit {
   showModal: boolean = false;
   displayedColumns: string[] = ["id", "username", "password", "action"];
-  data: any[] = [];
+  data: any = [];
   allData: any = [];
   form!: FormGroup;
   getPunonjes: boolean = false;
@@ -21,6 +22,7 @@ export class StudentsListComponent implements OnInit {
   fshiPunonjes: boolean = false;
   addProduct: boolean = false;
   editProduct: boolean = false;
+  loading: any = new BehaviorSubject(false);
 
   constructor(
     private firebase: FirebaseService,
@@ -38,11 +40,13 @@ export class StudentsListComponent implements OnInit {
     this.firebase.getPunonjes().subscribe((data: any) => {
       this.allData = data;
       this.data = this.allData;
+      this.loading.next(true);
     });
     this.form = new FormGroup({
       id: new FormControl("", Validators.required),
       username: new FormControl("", Validators.required),
       password: new FormControl("", Validators.required),
+      filter: new FormControl(""),
     });
   }
   openDialogWithTemplateRef(templateRef: any, edit?: any) {
@@ -74,6 +78,36 @@ export class StudentsListComponent implements OnInit {
       alert("You can not delete admin");
     } else {
       this.firebase.fshiPunonjes(event.customIdName);
+    }
+  }
+
+  searchArray = (toSearch: string, array: any[]) => {
+    this.loading.next(false);
+    if (toSearch === "") {
+      this.allData = [];
+      this.firebase.getPunonjes().subscribe((data: any) => {
+        this.allData = data;
+        this.data = this.allData;
+        this.loading.next(true);
+      });
+    } else {
+      let terms = toSearch.split(" ");
+      this.data = array.filter((object) =>
+        terms.every((term) =>
+          Object.values(object).some((value: any) =>
+            typeof value === "string" || value instanceof String
+              ? value.includes(term)
+              : false
+          )
+        )
+      );
+      this.loading.next(true);
+    }
+  };
+  filter() {
+    this.data = this.searchArray(this.form.value.filter, this.data);
+    if (this.form.value.filter === "") {
+      this.data = this.allData;
     }
   }
 }

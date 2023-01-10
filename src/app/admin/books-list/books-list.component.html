@@ -1,19 +1,14 @@
 <div class="container mt-5 px-0">
   <div class="mb-2 d-flex justify-content-between align-items-center">
     <div class="position-relative">
-      <span class="position-absolute search"><i class="search"></i> </span>
-      <mat-form-field class="search">
-        <mat-label>Filter</mat-label>
-        <form [formGroup]="form">
-          <input
-            matInput
-            placeholder="Ex. ium"
-            #inputItem
-            formControlName="filter"
-            (input)="searchArray(this.form.value.search, this.allData)"
-          />
-        </form>
-      </mat-form-field>
+      <form [formGroup]="form">
+        <input
+          type="text"
+          placeholder="filter"
+          formControlName="filter"
+          (input)="searchArray(this.form.value.filter, allData)"
+        />
+      </form>
     </div>
     <button
       mat-button
