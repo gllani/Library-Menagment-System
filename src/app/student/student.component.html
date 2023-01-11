@@ -21,27 +21,31 @@
             class="w3-container"
             style="background-color: #dfe5e8 !important"
           >
-            <h4 class="w3-center">Search...</h4>
-            <hr />
-            <p>Book Title</p>
-            <button>
-              <input
-                type="search"
-                required
-                class="form-control w-100"
-                placeholder="Search Book Title!"
-              />
-            </button>
-            <p></p>
-            <p>Author Name</p>
-            <button>
-              <input
-                type="search"
-                required
-                class="form-control w-100"
-                placeholder="Search Book Author!"
-              />
-            </button>
+            <form [formGroup]="form">
+              <h4 class="w3-center">Search...</h4>
+              <hr />
+              <p>Book Title</p>
+              <button>
+                <input
+                  type="search"
+                  required
+                  class="form-control w-100"
+                  placeholder="Search Book Title!"
+                  formControlName="filter"
+                />
+              </button>
+              <p></p>
+              <p>Author Name</p>
+              <button>
+                <input
+                  type="search"
+                  required
+                  class="form-control w-100"
+                  placeholder="Search Book Author!"
+                  formControlName="author"
+                />
+              </button>
+            </form>
 
             <p></p>
             <p>Category</p>
@@ -67,25 +71,40 @@
         </div>
 
         <br />
-        <div
-          class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
-        >
-          <h4 style="color: red">Your Messages From Librarian!</h4>
-          <p style="color: red"><li>empty</li></p>
-          <p style="color: red"><li>empty</li></p>
-        </div>
-        <div
-          class="w3-container w3-display-container w3-round w3-theme-l4 w3-border w3-theme-border w3-margin-bottom w3-hide-small"
-         style="height: 4.5cm">
-          <p><strong>List of Books!!</strong></p>
-          <hr>
-          <div class="table-wrapper-scroll-y my-custom-scrollbar">
-            <button class="buttons" mat-button (click)="this.router.navigate(['student/book-list'])">
+
+        <div>
+          <div>
+            <button
+              class="w3-button w3-block w3-theme-l1 w3-left"
+              mat-button
+              (click)="bookTable = true; history = false"
+            >
               go to booklist
             </button>
-            <br>
-            <button class="buttons" mat-button (click)="this.router.navigate(['student/history'])">
+            <br />
+
+            <button
+              class="w3-button w3-block w3-theme-l1 w3-left"
+              mat-button
+              (click)="bookTable = false; history = true"
+            >
               go to history
+            </button>
+            <br />
+            <button
+              class="w3-button w3-block w3-theme-l1 w3-left"
+              mat-button
+              (click)="bookTable = false; history = false; messages = true"
+            >
+              go to Messages
+            </button>
+            <button
+              class="w3-button w3-block  w3-left color"
+           
+              mat-button
+              (click)="onLogout()"
+            >
+              LogOut
             </button>
           </div>
         </div>
@@ -96,7 +115,19 @@
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
               <div class="table-wrapper-scroll my-custom-scroll">
-                  <router-outlet></router-outlet>
+                <div *ngIf="bookTable">
+                  <app-booktable
+                    [student]="true"
+                    [filterData]="this.form.value.filter"
+                    [authorFilter]="this.form.value.author"
+                  ></app-booktable>
+                </div>
+                <div *ngIf="history">
+                  <app-history></app-history>
+                </div>
+                <div *ngIf="messages">
+                  <app-messages></app-messages>
+                </div>
               </div>
             </div>
           </div>

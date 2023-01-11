@@ -41,11 +41,7 @@
         }
  
     
-.buttons{
-    display: flex;
-    justify-content: center;
 
-}
 
 .yesButton{
     margin: 10px;
@@ -58,3 +54,11 @@
     color: white;
 }
 
+.mat-button{
+    line-height: 3;
+    margin-top: 10px;
+}
+.color{
+    color: rgb(255, 255, 255);
+    background-color: red;
+}

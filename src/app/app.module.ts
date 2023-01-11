@@ -39,6 +39,7 @@ import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MyDirective } from "./homepage/search-modal/mydirective";
+import { MessagesComponent } from './student/messages/messages.component';
 
 
 
@@ -60,7 +61,8 @@ import { MyDirective } from "./homepage/search-modal/mydirective";
     BooktableComponent,
     DashboardComponent,
     HistoryComponent,
-    MyDirective
+    MyDirective,
+    MessagesComponent
 
   ],
   imports: [
