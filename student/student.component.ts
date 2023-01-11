@@ -20,6 +20,10 @@ export class StudentComponent implements OnInit {
   logedInIndividual: any;
   user: any;
   userData: any;
+  bookTable: boolean = true;
+  history: boolean = false;
+  messages:boolean= false;
+  mesages: any[] = [];
 
   constructor(
     private auth: AuthService,
@@ -36,6 +40,7 @@ export class StudentComponent implements OnInit {
   ngOnInit(): void {
     this.form = new FormGroup({
       filter: new FormControl(""),
+      author: new FormControl(""),
       startdate: new FormControl(""),
       enddate: new FormControl(""),
     });
@@ -53,8 +58,37 @@ export class StudentComponent implements OnInit {
       .getSpecificUser(this.user.customIdName)
       .subscribe((userData: any) => {
         this.userData = userData;
+        console.log("this.userData", this.userData);
+        this.userData.books.map((book: any) => {
+          let today = new Date();
+          today.setHours(0, 0, 0, 0);
+
+          if (this.consvertStartDate(book.endDate) < today) {
+            let item = {
+              name: book.title,
+              status: "overdue",
+            };
+            this.mesages.push(item);
+          } else if (this.consvertStartDate(book.endDate) > today) {
+            console.log(this.consvertStartDate(book.endDate), today);
+          } else {
+            let item = {
+              name: book.title,
+              status: "close",
+            };
+            this.mesages.push(item);
+          }
+        });
       });
   }
+
+  consvertStartDate(timeStamp: any) {
+    let startDate = new Date(
+      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
+    );
+    return startDate;
+  }
+
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }

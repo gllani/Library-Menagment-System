@@ -12,6 +12,7 @@ import { BooktableComponent } from "./booktable/booktable.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { GuardService } from "./guards/guard.service";
+import { MessagesComponent } from "./student/messages/messages.component";
 
 const routes: Routes = [
   {
@@ -68,6 +69,10 @@ const routes: Routes = [
       {
         path: "history",
         component: HistoryComponent,
+      },
+      {
+        path: "messages",
+        component: MessagesComponent,
       },
     ],
   },

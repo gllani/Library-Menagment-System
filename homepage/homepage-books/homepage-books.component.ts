@@ -21,7 +21,7 @@ export class HomepageBooksComponent implements OnInit {
     private bookService: BookService,
     public dialog: MatDialog,
     public PreviewService: PreviewService,
-    private booktableService : BookTableService
+    private booktableService: BookTableService
   ) {}
 
   ngOnInit(): void {
@@ -29,6 +29,7 @@ export class HomepageBooksComponent implements OnInit {
       startdate: new FormControl(""),
       enddate: new FormControl(""),
       filter: new FormControl(""),
+      author: new FormControl(""),
     });
     this.bookService.editableData = {
       BookName: "",
@@ -36,8 +37,5 @@ export class HomepageBooksComponent implements OnInit {
     };
   }
 
-  search(input : any){
-    
-
-  }
+  search(input: any) {}
 }

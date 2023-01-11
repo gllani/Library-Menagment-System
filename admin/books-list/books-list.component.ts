@@ -91,12 +91,12 @@ export class BooksListComponent implements OnInit {
     }
   };
 
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
+  // filter() {
+  //   this.data = this.searchArray(this.form.value.filter, this.data);
+  //   if (this.form.value.filter === "") {
+  //     this.data = this.allData;
+  //   }
+  // }
 
   displayFn(user: any): string {
     return user && user.name ? user.name : "";
@@ -105,6 +105,7 @@ export class BooksListComponent implements OnInit {
   display(option: any) {
     this.displayData = {};
     this.displayData = option;
+    console.log(this.displayData);
   }
 
   addBook() {
@@ -114,6 +115,7 @@ export class BooksListComponent implements OnInit {
       description: this.displayData.volumeInfo.description,
       img: this.displayData.volumeInfo.imageLinks.thumbnail,
       status: "free",
+      categories: this.displayData.volumeInfo.categories,
     };
     this.firebase.addProduct(item);
   }
