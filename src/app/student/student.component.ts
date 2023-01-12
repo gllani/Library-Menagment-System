@@ -22,7 +22,7 @@ export class StudentComponent implements OnInit {
   userData: any;
   bookTable: boolean = true;
   history: boolean = false;
-  messages:boolean= false;
+  messages:boolean= false
   mesages: any[] = [];
 
   constructor(
@@ -52,34 +52,10 @@ export class StudentComponent implements OnInit {
       this.allData = data;
       this.data = this.allData;
     });
-    let user = localStorage.getItem("login");
-    this.user = JSON.parse(user || "");
-    this.firebase
-      .getSpecificUser(this.user.customIdName)
-      .subscribe((userData: any) => {
-        this.userData = userData;
-        console.log("this.userData", this.userData);
-        this.userData.books.map((book: any) => {
-          let today = new Date();
-          today.setHours(0, 0, 0, 0);
-
-          if (this.consvertStartDate(book.endDate) < today) {
-            let item = {
-              name: book.title,
-              status: "overdue",
-            };
-            this.mesages.push(item);
-          } else if (this.consvertStartDate(book.endDate) > today) {
-            console.log(this.consvertStartDate(book.endDate), today);
-          } else {
-            let item = {
-              name: book.title,
-              status: "close",
-            };
-            this.mesages.push(item);
-          }
-        });
-      });
+  
+  }
+  resetForm() {
+    this.form.reset();
   }
 
   consvertStartDate(timeStamp: any) {

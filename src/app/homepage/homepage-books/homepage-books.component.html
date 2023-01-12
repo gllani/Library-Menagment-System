@@ -35,7 +35,7 @@
   >
     <div class="w3-row">
       <div class="w3-col m3">
-        <div class="w3-card w3-round w3-white">
+        <form class="w3-card w3-round w3-white">
           <div class="w3-container">
             <form [formGroup]="form">
               <h4 class="w3-center">Search...</h4>
@@ -83,10 +83,12 @@
             <p></p>
 
             <p>
-              <input type="reset" />
+              <button mat-button class="btn btn-primary" (click)="resetForm()">
+                Reset
+              </button>
             </p>
           </div>
-        </div>
+        </form>
         <br />
       </div>
       <div class="w3-col m9">

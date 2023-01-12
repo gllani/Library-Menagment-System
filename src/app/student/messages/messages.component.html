@@ -3,7 +3,7 @@
   <hr />
   <div class="container" *ngFor="let item of mesages">
     <h3 *ngIf="item.status === 'close'" style="color: gold">
-      <li>The Book {{ item.name }} needs to be returned tomorow</li>
+      <li>The Book {{ item.name }} needs to be returned tomorrow</li>
     </h3>
     <h3 *ngIf="item.status === 'overdue'" style="color: red">
       <li>The Book {{ item.name }} needs to be returned</li>

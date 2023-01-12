@@ -16,7 +16,7 @@
   >
     <div class="w3-row">
       <div class="w3-col m3">
-        <div class="w3-card w3-round">
+        <form class="w3-card w3-round">
           <div
             class="w3-container"
             style="background-color: #dfe5e8 !important"
@@ -55,20 +55,22 @@
                 <mat-option value="1">--</mat-option>
                 <mat-option value="2">Adventure stories</mat-option>
                 <mat-option value="3">Classics</mat-option>
-                <mat-option value="2">Crime</mat-option>
-                <mat-option value="2">Fantasy</mat-option>
+                <mat-option value="4">Crime</mat-option>
+                <mat-option value="5">Fantasy</mat-option>
                 <mat-option value="2">Historical fiction</mat-option>
-                <mat-option value="2">Horror</mat-option>
-                <mat-option value="2">Humour and satire</mat-option>
+                <mat-option value="6">Horror</mat-option>
+                <mat-option value="7">Humour and satire</mat-option>
               </mat-select>
             </mat-form-field>
             <p></p>
 
             <p>
-              <input type="reset" />
+              <button mat-button class="btn btn-primary" (click)="resetForm()">
+                Reset
+              </button>
             </p>
           </div>
-        </div>
+        </form>
 
         <br />
 
@@ -77,7 +79,7 @@
             <button
               class="w3-button w3-block w3-theme-l1 w3-left"
               mat-button
-              (click)="bookTable = true; history = false"
+              (click)="bookTable = true; history = false; messages = false"
             >
               go to booklist
             </button>
@@ -86,7 +88,7 @@
             <button
               class="w3-button w3-block w3-theme-l1 w3-left"
               mat-button
-              (click)="bookTable = false; history = true"
+              (click)="bookTable = false; history = true; messages = false"
             >
               go to history
             </button>
@@ -99,8 +101,7 @@
               go to Messages
             </button>
             <button
-              class="w3-button w3-block  w3-left color"
-           
+              class="w3-button w3-block w3-left color"
               mat-button
               (click)="onLogout()"
             >

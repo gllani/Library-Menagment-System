@@ -17,7 +17,6 @@
   >
     <table class="table table-striped mb-0" mat-table [dataSource]="dataSource">
       <div class="mat-elevation-z8">
-        <!-- RegistrationId Column -->
         <ng-container matColumnDef="bookId">
           <th mat-header-cell *matHeaderCellDef style="width: 230px">
             Book Id
@@ -35,7 +34,6 @@
           </td>
         </ng-container>
 
-        <!-- studentId Column -->
         <ng-container matColumnDef="author">
           <th mat-header-cell *matHeaderCellDef style="width: 195px">Author</th>
           <td mat-cell *matCellDef="let element">
@@ -65,7 +63,9 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="retrunBook(element)">Return</button>
+            <button mat-button (click)="openDialogWithTemplateRef(dialogue)">
+              Return
+            </button>
           </td>
         </ng-container>
 
@@ -74,13 +74,14 @@
       </div>
     </table>
   </div>
-
-  <!-- <app-booktable [admin]="true"></app-booktable> -->
 </div>
 <ng-template #loadingSpinner>
   <div class="spinner"><mat-spinner></mat-spinner></div>
 </ng-template>
 <ng-template #dialogue>
-  <button mat-button mat-dialog-close style="color: green"></button>
-  <button mat-dialog-close mat-button style="color: red"></button>
+  <h2>Are you sure that you want to return this book?</h2>
+  <button class="yesButton" mat-button mat-dialog-close>Yes</button>
+  <button class="noButton" mat-dialog-close mat-button>No</button>
 </ng-template>
+
+<!-- (click)="retrunBook(element)" -->

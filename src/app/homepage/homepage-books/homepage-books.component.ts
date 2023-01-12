@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { BookTableService } from "src/app/booktable/book-table.service";
 import { BookService } from "src/app/services/book.service";
 import { PreviewService } from "../../booktable/preview/preview.service";
 @Component({
@@ -20,8 +19,7 @@ export class HomepageBooksComponent implements OnInit {
   constructor(
     private bookService: BookService,
     public dialog: MatDialog,
-    public PreviewService: PreviewService,
-    private booktableService: BookTableService
+    public PreviewService: PreviewService
   ) {}
 
   ngOnInit(): void {
@@ -36,6 +34,7 @@ export class HomepageBooksComponent implements OnInit {
       Name: "",
     };
   }
-
-  search(input: any) {}
+  resetForm() {
+    this.form.reset();
+  }
 }

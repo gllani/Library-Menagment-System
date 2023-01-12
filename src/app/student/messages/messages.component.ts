@@ -30,7 +30,6 @@ export class MessagesComponent implements OnInit {
       .getSpecificUser(this.user.customIdName)
       .subscribe((userData: any) => {
         this.userData = userData;
-        console.log("this.userData", this.userData);
         this.userData.books.map((book: any) => {
           let today = new Date();
           today.setHours(0, 0, 0, 0);

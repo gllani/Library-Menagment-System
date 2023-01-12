@@ -1,11 +1,8 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
-import { BooksListComponent } from "../books-list/books-list.component";
-import { StudentsListComponent } from "../students-list/students-list.component";
 import { StudentsService } from "../students-list/students.service";
 
 @Component({
@@ -33,8 +30,7 @@ export class DashboardComponent implements OnInit {
   constructor(
     private studentsService: StudentsService,
     private firebase: FirebaseService,
-    public dialog: MatDialog,
-    private router: Router
+    public dialog: MatDialog
   ) {}
 
   ngOnInit() {
@@ -112,32 +108,9 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
-
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
-  consvertStartDate(timeStamp: any) {
-    let startDate = new Date(
-      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
-    );
-    return startDate;
-  }
-
-  sortByDate() {
-    this.dataSource.sort(function (
-      x: { timestamp: number },
-      y: { timestamp: number }
-    ) {
-      return x.timestamp - y.timestamp;
-    });
-  }
-
   retrunBook(element: any) {
     element.status = "free";
     this.firebase.ndryshoProdukt(element);
@@ -153,24 +126,11 @@ export class DashboardComponent implements OnInit {
       });
     });
   }
-
-
-  goToCheckBooks() {
-    const dialogRef = this.dialog.open(BooksListComponent, {
-      maxWidth: "100vw",
-      maxHeight: "100vh",
-      height: "100%",
-      width: "100%",
-    });
-  }
-
-  goToCheckStudents() {
-    const dialogRef = this.dialog.open(StudentsListComponent, {
-      maxWidth: "100vw",
-      maxHeight: "100vh",
-      height: "100%",
-      width: "100%",
-    });
+  consvertStartDate(timeStamp: any) {
+    let startDate = new Date(
+      timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
+    );
+    return startDate;
   }
 
   getData(data: any) {

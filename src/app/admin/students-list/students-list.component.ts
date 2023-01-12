@@ -104,10 +104,4 @@ export class StudentsListComponent implements OnInit {
       this.loading.next(true);
     }
   };
-  filter() {
-    this.data = this.searchArray(this.form.value.filter, this.data);
-    if (this.form.value.filter === "") {
-      this.data = this.allData;
-    }
-  }
 }

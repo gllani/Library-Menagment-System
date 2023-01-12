@@ -4,7 +4,6 @@ import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { GoogleAPIService } from "src/app/homepage/search-modal/google-api.service";
-import { AdminComponent } from "../admin.component";
 import { BookService } from "../../services/book.service";
 import { BehaviorSubject } from "rxjs";
 
@@ -90,13 +89,6 @@ export class BooksListComponent implements OnInit {
       );
     }
   };
-
-  // filter() {
-  //   this.data = this.searchArray(this.form.value.filter, this.data);
-  //   if (this.form.value.filter === "") {
-  //     this.data = this.allData;
-  //   }
-  // }
 
   displayFn(user: any): string {
     return user && user.name ? user.name : "";
