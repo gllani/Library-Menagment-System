@@ -63,7 +63,10 @@
         <ng-container matColumnDef="action">
           <th mat-header-cell *matHeaderCellDef>Action</th>
           <td mat-cell *matCellDef="let element">
-            <button mat-button (click)="openDialogWithTemplateRef(dialogue)">
+            <button
+              mat-button
+              (click)="openDialogWithTemplateRef(dialogue, element)"
+            >
               Return
             </button>
           </td>
@@ -80,7 +83,14 @@
 </ng-template>
 <ng-template #dialogue>
   <h2>Are you sure that you want to return this book?</h2>
-  <button class="yesButton" mat-button mat-dialog-close>Yes</button>
+  <button
+    class="yesButton"
+    (click)="retrunBook(this.element)"
+    mat-button
+    mat-dialog-close
+  >
+    Yes
+  </button>
   <button class="noButton" mat-dialog-close mat-button>No</button>
 </ng-template>
 

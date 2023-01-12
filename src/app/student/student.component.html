@@ -16,58 +16,60 @@
   >
     <div class="w3-row">
       <div class="w3-col m3">
-        <form class="w3-card w3-round">
+        <form class="w3-card w3-round" [formGroup]="form">
           <div
             class="w3-container"
             style="background-color: #dfe5e8 !important"
           >
-            <form [formGroup]="form">
-              <h4 class="w3-center">Search...</h4>
-              <hr />
-              <p>Book Title</p>
-              <button>
-                <input
-                  type="search"
-                  required
-                  class="form-control w-100"
-                  placeholder="Search Book Title!"
-                  formControlName="filter"
-                />
-              </button>
-              <p></p>
-              <p>Author Name</p>
-              <button>
-                <input
-                  type="search"
-                  required
-                  class="form-control w-100"
-                  placeholder="Search Book Author!"
-                  formControlName="author"
-                />
-              </button>
-            </form>
+            <h4 class="w3-center">Search...</h4>
+            <hr />
+            <p>Book Title</p>
+            <button>
+              <input
+                type="search"
+                required
+                class="form-control w-100"
+                placeholder="Search Book Title!"
+                formControlName="filter"
+              />
+            </button>
+            <p></p>
+            <p>Author Name</p>
+            <button>
+              <input
+                type="search"
+                required
+                class="form-control w-100"
+                placeholder="Search Book Author!"
+                formControlName="author"
+              />
+            </button>
 
             <p></p>
             <p>Category</p>
             <mat-form-field appearance="fill">
               <mat-label>Select an option</mat-label>
-              <mat-select disableRipple>
-                <mat-option value="1">--</mat-option>
-                <mat-option value="2">Adventure stories</mat-option>
-                <mat-option value="3">Classics</mat-option>
-                <mat-option value="4">Crime</mat-option>
-                <mat-option value="5">Fantasy</mat-option>
-                <mat-option value="2">Historical fiction</mat-option>
-                <mat-option value="6">Horror</mat-option>
-                <mat-option value="7">Humour and satire</mat-option>
+              <mat-select disableRipple formControlName="category">
+                <mat-option value="">--</mat-option>
+                <mat-option value="Adventure stories"
+                  >Adventure stories</mat-option
+                >
+                <mat-option value="Classics">Classics</mat-option>
+                <mat-option value="Crime">Crime</mat-option>
+                <mat-option value="Fiction">Fiction</mat-option>
+                <mat-option value="Historical fiction"
+                  >Historical fiction</mat-option
+                >
+                <mat-option value="Horror">Horror</mat-option>
+                <mat-option value="Humour and satire"
+                  >Humour and satire</mat-option
+                >
               </mat-select>
             </mat-form-field>
             <p></p>
 
             <p>
-              <button mat-button class="btn btn-primary" (click)="resetForm()">
-                Reset
-              </button>
+              <button mat-button class="btn btn-primary">Reset</button>
             </p>
           </div>
         </form>
@@ -115,12 +117,16 @@
         <div class="w3-row-padding">
           <div class="w3-col m12">
             <div class="w3-card w3-round w3-white">
-              <div class="table-wrapper-scroll my-custom-scroll">
+              <div
+                class="table-wrapper-scroll my-custom-scroll"
+                *ngIf="loading | async; else loadingSpinner"
+              >
                 <div *ngIf="bookTable">
                   <app-booktable
                     [student]="true"
                     [filterData]="this.form.value.filter"
                     [authorFilter]="this.form.value.author"
+                    [category]="this.form.value.category"
                   ></app-booktable>
                 </div>
                 <div *ngIf="history">
@@ -149,3 +155,7 @@
     </div>
   </footer>
 </body>
+
+<ng-template #loadingSpinner>
+  <div class="spinner"><mat-spinner></mat-spinner></div>
+</ng-template>

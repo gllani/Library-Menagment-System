@@ -40,6 +40,9 @@
             /><small>Login to your account!</small></span
           >
           <form class="was-validated" [formGroup]="loginForm">
+            <div *ngIf="this.dontexist | async" class="error">
+              <p>This User does not exist!</p>
+            </div>
             <label for="validationTextarea" class="form-label">Username</label>
             <input
               type="text"
@@ -67,9 +70,7 @@
                 <p>Please fill all the forms above</p>
               </div>
 
-              <div *ngIf="dontexist" class="error">
-                <p>This User does not exist!</p>
-              </div>
+
               <p class="random_password"></p>
             </div>
             <br />

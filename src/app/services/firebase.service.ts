@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { shareReplay } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -35,6 +36,11 @@ export class FirebaseService {
       .collection("books", (ref) => ref.where("status", "==", "reserved"))
       .valueChanges();
   }
+  getBookCategory(category: any) {
+    return this.firestore
+      .collection("books", (ref) => ref.where("categories", "==", category))
+      .valueChanges();
+  }
   getFreeBooks() {
     return this.firestore
       .collection("books", (ref) => ref.where("status", "==", "free"))
@@ -42,14 +48,15 @@ export class FirebaseService {
   }
   getOverdueBooks() {
     return this.firestore
-      .collection("employeer", (ref) => ref.where("endDate", "<=", new Date))
+      .collection("employeer", (ref) => ref.where("endDate", "<=", new Date()))
       .valueChanges();
   }
 
   getSpecificBooks(bookname: any) {
     return this.firestore
       .collection("books", (ref) => ref.where("BookName", "==", bookname))
-      .valueChanges();
+      .valueChanges()
+      .pipe(shareReplay());
   }
 
   fshiProdukt(id: any) {
@@ -83,6 +90,7 @@ export class FirebaseService {
   }
 
   reserveBook(item: any) {
+    console.log(item);
     return this.firestore
       .collection("employeer")
       .doc(item.customIdName)

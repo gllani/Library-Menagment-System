@@ -26,6 +26,7 @@ export class DashboardComponent implements OnInit {
   allData: any = [];
   data: any = [];
   loading: any = new BehaviorSubject(false);
+  element: any;
 
   constructor(
     private studentsService: StudentsService,
@@ -108,7 +109,8 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>, element: any) {
+    this.element = element;
     this.dialog.open(templateRef);
   }
   retrunBook(element: any) {
@@ -124,7 +126,9 @@ export class DashboardComponent implements OnInit {
           }
         });
       });
+      this.searchArray('',[]);
     });
+    this.element = "";
   }
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(

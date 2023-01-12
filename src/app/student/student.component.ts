@@ -5,6 +5,7 @@ import { Router } from "@angular/router";
 import { BookService } from "../services/book.service";
 import { AuthService } from "../guards/auth.service";
 import { FirebaseService } from "../services/firebase.service";
+import { BehaviorSubject } from "rxjs";
 
 @Component({
   selector: "app-student",
@@ -22,8 +23,9 @@ export class StudentComponent implements OnInit {
   userData: any;
   bookTable: boolean = true;
   history: boolean = false;
-  messages:boolean= false
+  messages: boolean = false;
   mesages: any[] = [];
+  loading: any = new BehaviorSubject(false);
 
   constructor(
     private auth: AuthService,
@@ -43,6 +45,7 @@ export class StudentComponent implements OnInit {
       author: new FormControl(""),
       startdate: new FormControl(""),
       enddate: new FormControl(""),
+      category: new FormControl(""),
     });
     this.bookService.editableData = {
       BookName: "",
@@ -51,9 +54,11 @@ export class StudentComponent implements OnInit {
     this.firebase.getData().subscribe((data: any) => {
       this.allData = data;
       this.data = this.allData;
+      this.loading.next(true);
     });
-  
   }
+
+
   resetForm() {
     this.form.reset();
   }

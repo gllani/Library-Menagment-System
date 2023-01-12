@@ -17,7 +17,8 @@
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
     <table class="table table-bordered table-striped mb-0">
       <div class="imageContainer" *ngIf="allData.length">
-        <div *ngFor="let item of allData">
+        
+        <div *ngFor="let item of allData | unique: 'BookName'">
           <div *ngIf="item.status === 'reserved'">
             <mat-card class="{{ inactiveClass }}" (click)="openDialog(item)">
               <img class="img" src="{{ item.img }}" />

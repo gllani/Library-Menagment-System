@@ -40,6 +40,7 @@ import { HistoryComponent } from "./student/history/history.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MyDirective } from "./homepage/search-modal/mydirective";
 import { MessagesComponent } from './student/messages/messages.component';
+import { NgPipesModule } from "ngx-pipes";
 
 
 
@@ -62,14 +63,16 @@ import { MessagesComponent } from './student/messages/messages.component';
     DashboardComponent,
     HistoryComponent,
     MyDirective,
-    MessagesComponent
+    MessagesComponent,
 
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    NgPipesModule,
     ReactiveFormsModule,
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),

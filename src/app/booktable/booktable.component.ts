@@ -19,7 +19,9 @@ export class BooktableComponent implements OnInit {
   @Input() student: boolean = false;
   @Input() filterData: any;
   @Input() authorFilter: any;
+  @Input() category: any;
   loading: any = new BehaviorSubject(false);
+  overdue: any[] = [];
 
   constructor(
     private firebase: FirebaseService,
@@ -67,6 +69,30 @@ export class BooktableComponent implements OnInit {
     }
     if (changes.authorFilter) {
       this.searchArray(changes.authorFilter.currentValue, this.allData);
+    }
+    if (changes.category) {
+      console.log(changes.category);
+      if (changes.category.currentValue !== "") {
+        this.loading.next(false);
+        this.firebase
+          .getBookCategory(changes.category.currentValue)
+          .subscribe((data: any) => {
+            this.allData = data;
+            this.loading.next(true);
+          });
+      } else {
+        this.firebase.getData().subscribe((data: any) => {
+          if (this.admin === false) {
+            this.allData = data;
+          } else {
+            data.map((book: any) => {
+              if (book.status === "reserved") {
+                this.allData.push(book);
+              }
+            });
+          }
+        });
+      }
     }
   }
 
@@ -157,7 +183,6 @@ export class BooktableComponent implements OnInit {
           }
         });
       });
-
       testArray.map((overdue: any) => {
         this.firebase
           .getSpecificBooks(overdue.title)
@@ -167,7 +192,15 @@ export class BooktableComponent implements OnInit {
           });
       });
     });
+    console.log(this.allData);
+    
   }
+  
+
+   getUniqueListBy(arr:any, key:any) {
+    return [...new Map(arr.map((item: any) => [item[key], item])).values()]
+}
+
 
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(

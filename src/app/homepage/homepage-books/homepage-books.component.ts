@@ -28,6 +28,7 @@ export class HomepageBooksComponent implements OnInit {
       enddate: new FormControl(""),
       filter: new FormControl(""),
       author: new FormControl(""),
+      category: new FormControl(""),
     });
     this.bookService.editableData = {
       BookName: "",
