@@ -4,7 +4,6 @@ import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
 import { PreviewComponent } from "./preview/preview.component";
 import { BehaviorSubject } from "rxjs";
-import { BookTableService } from "./book-table.service";
 
 @Component({
   selector: "app-booktable",
@@ -25,8 +24,7 @@ export class BooktableComponent implements OnInit {
   constructor(
     private firebase: FirebaseService,
     public previewService: PreviewService,
-    public dialog: MatDialog,
-    public bookTableService: BookTableService
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -98,7 +96,6 @@ export class BooktableComponent implements OnInit {
       );
     }
   };
-
 
   openDialog(item: any) {
     if (this.student === true && item.status === "free") {

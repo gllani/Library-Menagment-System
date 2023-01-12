@@ -12,7 +12,7 @@ export class LoginComponent {
   title = "login";
   loginForm!: FormGroup;
   student: any[] = [];
-  dontexist = false;
+  dontexist : boolean = false;
 
   constructor(
     private router: Router,

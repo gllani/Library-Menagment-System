@@ -40,50 +40,48 @@
             /><small>Login to your account!</small></span
           >
           <form class="was-validated" [formGroup]="loginForm">
-            <div class="form-inputs">
-              <label for="validationTextarea" class="form-label" 
-                >Username</label
+            <label for="validationTextarea" class="form-label">Username</label>
+            <input
+              type="text"
+              class="form-control valid"
+              placeholder="User Name"
+              formControlName="username"
+              required
+              minlength="3"
+            />
+            <br />
+            <div class="password">
+              <label for="validationTextarea" class="form-label"
+                >Password</label
               >
               <input
-                type="text"
                 class="form-control valid"
-                placeholder="User Name"
-                formControlName="username"
+                id="password"
+                type="password"
+                placeholder="Password"
+                formControlName="password"
+                minlength="4"
                 required
-                minlength="3"
               />
-
-              <div class="password">
-                <label for="validationTextarea" class="form-label"
-                  >Password</label
-                >
-                <input
-                  class="form-control valid"
-                  id="password"
-                  type="password"
-                  placeholder="Password"
-                  formControlName="password"
-                  minlength="4"
-                  required
-                />
-                <div *ngIf="!loginForm.valid" class="error">
-                  <p>Please fill all the forms above</p>
-                </div>
-
-                <div *ngIf="dontexist" class="error">
-                  <p>This User does not exist!</p>
-                </div>
-                
+              <div *ngIf="!loginForm.valid" class="error">
+                <p>Please fill all the forms above</p>
               </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                [disabled]="!loginForm.valid"
-                (click)="test()"
-              >
-                Submit
-              </button>
+
+              <div *ngIf="dontexist" class="error">
+                <p>This User does not exist!</p>
+              </div>
+              <p class="random_password"></p>
             </div>
+            <br />
+            <button
+              type="submit"
+              class="btn btn-primary"
+              style="width: 220px"
+              [disabled]="!loginForm.valid"
+              (click)="test()"
+            >
+              Submit
+            </button>
           </form>
         </div>
         <div class="right-side">

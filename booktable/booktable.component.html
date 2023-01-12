@@ -2,7 +2,7 @@
   class="w3-container w3-padding"
   *ngIf="loading | async; else loadingSpinner"
 >
-  <h1 style="color: rgb(214, 168, 108)">Books List</h1>
+  <h1 style="color: rgb(214, 168, 108); margin-left: 450px">Books List</h1>
   <div *ngIf="this.user">
     <div *ngIf="this.user.role === 'admin'">
       <button mat-button style="color: green" (click)="getFree()">Free</button
