@@ -2,9 +2,6 @@
   <h1 class="title" style="color: rgb(0, 0, 0)">Your Messages From Librarian!</h1>
   <hr />
   <div class="container" *ngFor="let item of mesages">
-    <h3 *ngIf="item.status === 'close'" style="color: gold">
-      <li>The Book {{ item.name }} needs to be returned tomorrow</li>
-    </h3>
     <h3 *ngIf="item.status === 'overdue'" style="color: red">
       <li>The Book {{ item.name }} needs to be returned</li>
     </h3>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
@@ -14,6 +14,7 @@ export class BooktableComponent implements OnInit {
   allData: any = [];
   user: any;
   inactiveClass: any;
+  isClicked: boolean = false;
   @Input() admin: boolean = false;
   @Input() bookMenu: boolean = false;
   @Input() student: boolean = false;
@@ -33,6 +34,7 @@ export class BooktableComponent implements OnInit {
     this.loading.next(false);
     this.firebase.getData().subscribe((data: any) => {
       if (this.admin === false) {
+        console.log(data);
         this.allData = data;
       } else {
         data.map((book: any) => {
@@ -59,7 +61,7 @@ export class BooktableComponent implements OnInit {
           this.previewService.user = user;
         });
     }
-
+    this.getOverdue();
     this.loading.next(true);
   }
 
@@ -183,6 +185,7 @@ export class BooktableComponent implements OnInit {
           }
         });
       });
+
       testArray.map((overdue: any) => {
         this.firebase
           .getSpecificBooks(overdue.title)
@@ -192,15 +195,7 @@ export class BooktableComponent implements OnInit {
           });
       });
     });
-    console.log(this.allData);
-    
   }
-  
-
-   getUniqueListBy(arr:any, key:any) {
-    return [...new Map(arr.map((item: any) => [item[key], item])).values()]
-}
-
 
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(

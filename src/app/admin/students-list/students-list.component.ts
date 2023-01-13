@@ -66,7 +66,6 @@ export class StudentsListComponent implements OnInit {
           usernameedit: new FormControl(edit.username, Validators.required),
           passwordedit: new FormControl(edit.password, Validators.required),
         });
-        console.log(edit);
       }
     }
     this.dialog.open(templateRef);
@@ -80,7 +79,6 @@ export class StudentsListComponent implements OnInit {
       books: [],
     };
     this.firebase.punonjesIRi(item);
-    this.router.navigate(["/students-list"]);
   }
 
   editStudent() {

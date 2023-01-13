@@ -46,11 +46,7 @@ export class FirebaseService {
       .collection("books", (ref) => ref.where("status", "==", "free"))
       .valueChanges();
   }
-  getOverdueBooks() {
-    return this.firestore
-      .collection("employeer", (ref) => ref.where("endDate", "<=", new Date()))
-      .valueChanges();
-  }
+
 
   getSpecificBooks(bookname: any) {
     return this.firestore

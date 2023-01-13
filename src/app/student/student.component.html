@@ -51,25 +51,21 @@
               <mat-label>Select an option</mat-label>
               <mat-select disableRipple formControlName="category">
                 <mat-option value="">--</mat-option>
-                <mat-option value="Adventure stories"
-                  >Adventure stories</mat-option
+                <mat-option value="Drama"
+                  >Drama</mat-option
                 >
-                <mat-option value="Classics">Classics</mat-option>
-                <mat-option value="Crime">Crime</mat-option>
+                <mat-option value="Families">Families</mat-option>
+                <mat-option value="Science">Science</mat-option>
                 <mat-option value="Fiction">Fiction</mat-option>
-                <mat-option value="Historical fiction"
-                  >Historical fiction</mat-option
-                >
-                <mat-option value="Horror">Horror</mat-option>
-                <mat-option value="Humour and satire"
-                  >Humour and satire</mat-option
+                <mat-option value="Biography"
+                  >Biography & Autobiography</mat-option
                 >
               </mat-select>
             </mat-form-field>
             <p></p>
 
             <p>
-              <button mat-button class="btn btn-primary">Reset</button>
+              <button mat-button class="btn btn-primary" (click)="resetForm()">Reset</button>
             </p>
           </div>
         </form>
