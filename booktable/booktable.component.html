@@ -3,15 +3,13 @@
   *ngIf="loading | async; else loadingSpinner"
 >
   <h1 style="color: rgb(214, 168, 108); margin-left: 450px">Books List</h1>
-  <div *ngIf="this.user">
-    <div *ngIf="this.user.role === 'admin'">
-      <button mat-button style="color: green" (click)="getFree()">Free</button
-      ><button mat-button style="color: orange" (click)="getReserved()">
-        Reserved</button
-      ><button mat-button style="color: red" (click)="getOverdue()">
-        Overdue
-      </button>
-    </div>
+  <div *ngIf="this.user.role === 'admin'">
+    <button mat-button style="color: green" (click)="getFree()">Free</button
+    ><button mat-button style="color: orange" (click)="getReserved()">
+      Reserved</button
+    ><button mat-button style="color: red" (click)="getOverdue()" >
+      Overdue 
+    </button>
   </div>
   <hr />
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
@@ -20,12 +18,12 @@
         <div *ngFor="let item of allData">
           <div *ngIf="item.status === 'reserved'">
             <mat-card class="{{ inactiveClass }}" (click)="openDialog(item)">
-              <img class="img" src="{{ item.img }}" />
+              <img class="img" src="{{ item.img }}"/>
             </mat-card>
           </div>
           <div *ngIf="item.status === 'free'">
             <mat-card class="card" (click)="openDialog(item)">
-              <img class="img" src="{{ item.img }}" />
+              <img class="img" src="{{ item.img }}"/>
             </mat-card>
           </div>
         </div>

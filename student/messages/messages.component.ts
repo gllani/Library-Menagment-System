@@ -14,10 +14,7 @@ export class MessagesComponent implements OnInit {
   user: any;
   userData: any;
 
-  constructor(
-    private firebase: FirebaseService,
-    public router: Router
-  ) {}
+  constructor(private firebase: FirebaseService, public router: Router) {}
 
   ngOnInit(): void {
     this.firebase.getData().subscribe((data: any) => {
@@ -42,12 +39,6 @@ export class MessagesComponent implements OnInit {
             this.mesages.push(item);
           } else if (this.consvertStartDate(book.endDate) > today) {
             console.log(this.consvertStartDate(book.endDate), today);
-          } else {
-            let item = {
-              name: book.title,
-              status: "close",
-            };
-            this.mesages.push(item);
           }
         });
       });

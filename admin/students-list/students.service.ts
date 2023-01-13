@@ -4,11 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class StudentsService {
-  editableData = {
-    id: "",
-    username: 0,
-    password: 0,
-  };
+  editableData: any = {};
   upgrateData: any;
   deleteItem: any;
   constructor() {}

@@ -107,7 +107,7 @@ export class BooksListComponent implements OnInit {
       description: this.displayData.volumeInfo.description,
       img: this.displayData.volumeInfo.imageLinks.thumbnail,
       status: "free",
-      categories: this.displayData.volumeInfo.categories,
+      categories: this.displayData.volumeInfo.categories[0],
     };
     this.firebase.addProduct(item);
   }

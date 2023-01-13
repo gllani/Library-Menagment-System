@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChanges } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { MatDialog } from "@angular/material/dialog";
 import { FirebaseService } from "../services/firebase.service";
 import { PreviewService } from "./preview/preview.service";
@@ -14,12 +14,15 @@ export class BooktableComponent implements OnInit {
   allData: any = [];
   user: any;
   inactiveClass: any;
+  isClicked: boolean = false;
   @Input() admin: boolean = false;
   @Input() bookMenu: boolean = false;
   @Input() student: boolean = false;
   @Input() filterData: any;
   @Input() authorFilter: any;
+  @Input() category: any;
   loading: any = new BehaviorSubject(false);
+  overdue: any[] = [];
 
   constructor(
     private firebase: FirebaseService,
@@ -31,6 +34,7 @@ export class BooktableComponent implements OnInit {
     this.loading.next(false);
     this.firebase.getData().subscribe((data: any) => {
       if (this.admin === false) {
+        console.log(data);
         this.allData = data;
       } else {
         data.map((book: any) => {
@@ -57,7 +61,7 @@ export class BooktableComponent implements OnInit {
           this.previewService.user = user;
         });
     }
-
+    this.getOverdue();
     this.loading.next(true);
   }
 
@@ -67,6 +71,30 @@ export class BooktableComponent implements OnInit {
     }
     if (changes.authorFilter) {
       this.searchArray(changes.authorFilter.currentValue, this.allData);
+    }
+    if (changes.category) {
+      console.log(changes.category);
+      if (changes.category.currentValue !== "") {
+        this.loading.next(false);
+        this.firebase
+          .getBookCategory(changes.category.currentValue)
+          .subscribe((data: any) => {
+            this.allData = data;
+            this.loading.next(true);
+          });
+      } else {
+        this.firebase.getData().subscribe((data: any) => {
+          if (this.admin === false) {
+            this.allData = data;
+          } else {
+            data.map((book: any) => {
+              if (book.status === "reserved") {
+                this.allData.push(book);
+              }
+            });
+          }
+        });
+      }
     }
   }
 

@@ -17,12 +17,19 @@ export class StudentsListComponent implements OnInit {
   data: any = [];
   allData: any = [];
   form!: FormGroup;
+  editForm!: FormGroup;
   getPunonjes: boolean = false;
   addStudent: boolean = false;
   fshiPunonjes: boolean = false;
   addProduct: boolean = false;
   editProduct: boolean = false;
   loading: any = new BehaviorSubject(false);
+  edit: boolean = false;
+  changeStudent: any = {
+    id: "",
+    username: "",
+    password: "",
+  };
 
   constructor(
     private firebase: FirebaseService,
@@ -50,8 +57,15 @@ export class StudentsListComponent implements OnInit {
     });
   }
   openDialogWithTemplateRef(templateRef: any, edit?: any) {
-    if (templateRef._declarationTContainer.localNames[0] === "myDialog") {
+    if (templateRef._declarationTContainer.localNames[0] === "edit") {
       if (edit) {
+        this.studentsService.editableData = edit;
+        this.changeStudent = edit;
+        this.editForm = new FormGroup({
+          idedit: new FormControl(edit.id, Validators.required),
+          usernameedit: new FormControl(edit.username, Validators.required),
+          passwordedit: new FormControl(edit.password, Validators.required),
+        });
       }
     }
     this.dialog.open(templateRef);
@@ -65,7 +79,18 @@ export class StudentsListComponent implements OnInit {
       books: [],
     };
     this.firebase.punonjesIRi(item);
-    this.router.navigate(["/students-list"]);
+  }
+
+  editStudent() {
+    let item = {
+      customIdName: this.changeStudent.customIdName,
+      id: this.editForm.value.idedit,
+      username: this.editForm.value.usernameedit,
+      password: this.editForm.value.passwordedit,
+      role: "employeer",
+      books: this.changeStudent.books,
+    };
+    this.firebase.reserveBook(item);
   }
 
   setShowModal(value: boolean, item: any) {

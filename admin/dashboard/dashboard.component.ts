@@ -1,6 +1,7 @@
-import { Component, OnInit, TemplateRef } from "@angular/core";
+import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { MatSort } from "@angular/material/sort";
 import { BehaviorSubject } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { StudentsService } from "../students-list/students.service";
@@ -26,7 +27,8 @@ export class DashboardComponent implements OnInit {
   allData: any = [];
   data: any = [];
   loading: any = new BehaviorSubject(false);
-
+  element: any;
+  endDate: any;
   constructor(
     private studentsService: StudentsService,
     private firebase: FirebaseService,
@@ -108,7 +110,8 @@ export class DashboardComponent implements OnInit {
     }
   };
 
-  openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
+  openDialogWithTemplateRef(templateRef: TemplateRef<any>, element: any) {
+    this.element = element;
     this.dialog.open(templateRef);
   }
   retrunBook(element: any) {
@@ -124,7 +127,9 @@ export class DashboardComponent implements OnInit {
           }
         });
       });
+      this.searchArray("", []);
     });
+    this.element = "";
   }
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(

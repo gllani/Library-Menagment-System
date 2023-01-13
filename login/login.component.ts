@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { BehaviorSubject } from "rxjs";
 import { AuthService } from "../guards/auth.service";
 import { FirebaseService } from "../services/firebase.service";
 @Component({
@@ -12,7 +13,7 @@ export class LoginComponent {
   title = "login";
   loginForm!: FormGroup;
   student: any[] = [];
-  dontexist : boolean = false;
+  dontexist: any = new BehaviorSubject(false);
 
   constructor(
     private router: Router,
@@ -48,7 +49,7 @@ export class LoginComponent {
             this.router.navigate(["student/book-list"]);
           }
         } else {
-          this.dontexist = true;
+          this.dontexist.next(true);
         }
       });
     } else {
