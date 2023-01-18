@@ -21,8 +21,7 @@ export class SearchModalComponent implements OnInit {
     this.form = new FormGroup({
       search: new FormControl(""),
     });
-    this.googleAPI.getBooks().subscribe((data: any) => {
-    });
+    this.googleAPI.getBooks().subscribe((data: any) => {});
     this.filteredOptions = this.myControl.valueChanges.pipe(
       startWith(""),
       map((value) => {

@@ -51,9 +51,7 @@
               <mat-label>Select an option</mat-label>
               <mat-select disableRipple formControlName="category">
                 <mat-option value="">--</mat-option>
-                <mat-option value="Drama"
-                  >Drama</mat-option
-                >
+                <mat-option value="Drama">Drama</mat-option>
                 <mat-option value="Families">Families</mat-option>
                 <mat-option value="Science">Science</mat-option>
                 <mat-option value="Fiction">Fiction</mat-option>
@@ -65,7 +63,9 @@
             <p></p>
 
             <p>
-              <button mat-button class="btn btn-primary" (click)="resetForm()">Reset</button>
+              <button mat-button class="btn btn-primary" (click)="resetForm()">
+                Reset
+              </button>
             </p>
           </div>
         </form>

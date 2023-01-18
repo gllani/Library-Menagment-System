@@ -30,7 +30,6 @@ import { MatIconModule } from "@angular/material/icon";
 import { MatSlideToggleModule } from "@angular/material/slide-toggle";
 import { HomepageBooksComponent } from "./homepage/homepage-books/homepage-books.component";
 import { MatSelectModule } from "@angular/material/select";
-import { MessageComponent } from "./admin/message/message.component";
 import { MatCardModule } from "@angular/material/card";
 import { PreviewComponent } from "./booktable/preview/preview.component";
 import { BooktableComponent } from "./booktable/booktable.component";
@@ -39,11 +38,9 @@ import { DashboardComponent } from "./admin/dashboard/dashboard.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MyDirective } from "./homepage/search-modal/mydirective";
-import { MessagesComponent } from './student/messages/messages.component';
+import { MessagesComponent } from "./student/messages/messages.component";
 import { NgPipesModule } from "ngx-pipes";
-
-
-
+import { MatSortModule } from "@angular/material/sort";
 
 @NgModule({
   declarations: [
@@ -57,15 +54,12 @@ import { NgPipesModule } from "ngx-pipes";
     BooksListComponent,
     DeleteModalComponent,
     HomepageBooksComponent,
-    MessageComponent,
     PreviewComponent,
     BooktableComponent,
     DashboardComponent,
     HistoryComponent,
     MyDirective,
     MessagesComponent,
-
-    
   ],
   imports: [
     BrowserModule,
@@ -92,8 +86,9 @@ import { NgPipesModule } from "ngx-pipes";
     MatCardModule,
     MatSidenavModule,
     MatProgressSpinnerModule,
+    MatSortModule,
   ],
-  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase } ],
+  providers: [{ provide: FIREBASE_OPTIONS, useValue: environment.firebase }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -58,7 +58,6 @@ export class StudentComponent implements OnInit {
     });
   }
 
-
   resetForm() {
     this.form.reset();
   }

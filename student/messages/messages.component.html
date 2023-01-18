@@ -1,9 +1,15 @@
 <div class="messagesPannel">
-  <h1 class="title" style="color: rgb(0, 0, 0)">Your Messages From Librarian!</h1>
+  <h1 class="title" style="color: rgb(0, 0, 0)">
+    Your Messages From Librarian!
+  </h1>
   <hr />
   <div class="container" *ngFor="let item of mesages">
     <h3 *ngIf="item.status === 'overdue'" style="color: red">
-      <li>The Book {{ item.name }} needs to be returned</li>
+      <li>
+        The Book
+        <em style="color: blue"> &nbsp;&nbsp; {{ item.name }} &nbsp; &nbsp;</em>
+        needs to be returned
+      </li>
     </h3>
   </div>
 </div>

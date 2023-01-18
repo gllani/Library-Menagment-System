@@ -1,7 +1,6 @@
-import { Component, OnInit, TemplateRef, ViewChild } from "@angular/core";
+import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
-import { MatSort } from "@angular/material/sort";
 import { BehaviorSubject } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { StudentsService } from "../students-list/students.service";

@@ -10,9 +10,11 @@
     opacity: 50%;
 
 }
+
 .imageContainer{
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
 }
 .img{
     height: 250px;
@@ -20,7 +22,7 @@
 }
 .my-custom-scrollbar {
     position: relative;
-    height: 73vh;
+    height: 69.7vh;
     overflow: auto;
     }
     .table-wrapper-scroll-y {

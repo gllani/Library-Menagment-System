@@ -175,13 +175,14 @@
 
 <div class="scss" *ngIf="loading | async; else loadingSpinner">
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-bordered table-striped mb-0">
+    <table class="table table-bordered table-striped">
       <thead>
         <tr class="bg-light">
           <th scope="col" width="21.1%">Student Id</th>
           <th scope="col" width="21.1%">Username</th>
           <th scope="col" width="21.1%">Password</th>
-          <th scope="col" width="21.1%"><span>Edit</span></th>
+          <th scope="col" width="10%"><span>Edit</span></th>
+          <th scope="col" width="10%"><span>Delete</span></th>
         </tr>
       </thead>
       <tbody *ngFor="let item of data">
@@ -215,6 +216,8 @@
             >
               EDIT
             </button>
+          </td>
+          <td class=" ">
             <button
               mat-raised-button
               (click)="openDialogWithTemplateRef(myDialog1)"
