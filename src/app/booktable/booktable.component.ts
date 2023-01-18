@@ -34,7 +34,6 @@ export class BooktableComponent implements OnInit {
     this.loading.next(false);
     this.firebase.getData().subscribe((data: any) => {
       if (this.admin === false) {
-        console.log(data);
         this.allData = data;
       } else {
         data.map((book: any) => {
@@ -53,7 +52,6 @@ export class BooktableComponent implements OnInit {
       let user = localStorage.getItem("login");
       this.user = JSON.parse(user || "");
     }
-    console.log(this.user);
     if (this.user !== undefined) {
       this.firebase
         .getSpecificUser(this.user.customIdName)
@@ -73,7 +71,6 @@ export class BooktableComponent implements OnInit {
       this.searchArray(changes.authorFilter.currentValue, this.allData);
     }
     if (changes.category) {
-      console.log(changes.category);
       if (changes.category.currentValue !== "") {
         this.loading.next(false);
         this.firebase

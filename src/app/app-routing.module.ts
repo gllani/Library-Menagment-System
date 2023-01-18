@@ -27,7 +27,6 @@ const routes: Routes = [
     path: "search-modal",
     component: SearchModalComponent,
   },
-
   {
     path: "login",
     component: LoginComponent,
@@ -54,7 +53,6 @@ const routes: Routes = [
         path: "books-preview",
         component: BooktableComponent,
       },
-    
     ],
   },
   {

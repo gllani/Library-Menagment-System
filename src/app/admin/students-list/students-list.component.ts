@@ -79,6 +79,7 @@ export class StudentsListComponent implements OnInit {
       books: [],
     };
     this.firebase.punonjesIRi(item);
+    
   }
 
   editStudent() {

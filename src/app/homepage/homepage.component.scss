@@ -1,4 +1,3 @@
-
 body,
 html {
   height: 100%;
@@ -13,13 +12,7 @@ html {
   background-size: cover;
 }
 
-@media only screen and (max-device-width: 1600px) {
-  .bgimg-1 {
-	background-attachment: scroll;
-	min-height: 400px;
-  background-image: url("https://dg.imgix.net/can-christians-benefit-from-books-by-nonbelievers-r30biiui-en/landscape/can-christians-benefit-from-books-by-nonbelievers-r30biiui.jpg?ts=1481222504&amp;ixlib=rails-4.2.0&amp;fit=crop&amp;w=2000&amp;h=1050") ;
-  }
-}  
+
 .mapouter {
   position: relative;
   text-align: right;
@@ -36,19 +29,32 @@ html {
   height: 400px !important;
 }
 
+.animate__backInUp{
+  animation-duration: 2s;
+}
 .animate__backInLeft{
 
-  animation-duration: 2s; 
+  animation-duration: 3s; 
 }
 .animate__backInRight{
 
-  animation-duration: 2s; 
+  animation-duration: 3s; 
 }
 .animate__fadeInTopLeft{
   animation-duration: 2s; 
 }
 .animate__fadeInUp{
-  animation-duration: 2s; 
+animation-duration: 3s;
+}
+
+.animate__backInDown{
+  animation-duration: 2s;
+}
+.animate__fadeInTopLeft{
+  animation-duration: 3s;
+}
+.animate__fadeInTopRight{
+  animation-duration: 3s;
 }
 
 h1{

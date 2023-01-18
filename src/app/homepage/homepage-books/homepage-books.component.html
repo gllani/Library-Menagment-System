@@ -69,9 +69,7 @@
               <mat-label>Select an option</mat-label>
               <mat-select disableRipple formControlName="category">
                 <mat-option value="">--</mat-option>
-                <mat-option value="Drama"
-                  >Drama</mat-option
-                >
+                <mat-option value="Drama">Drama</mat-option>
                 <mat-option value="Families">Families</mat-option>
                 <mat-option value="Science">Science</mat-option>
                 <mat-option value="Fiction">Fiction</mat-option>
@@ -94,7 +92,7 @@
       <div class="w3-col m9">
         <div class="w3-row-padding">
           <div class="w3-col m12">
-            <div class="w3-card w3-round w3-white">
+            <div class="w3-card ">
               <app-booktable
                 [bookMenu]="true"
                 [filterData]="this.form.value.filter"

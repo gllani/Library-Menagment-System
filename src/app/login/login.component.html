@@ -30,7 +30,8 @@
       Login!
     </button>
   </div>
-  <div class="section">
+
+  <div class="section animate__bounceInRight">
     <div class="container">
       <div class="form">
         <div class="left-side">
@@ -39,9 +40,20 @@
               src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
             /><small>Login to your account!</small></span
           >
+          <div>
+            <p><br /></p>
+          </div>
+
           <form class="was-validated" [formGroup]="loginForm">
+            <div>
+              <p><br /></p>
+            </div>
+
             <div *ngIf="this.dontexist | async" class="error">
               <p>This User does not exist!</p>
+            </div>
+            <div>
+              <p><br /></p>
             </div>
             <label for="validationTextarea" class="form-label">Username</label>
             <input
@@ -52,6 +64,7 @@
               required
               minlength="3"
             />
+
             <br />
             <div class="password">
               <label for="validationTextarea" class="form-label"
@@ -70,10 +83,12 @@
                 <p>Please fill all the forms above</p>
               </div>
 
-
               <p class="random_password"></p>
             </div>
             <br />
+            <div>
+              <p></p>
+            </div>
             <button
               type="submit"
               class="btn btn-primary"
@@ -83,13 +98,24 @@
             >
               Submit
             </button>
+            <div>
+              <p><br /></p>
+            </div>
+
+            <em>
+              If you have forgotten your username or password, send an email to
+              the librarian to get your credentials.
+            </em>
+
+            <button
+              class="w3-button w3-black w3-right w3-section"
+              type="submit"
+              (click)="openGmail()"
+            >
+              <i class="fa fa-paper-plane"></i>
+              SEND EMAIL
+            </button>
           </form>
-        </div>
-        <div class="right-side">
-          <span class="circle1"></span>
-          <img
-            src="https://media.istockphoto.com/id/157482029/photo/stack-of-books.jpg?s=612x612&amp;w=0&amp;k=20&amp;c=ZxSsWKNcVpEzrJ3_kxAUuhBCT3P_dfnmJ81JegPD8eE="
-          />
         </div>
       </div>
     </div>

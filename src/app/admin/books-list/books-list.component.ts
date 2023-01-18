@@ -1,5 +1,5 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { FirebaseService } from "src/app/services/firebase.service";
@@ -97,7 +97,6 @@ export class BooksListComponent implements OnInit {
   display(option: any) {
     this.displayData = {};
     this.displayData = option;
-    console.log(this.displayData);
   }
 
   addBook() {

@@ -47,7 +47,6 @@ export class FirebaseService {
       .valueChanges();
   }
 
-
   getSpecificBooks(bookname: any) {
     return this.firestore
       .collection("books", (ref) => ref.where("BookName", "==", bookname))
@@ -86,7 +85,6 @@ export class FirebaseService {
   }
 
   reserveBook(item: any) {
-    console.log(item);
     return this.firestore
       .collection("employeer")
       .doc(item.customIdName)

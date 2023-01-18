@@ -37,8 +37,6 @@ export class MessagesComponent implements OnInit {
               status: "overdue",
             };
             this.mesages.push(item);
-          } else if (this.consvertStartDate(book.endDate) > today) {
-            console.log(this.consvertStartDate(book.endDate), today);
           }
         });
       });

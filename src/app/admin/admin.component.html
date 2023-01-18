@@ -1,10 +1,20 @@
-<app-message></app-message>
+<div class="w3-bar w3-theme-d2">
+  <a
+    class="w3-bar-item w3-button w3-hide-medium w3-hide-large w3-right w3-padding-large w3-hover-white w3-large w3-theme-d2"
+    href="javascript:void(0);"
+    ><i class="fa fa-bars"></i
+  ></a>
+  <a class="w3-bar-item w3-button w3-padding-large w3-theme-d4"
+    ><i class="fa fa-home w3-margin-right"></i>Admin Page</a
+  >
+</div>
+
 <mat-drawer-container class="example-container">
-  <mat-drawer class="sidePannel" mode="side" opened style="margin-top: 1px">
+  <mat-drawer class="sidePannel" mode="side" opened>
     <h4 class="w3-center">My Profile</h4>
     <p class="w3-center">
       <img
-        src="https://api.time.com/wp-content/uploads/2021/10/GettyImages-577674005.jpg"
+        src="https://www.kitco.com/news/2019-05-24/images/shutterstock_1683658-min.jpg"
         class="w3-circle"
         style="height: 106px; width: 106px"
         alt="Avatar"
@@ -73,6 +83,10 @@
       ></i
       >LogOut!
     </button>
+    <div
+      class="w3-block w3-theme-l1"
+      style="height: 5.66cm; position: absolute"
+    ></div>
 
     <br />
   </mat-drawer>
@@ -80,3 +94,9 @@
     <router-outlet></router-outlet>
   </mat-drawer-content>
 </mat-drawer-container>
+
+<div class="w3-bar w3-theme-d2" style="position: fixed">
+  <a class="w3-bar-item w3-padding-large w3-theme-d2" style="margin-left: 17cm"
+    >Admin Pannel</a
+  >
+</div>
