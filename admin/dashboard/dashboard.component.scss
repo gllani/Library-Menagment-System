@@ -63,7 +63,7 @@ table {
 }
 .my-custom-scrollbar {
     position: relative;
-    height: 80vh;
+    height: 75.7vh;
     overflow: auto;
     }
     .table-wrapper-scroll-y {
@@ -78,11 +78,7 @@ table {
         width: 170px;
     }
 
-.search{
-    width:300px;
-    display: flex;
-    padding-left: 20px;
-}
+
 .active{
     color: green;
 }
@@ -112,3 +108,43 @@ table {
     width: 2.5cm
 
 }
+.form-select{
+    margin-left: 0.5cm;
+    width: 4cm;
+}
+.dropbtn {
+    background-color: #46acf0;
+    color: white;
+    padding: 7.5px;
+    font-size: 16px;
+    margin-left: 1cm;
+    border: none;
+    width: 140px;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover, .dropbtn:focus {
+    background-color: #58b6f4;
+  }
+    .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-left: 1cm;
+  }
+    .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+    .dropdown-content a:hover {background-color: #ddd;}
+    .show {display:block;}

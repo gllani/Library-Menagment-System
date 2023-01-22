@@ -131,72 +131,25 @@
     </em>
   </p>
   <br />
-
   <div class="w3-row-padding w3-center">
     <div class="wrapper">
       <h1>What Librarian Offers</h1>
       <div class="cols">
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div
+          class="col"
+          ontouchstart="this.classList.toggle('hover');"
+          *ngFor="let item of booksToDisplay1"
+        >
           <div class="container">
             <div
               class="front"
               style="
-                background-image: url(https://media.graphassets.com/J8yddzHqT1m4PJEX9ABj);
-              "
+                  background-image: url({{ item.img }});"
             ></div>
             <div class="back">
               <div class="inner">
-                <p>Title: More Miracle Than Bird</p>
-                <p>Author: Alice Miller</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://blog-cdn.reedsy.com/directories/admin/attachments/large_ce5d4ed6f53d69535c1893a3e14cb41e.jpg);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: To Sleep in a Sea of Stars</p>
-                <p>Author: Christopher Paolini</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://i.pinimg.com/236x/35/66/dc/3566dc24c327c144d18dffbac7145d28--mark-watney-dust-storm.jpg);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: The Martian</p>
-                <p>Author: Andy Weir</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQwe0e4SKlUPQRXBWD-NBpIV0tEpTsiceW0Pvuq1w9trnz0D1ydlycpTIPW9RECZ8WaVco&amp;usqp=CAU);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: More Miracle Than Bird</p>
-                <p>Author: Alice Miller</p>
+                <p>Title: {{ item.BookName }}</p>
+                <p>Author: {{ item.Name }}</p>
               </div>
             </div>
           </div>
@@ -204,71 +157,24 @@
       </div>
     </div>
   </div>
-
   <div class="w3-row-padding w3-center">
     <div class="wrapper">
       <div class="cols">
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
+        <div
+          class="col"
+          ontouchstart="this.classList.toggle('hover');"
+          *ngFor="let item of booksToDisplay2"
+        >
           <div class="container">
             <div
               class="front"
               style="
-                background-image: url(https://static01.nyt.com/images/2014/02/05/books/05before-and-after-slide-T6H2/05before-and-after-slide-T6H2-superJumbo.jpg?quality=75&amp;auto=webp&amp;disable=upscale);
-              "
+                background-image: url({{ item.img }});"
             ></div>
             <div class="back">
               <div class="inner">
-                <p>Title: More Miracle Than Bird</p>
-                <p>Author: Alice Miller</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://cdn.pastemagazine.com/www/system/images/photo_albums/30-best-book-covers-2016/large/2vegetariancover.png?1384968217);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: The Vegetarian</p>
-                <p>Author: Han Kang</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://creativereview.imgix.net/content/uploads/2020/12/AlexKirbyanger.jpg?auto=compress,format&amp;q=60&amp;w=1200&amp;h=1870);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: Anger</p>
-                <p>Author: Barbara H. Rosenwein</p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col" ontouchstart="this.classList.toggle('hover');">
-          <div class="container">
-            <div
-              class="front"
-              style="
-                background-image: url(https://m.media-amazon.com/images/I/41ocVj1eR9L._SL500_.jpg);
-              "
-            ></div>
-            <div class="back">
-              <div class="inner">
-                <p>Title: Crying in H Mart</p>
-                <p>Author: Michelle Zauner</p>
+                <p>Title: {{ item.BookName }}</p>
+                <p>Author: {{ item.Name }}</p>
               </div>
             </div>
           </div>
@@ -276,99 +182,101 @@
       </div>
     </div>
   </div>
-</div>
-<div class="w3-content w3-container w3-padding-64" id="contact">
-  <h3 class="w3-center">WHERE I WORK</h3>
+  <div class="w3-content w3-container w3-padding-64" id="contact">
+    <h3 class="w3-center">WHERE I WORK</h3>
 
-  <div class="w3-row w3-padding-32 w3-section">
-    <div class="w3-col m4 w3-container">
-      <img
-        src="https://ikubinfoacademy.al/wp-content/uploads/2021/03/cropped-ikubINFO-Academy-me-ngjyra-01-1.png"
-        class="w3-image w3-round"
-        style="width: 100%"
-      />
-    </div>
-    <div class="w3-col m8 w3-panel">
-      <div class="w3-large w3-margin-bottom">
-        <i
-          class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
-        ></i>
-        Rruga Abdyl Frasheri, Hekla Center, K3-9, Tirana, Albania<br />
-        <i
-          class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
-        ></i>
-        Phone: +355 69605 1001<br />
-        <i
-          class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
-        ></i>
-        Email: info@ikubinfo.al<br />
+    <div class="w3-row w3-padding-32 w3-section">
+      <div class="w3-col m4 w3-container">
+        <img
+          src="https://ikubinfoacademy.al/wp-content/uploads/2021/03/cropped-ikubINFO-Academy-me-ngjyra-01-1.png"
+          class="w3-image w3-round"
+          style="width: 100%"
+        />
       </div>
-
-      <p>
-        Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a note:
-      </p>
-      <form action="/action_page.php" target="_blank">
-        <div class="w3-row-padding" style="margin: 0 -16px 8px -16px">
-          <div class="w3-half">
-            <input
-              class="w3-input w3-border"
-              type="text"
-              placeholder="Your Id Card"
-              name="Name"
-              disabled
-            />
-          </div>
-          <div class="w3-half">
-            <input
-              class="w3-input w3-border"
-              type="text"
-              placeholder="Student Card"
-              name="Email"
-              disabled
-            />
-          </div>
+      <div class="w3-col m8 w3-panel">
+        <div class="w3-large w3-margin-bottom">
+          <i
+            class="fa fa-map-marker fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
+          ></i>
+          Rruga Abdyl Frasheri, Hekla Center, K3-9, Tirana, Albania<br />
+          <i
+            class="fa fa-phone fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
+          ></i>
+          Phone: +355 69605 1001<br />
+          <i
+            class="fa fa-envelope fa-fw w3-hover-text-black w3-xlarge w3-margin-right"
+          ></i>
+          Email: info@ikubinfo.al<br />
         </div>
 
-        <input
-          class="w3-input w3-border"
-          type="message"
-          placeholder="Send an email with your Id Card photo to get your credential to log in in your Panel. Thank You! "
-          name="Message"
-          disabled
-        />
+        <p>
+          Swing by for a cup of <i class="fa fa-coffee"></i>, or leave me a
+          note:
+        </p>
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin: 0 -16px 8px -16px">
+            <div class="w3-half">
+              <input
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Your Id Card"
+                name="Name"
+                disabled
+              />
+            </div>
+            <div class="w3-half">
+              <input
+                class="w3-input w3-border"
+                type="text"
+                placeholder="Student Card"
+                name="Email"
+                disabled
+              />
+            </div>
+          </div>
 
-        <button
-          class="w3-button w3-black w3-right w3-section"
-          type="submit"
-          (click)="openGmail()"
-        >
-          <i class="fa fa-paper-plane"></i>
-          SEND EMAIL
-        </button>
-        <br />
-        <li style="color: red">
-          YOU CAN RESERVE 1 BOOK, 2 BOOKS, 3 BOOKS FOR A MONTH.
-        </li>
-        <br />
-        <li style="color: red">
-          SEND AN EMAIL TO GET YOUR USERNAME AND PASSWORD TO CONTROL YOUR PANEL.
-        </li>
-        <br />
-        <li style="color: red">STAY TURNED AND CHECK YOUR EMAIL!</li>
-        <br />
-      </form>
+          <input
+            class="w3-input w3-border"
+            type="message"
+            placeholder="Send an email with your Id Card photo to get your credential to log in in your Panel. Thank You! "
+            name="Message"
+            disabled
+          />
 
-      <div class="mapouter">
-        <div class="gmap_canvas">
-          <iframe
-            class="gmap_iframe"
-            width="100%"
-            frameborder="0"
-            scrolling="no"
-            marginheight="0"
-            marginwidth="0"
-            src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=ikubinfo&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
-          ></iframe>
+          <button
+            class="w3-button w3-black w3-right w3-section"
+            type="submit"
+            (click)="openGmail()"
+          >
+            <i class="fa fa-paper-plane"></i>
+            SEND EMAIL
+          </button>
+          <br />
+          <li style="color: red">
+            YOU CAN RESERVE 1 BOOK, 2 BOOKS, 3 BOOKS FOR A MONTH.
+          </li>
+          <br />
+          <li style="color: red">
+            SEND AN EMAIL TO GET YOUR USERNAME AND PASSWORD TO CONTROL YOUR
+            PANEL.
+          </li>
+          <br />
+          <li style="color: red">STAY TURNED AND CHECK YOUR EMAIL!</li>
+          <br />
+        </form>
+
+        <div class="mapouter">
+          <div class="gmap_canvas">
+            <iframe
+              class="gmap_iframe"
+              width="100%"
+              frameborder="0"
+              scrolling="no"
+              marginheight="0"
+              marginwidth="0"
+              src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=ikubinfo&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+            ></iframe>
+          </div>
         </div>
       </div>
     </div>

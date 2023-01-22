@@ -34,6 +34,7 @@ export class PreviewComponent implements OnInit {
       endDate: new FormControl(""),
     });
     this.item = this.previewService.item;
+    console.log("item", this.item);
     this.firebase.getPunonjes().subscribe((users: any) => {
       users.map((booksOfUsers: any) => {
         booksOfUsers.books.map((data: any) => {
@@ -59,6 +60,9 @@ export class PreviewComponent implements OnInit {
     }
   }
 
+  getStatusColor(status: any) {
+    return status === "free" ? "green" : "red";
+  }
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(
       timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000

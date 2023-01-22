@@ -58,10 +58,6 @@ export class StudentComponent implements OnInit {
     });
   }
 
-  resetForm() {
-    this.form.reset();
-  }
-
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(
       timeStamp.seconds * 1000 + timeStamp.nanoseconds / 1000000
@@ -72,9 +68,7 @@ export class StudentComponent implements OnInit {
   openDialogWithTemplateRef(templateRef: TemplateRef<any>) {
     this.dialog.open(templateRef);
   }
-  convertstartDate(item: any) {
-    return new Date(item.seconds * 1000 + item.nanoseconds / 1000000);
-  }
+
   onLogout() {
     this.auth.isLoggedIn = false;
     this.auth.isAdmin = false;

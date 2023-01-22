@@ -59,7 +59,7 @@ export class BooktableComponent implements OnInit {
           this.previewService.user = user;
         });
     }
-    this.getOverdue();
+    // this.getOverdue();
     this.loading.next(true);
   }
 
@@ -170,26 +170,26 @@ export class BooktableComponent implements OnInit {
   getOverdue() {
     this.loading.next(false);
     this.allData = [];
-    let testArray: any = [];
     this.firebase.getPunonjes().subscribe((user: any) => {
-      user.map((specificUser: any) => {
-        specificUser.books.map((book: any) => {
+      user.forEach((specificUser: any) => {
+        specificUser.books.forEach((book: any) => {
           var varDate = new Date(this.consvertStartDate(book.endDate));
           const today = new Date();
           today.setHours(0, 0, 0, 0);
-          if (varDate < today) {
-            return testArray.push(book);
+          if (varDate && varDate < today) {
+            this.firebase
+              .getSpecificBooks(book.title)
+              .subscribe((overdueBook: any) => {
+                if (this.allData.length > 0) {
+                  this.allData=this.allData.filter(
+                    (e: any) => e.BookName !== overdueBook[0].BookName
+                  );
+                }
+                this.allData = [...this.allData, overdueBook[0]];
+                this.loading.next(true);
+              });
           }
         });
-      });
-
-      testArray.map((overdue: any) => {
-        this.firebase
-          .getSpecificBooks(overdue.title)
-          .subscribe((overdueBook: any) => {
-            this.allData.push(overdueBook[0]);
-            this.loading.next(true);
-          });
       });
     });
   }

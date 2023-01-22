@@ -79,12 +79,6 @@
               </mat-select>
             </mat-form-field>
             <p></p>
-
-            <p>
-              <button mat-button class="btn btn-primary" (click)="resetForm()">
-                Reset
-              </button>
-            </p>
           </div>
         </form>
         <br />
@@ -92,8 +86,8 @@
       <div class="w3-col m9">
         <div class="w3-row-padding">
           <div class="w3-col m12">
-            <div class="w3-card ">
-              <app-booktable
+            <div class="w3-card">
+              <app-booktable 
                 [bookMenu]="true"
                 [filterData]="this.form.value.filter"
                 [authorFilter]="this.form.value.author"

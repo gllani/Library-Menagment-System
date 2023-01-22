@@ -5,17 +5,32 @@
   <h1 style="color: rgb(214, 168, 108); margin-left: 450px">Books List</h1>
   <div *ngIf="this.user">
     <div *ngIf="this.user.role === 'admin'">
-      <button mat-button style="color: green" (click)="getFree()">Free</button
-      ><button mat-button style="color: orange" (click)="getReserved()">
-        Reserved</button
-      ><button mat-button style="color: red" (click)="getOverdue()">
-        Overdue
+      <button
+        mat-raised-button
+        color="primary"
+        style="color: rgb(255, 255, 255); margin-left: 10px"
+        (click)="getFree()"
+      >
+        Free Books</button
+      ><button
+        mat-raised-button
+        style="color: red; margin-left: 1cm"
+        (click)="getReserved()"
+      >
+        Reserved Books
+      </button>
+      <button
+        mat-raised-button
+        style="color: red; margin-left: 1cm"
+        (click)="getOverdue()"
+      >
+        Overdue Books
       </button>
     </div>
   </div>
   <hr />
   <div class="table-wrapper-scroll-y my-custom-scrollbar">
-    <table class="table table-bordered table-striped ">
+    <table class="table table-bordered table-striped">
       <div class="imageContainer" *ngIf="allData.length">
         <div *ngFor="let item of allData">
           <div *ngIf="item.status === 'reserved'">
