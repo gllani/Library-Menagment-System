@@ -1,6 +1,7 @@
 import { Component, OnInit, TemplateRef } from "@angular/core";
 import { FormControl, FormGroup } from "@angular/forms";
 import { MatDialog } from "@angular/material/dialog";
+import { Router } from "@angular/router";
 import { BehaviorSubject } from "rxjs";
 import { FirebaseService } from "src/app/services/firebase.service";
 import { StudentsService } from "../students-list/students.service";
@@ -31,7 +32,8 @@ export class DashboardComponent implements OnInit {
   constructor(
     private studentsService: StudentsService,
     private firebase: FirebaseService,
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    public router: Router
   ) {}
 
   ngOnInit() {
@@ -58,12 +60,95 @@ export class DashboardComponent implements OnInit {
                   endDate: book.endDate,
                   student: student.username,
                 };
-                this.dataSource.push(item);
+                this.dataSource = [...this.dataSource, item];
               }
             });
           });
         });
         this.loading.next(true);
+      });
+    });
+  }
+  getAll() {
+    this.loading.next(false);
+    this.dataSource = [];
+    this.firebase.getData().subscribe((data: any) => {
+      this.firebase.getPunonjes().subscribe((students: any) => {
+        students.map((student: any) => {
+          student.books.map((book: any) => {
+            data.filter((e: any) => {
+              if (e.BookName === book.title) {
+                let item: any = {
+                  BookName: e.BookName,
+                  Name: e.Name,
+                  customIdName: e.customIdName,
+                  startDate: book.startDate,
+                  endDate: book.endDate,
+                  student: student.username,
+                };
+                console.log(item);
+                this.dataSource = [...this.dataSource, item];
+              }
+            });
+          });
+        });
+        this.loading.next(true);
+      });
+    });
+  }
+  getReserved() {
+    this.loading.next(false);
+    this.dataSource = [];
+    this.firebase.getReservedBooks().subscribe((data: any) => {
+      this.firebase.getPunonjes().subscribe((students: any) => {
+        students.map((student: any) => {
+          student.books.map((book: any) => {
+            data.filter((e: any) => {
+              if (e.BookName === book.title) {
+                let item: any = {
+                  BookName: e.BookName,
+                  Name: e.Name,
+                  customIdName: e.customIdName,
+                  startDate: book.startDate,
+                  endDate: book.endDate,
+                  student: student.username,
+                };
+                this.dataSource = [...this.dataSource, item];
+              }
+            });
+          });
+        });
+        this.loading.next(true);
+      });
+    });
+  }
+
+  getOverdue() {
+    this.loading.next(false);
+    this.dataSource = [];
+    this.firebase.getPunonjes().subscribe((user: any) => {
+      user.forEach((specificUser: any) => {
+        specificUser.books.forEach((book: any) => {
+          var varDate = new Date(this.consvertStartDate(book.endDate));
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (varDate && varDate < today) {
+            this.firebase
+              .getSpecificBooks(book.title)
+              .subscribe((overdueBook: any) => {
+                overdueBook[0]["startDate"] = book.startDate;
+                overdueBook[0]["endDate"] = book.endDate;
+                overdueBook[0]["student"] = specificUser.username;
+                if (this.dataSource.length > 0) {
+                  this.dataSource = this.dataSource.filter(
+                    (e: any) => e.BookName !== overdueBook[0].BookName
+                  );
+                }
+                this.dataSource = [...this.dataSource, overdueBook[0]];
+              });
+            this.loading.next(true);
+          }
+        });
       });
     });
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FirebaseService } from "../services/firebase.service";
 
 @Component({
   selector: "app-homepage",
@@ -6,9 +7,16 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./homepage.component.scss"],
 })
 export class HomepageComponent implements OnInit {
-  constructor() {}
+  booksToDisplay1: any[] = [];
+  booksToDisplay2: any[] = [];
+  constructor(private firebase: FirebaseService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.firebase.getData().subscribe((data: any) => {
+      this.booksToDisplay1.push(data[0], data[1], data[2], data[3]);
+      this.booksToDisplay2.push(data[4], data[5], data[6], data[7]);
+    });
+  }
   openIt() {
     window.open("localhost:4200/search-modal");
   }

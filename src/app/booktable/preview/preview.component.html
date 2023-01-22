@@ -1,4 +1,7 @@
 <h2 mat-dialog-title>{{ previewService.item.BookName }}</h2>
+<h3  class="{{ getStatusColor(previewService.item.status) }}">
+  {{ previewService.item.status | uppercase }}
+</h3>
 
 <mat-dialog-content class="mat-typography">
   <div class="container">

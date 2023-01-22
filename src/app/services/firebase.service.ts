@@ -65,7 +65,7 @@ export class FirebaseService {
   }
 
   getPunonjes() {
-    return this.firestore
+    return  this.firestore
       .collection("employeer")
       .valueChanges({ idField: "customIdName" });
   }

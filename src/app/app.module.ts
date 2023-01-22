@@ -5,7 +5,6 @@ import { AppComponent } from "./app.component";
 import { LoginComponent } from "./login/login.component";
 import { HomepageComponent } from "./homepage/homepage.component";
 import { AdminComponent } from "./admin/admin.component";
-import { StudentComponent } from "./student/student.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { StudentsListComponent } from "./admin/students-list/students-list.component";
 import { SearchModalComponent } from "./homepage/search-modal/search-modal.component";
@@ -41,6 +40,7 @@ import { MyDirective } from "./homepage/search-modal/mydirective";
 import { MessagesComponent } from "./student/messages/messages.component";
 import { NgPipesModule } from "ngx-pipes";
 import { MatSortModule } from "@angular/material/sort";
+import { StudentComponent } from "./student/student.component";
 
 @NgModule({
   declarations: [
