@@ -30,31 +30,31 @@ html {
 }
 
 .animate__backInUp{
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 .animate__backInLeft{
 
-  animation-duration: 2s; 
+  animation-duration: 1s; 
 }
 .animate__backInRight{
 
-  animation-duration: 2s; 
-}
-.animate__fadeInTopLeft{
   animation-duration: 1s; 
 }
+.animate__fadeInTopLeft{
+  animation-duration: 0.2s; 
+}
 .animate__fadeInUp{
-animation-duration: 2s;
+animation-duration: 1s;
 }
 
 .animate__backInDown{
-  animation-duration: 1s;
+  animation-duration: 0.2s;
 }
 .animate__fadeInTopLeft{
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 .animate__fadeInTopRight{
-  animation-duration: 2s;
+  animation-duration: 1s;
 }
 
 h1{
