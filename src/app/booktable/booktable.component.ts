@@ -59,7 +59,6 @@ export class BooktableComponent implements OnInit {
           this.previewService.user = user;
         });
     }
-    // this.getOverdue();
     this.loading.next(true);
   }
 

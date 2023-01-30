@@ -16,7 +16,6 @@ export class SearchModalComponent implements OnInit {
   displayData: any = [];
   allData: any = [];
   constructor(private googleAPI: GoogleAPIService) {}
-
   ngOnInit(): void {
     this.form = new FormGroup({
       search: new FormControl(""),
