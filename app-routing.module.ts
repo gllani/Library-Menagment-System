@@ -11,8 +11,8 @@ import { StudentComponent } from "./student/student.component";
 import { BooktableComponent } from "./booktable/booktable.component";
 import { HistoryComponent } from "./student/history/history.component";
 import { DashboardComponent } from "./admin/dashboard/dashboard.component";
-import { GuardService } from "./guards/guard.service";
 import { MessagesComponent } from "./student/messages/messages.component";
+import { GuardGuard } from "./guards/guard.guard";
 
 const routes: Routes = [
   {
@@ -35,7 +35,7 @@ const routes: Routes = [
     path: "admin",
     component: AdminComponent,
     data: { requireLogin: true },
-    canActivate: [GuardService],
+    canActivate: [GuardGuard],
     children: [
       {
         path: "dashboard",
@@ -59,7 +59,7 @@ const routes: Routes = [
     path: "student",
     component: StudentComponent,
     data: { requireLogin: true },
-    canActivate: [GuardService],
+    canActivate: [GuardGuard],
     children: [
       {
         path: "book-list",

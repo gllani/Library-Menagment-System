@@ -86,7 +86,6 @@ export class DashboardComponent implements OnInit {
                   endDate: book.endDate,
                   student: student.username,
                 };
-                console.log(item);
                 this.dataSource = [...this.dataSource, item];
               }
             });
