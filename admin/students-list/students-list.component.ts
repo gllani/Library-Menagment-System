@@ -79,7 +79,6 @@ export class StudentsListComponent implements OnInit {
       books: [],
     };
     this.firebase.punonjesIRi(item);
-    
   }
 
   editStudent() {
@@ -106,7 +105,6 @@ export class StudentsListComponent implements OnInit {
       this.firebase.fshiPunonjes(event.customIdName);
     }
   }
-
   searchArray = (toSearch: string, array: any[]) => {
     this.loading.next(false);
     if (toSearch === "") {

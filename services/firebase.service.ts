@@ -16,12 +16,7 @@ export class FirebaseService {
       .collection("history", (ref) => ref.where("name", "==", user.username))
       .valueChanges();
   }
-  addToHistory(item: any) {
-    return this.firestore
-      .collection("history")
-      .doc(item.customIdName)
-      .update(item);
-  }
+
   addNewToHistory(item: any) {
     return this.firestore.collection("history").add(item);
   }
@@ -57,15 +52,9 @@ export class FirebaseService {
   fshiProdukt(id: any) {
     return this.firestore.collection("books").doc(id).delete();
   }
-  addreservedBook(item: any) {
-    return this.firestore
-      .collection("books")
-      .doc(item.customIdName)
-      .update(item);
-  }
 
   getPunonjes() {
-    return  this.firestore
+    return this.firestore
       .collection("employeer")
       .valueChanges({ idField: "customIdName" });
   }

@@ -34,7 +34,6 @@ export class PreviewComponent implements OnInit {
       endDate: new FormControl(""),
     });
     this.item = this.previewService.item;
-    console.log("item", this.item);
     this.firebase.getPunonjes().subscribe((users: any) => {
       users.map((booksOfUsers: any) => {
         booksOfUsers.books.map((data: any) => {

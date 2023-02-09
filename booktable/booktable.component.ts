@@ -167,7 +167,6 @@ export class BooktableComponent implements OnInit {
   }
 
   getOverdue() {
-    this.loading.next(false);
     this.allData = [];
     this.firebase.getPunonjes().subscribe((user: any) => {
       user.forEach((specificUser: any) => {
@@ -180,12 +179,11 @@ export class BooktableComponent implements OnInit {
               .getSpecificBooks(book.title)
               .subscribe((overdueBook: any) => {
                 if (this.allData.length > 0) {
-                  this.allData=this.allData.filter(
+                  this.allData = this.allData.filter(
                     (e: any) => e.BookName !== overdueBook[0].BookName
                   );
                 }
                 this.allData = [...this.allData, overdueBook[0]];
-                this.loading.next(true);
               });
           }
         });
