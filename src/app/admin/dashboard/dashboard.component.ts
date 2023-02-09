@@ -37,15 +37,9 @@ export class DashboardComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.studentsService.editableData = {
-      id: "",
-      username: 0,
-      password: 0,
-    };
     this.form = new FormGroup({
       search: new FormControl(""),
     });
-    this.dataSource = [];
     this.firebase.getReservedBooks().subscribe((data: any) => {
       this.firebase.getPunonjes().subscribe((students: any) => {
         students.map((student: any) => {
@@ -86,7 +80,6 @@ export class DashboardComponent implements OnInit {
                   endDate: book.endDate,
                   student: student.username,
                 };
-                console.log(item);
                 this.dataSource = [...this.dataSource, item];
               }
             });
@@ -210,10 +203,10 @@ export class DashboardComponent implements OnInit {
             this.firebase.reserveBook(user);
           }
         });
+        this.loading.next(true);
       });
       this.searchArray("", []);
     });
-    this.element = "";
   }
   consvertStartDate(timeStamp: any) {
     let startDate = new Date(
@@ -221,7 +214,6 @@ export class DashboardComponent implements OnInit {
     );
     return startDate;
   }
-
   getData(data: any) {
     this.allData = data;
     this.data = data;

@@ -89,7 +89,6 @@ export class BooksListComponent implements OnInit {
       );
     }
   };
-
   displayFn(user: any): string {
     return user && user.name ? user.name : "";
   }

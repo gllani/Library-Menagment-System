@@ -10,6 +10,7 @@ export class AuthService {
 
   private authenticationStatus: BehaviorSubject<boolean> =
     new BehaviorSubject<boolean>(false);
+    
   isAuthenticated$: Observable<boolean> =
     this.authenticationStatus.asObservable();
 

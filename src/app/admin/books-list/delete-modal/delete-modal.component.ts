@@ -17,8 +17,6 @@ export class DeleteModalComponent implements OnInit {
     };
     this.newItemEvent.emit(action);
   }
-
   constructor(private bookService: BookService) {}
-
   ngOnInit(): void {}
 }
