@@ -39,7 +39,7 @@ export class HomepageBooksComponent implements OnInit {
     };
     this.firebase.getData().subscribe((data: any) => {
       this.booksToDisplay.push(
-        data[8],
+        data[0],
         data[1],
         data[2],
         data[3],
