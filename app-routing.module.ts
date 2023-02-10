@@ -34,7 +34,6 @@ const routes: Routes = [
   {
     path: "admin",
     component: AdminComponent,
-    data: { requireLogin: true },
     canActivate: [GuardGuard],
     children: [
       {
@@ -58,7 +57,6 @@ const routes: Routes = [
   {
     path: "student",
     component: StudentComponent,
-    data: { requireLogin: true },
     canActivate: [GuardGuard],
     children: [
       {
